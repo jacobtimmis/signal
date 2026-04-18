@@ -1,19 +1,13 @@
 [gd_scene format=3 uid="uid://ddm1lor3eubqy"]
 
 [ext_resource type="PackedScene" uid="uid://bnckyejqymwsq" path="res://scenes/hero/hero.tscn" id="1_sugp2"]
-[ext_resource type="FontFile" uid="uid://q036bpfo3uvm" path="res://assets/fonts/m5x7.ttf" id="2_jyhfs"]
-[ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_labels.gd" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://rtrfrdqtbjyw" path="res://src/camera.gd" id="2_tefeu"]
-[ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dckfl3kejef41" path="res://scenes/enemy/enemy_fighter.tscn" id="5_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://bsmmwnnygkwkf" path="res://assets/sprites/background.png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://cq2wg1tcn7vwo" path="res://assets/sprites/overlay.png" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cgpxvrfbcdvyy" path="res://scenes/cursor/cursor.tscn" id="9_85g3d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_jka67"]
-font = ExtResource("2_jyhfs")
 
 [node name="Game" type="Node2D" unique_id=470228196]
 metadata/_edit_lock_ = true
@@ -42,6 +36,11 @@ texture = ExtResource("7_tipki")
 
 [node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
 
+[node name="EnemyLayer" type="Node2D" parent="." unique_id=1786989094]
+
+[node name="Enemy" parent="EnemyLayer" unique_id=680225357 instance=ExtResource("5_tbgi4")]
+position = Vector2(-33, -24)
+
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
 script = ExtResource("2_tefeu")
 
@@ -66,58 +65,6 @@ shape = SubResource("WorldBoundaryShape2D_sugp2")
 position = Vector2(0, -72)
 rotation = 3.1415927
 shape = SubResource("WorldBoundaryShape2D_sugp2")
-
-[node name="DebugLabels" type="CanvasLayer" parent="." unique_id=780697392]
-visible = false
-script = ExtResource("2_tbgi4")
-
-[node name="LabelsContainer" type="VBoxContainer" parent="DebugLabels" unique_id=414224023]
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="VelocityLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1686916174 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Velocity: [value]"
-label_settings = SubResource("LabelSettings_jka67")
-script = ExtResource("3_tbgi4")
-expression = "velocity.length()"
-root_node = NodePath("../../../Hero")
-prefix = "Velocity"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="PositionLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=725856196 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Position: [value]"
-label_settings = SubResource("LabelSettings_jka67")
-script = ExtResource("3_tbgi4")
-expression = "global_position"
-root_node = NodePath("../../../Hero")
-prefix = "Position"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="StateLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1876375746 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "State: [value]"
-label_settings = SubResource("LabelSettings_jka67")
-script = ExtResource("3_tbgi4")
-expression = "state_machine.get_current_state_name()"
-root_node = NodePath("../../../Hero")
-prefix = "State"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="AimLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=714134901 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Aim: [value]"
-label_settings = SubResource("LabelSettings_jka67")
-script = ExtResource("3_tbgi4")
-expression = "_control_aim_dir"
-root_node = NodePath("../../../Hero")
-prefix = "Aim"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="Enemy" parent="." unique_id=680225357 instance=ExtResource("5_tbgi4")]
-position = Vector2(-33, -24)
 
 [node name="Overlay" type="TextureRect" parent="." unique_id=1200773612]
 anchors_preset = 15
