@@ -7,11 +7,14 @@ extends Area2D
 @export var max_distance: float = 100
 @export var damage: float
 @export var remove_after_hit := true
+@export var bounce_on_edge := false
+@export var max_bounces := 1
 
 var direction := Vector2(1, 0)
 var using_projectile_pool := false
 var distance_travelled: float
 var active := false
+var current_bounces: int
 
 
 func _ready() -> void:
@@ -39,6 +42,23 @@ func _process(delta: float) -> void:
     var position_delta := position - old_position
     distance_travelled += position_delta.length()
     if use_max_distance and distance_travelled > max_distance:
+        remove()
+
+    # TODO: this sometimes loses projectiles (maybe if they go too far?)
+    if bounce_on_edge and global_position.x < -72:
+        direction = direction.bounce(Vector2(-1, 0))
+        current_bounces += 1
+    if bounce_on_edge and global_position.x > 72:
+        direction = direction.bounce(Vector2(1, 0))
+        current_bounces += 1
+    if bounce_on_edge and global_position.y < -72:
+        direction = direction.bounce(Vector2(0, 1))
+        current_bounces += 1
+    if bounce_on_edge and global_position.y > 72:
+        direction = direction.bounce(Vector2(0, -1))
+        current_bounces += 1
+
+    if current_bounces > max_bounces:
         remove()
 
 

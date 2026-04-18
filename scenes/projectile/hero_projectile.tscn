@@ -16,7 +16,7 @@ colors = PackedColorArray(1, 0.14901961, 0.45490196, 1, 0.5803922, 0.12941177, 0
 [node name="HeroProjectile" unique_id=24496546 instance=ExtResource("1_pmols")]
 collision_mask = 4
 speed = 180.0
-life_time = 2.0
+life_time = 10.0
 use_max_distance = false
 damage = 100.0
 

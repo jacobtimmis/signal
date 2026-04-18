@@ -20,10 +20,10 @@ radius = 4.0
 [sub_resource type="Resource" id="Resource_1cpic"]
 script = ExtResource("6_h65lx")
 projectile_scene = ExtResource("5_g31do")
-shoot_delay = 0.15
+shoot_delay = 0.2
 even_spread_enabled = true
-even_spread_angle = 15.0
-pellet_count = 3
+even_spread_angle = 4.0
+pellet_count = 2
 metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [sub_resource type="Resource" id="Resource_qijae"]
