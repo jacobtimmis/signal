@@ -8,12 +8,13 @@ const DECEL = 1000.0
 const MOVE_CALLABLE = &"move"
 const DASH_DURATION = 0.2
 const DASH_ACCEL = 2000
-const DASH_SPEED = 300
+const CONTROL_AIM_DEADZONE = 0.5
 
 var state_machine := StateMachine.new()
 var wish_dir: Vector2
 var dash_dir: Vector2
 var dash_time: float
+var _control_aim_dir := Vector2.RIGHT
 
 
 func _ready() -> void:
@@ -30,7 +31,21 @@ func _ready() -> void:
             MOVE_CALLABLE: _dash_move,
         },
     )
+func _process(delta: float) -> void:
+    var current_aim_dir := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
+    if current_aim_dir.length() > CONTROL_AIM_DEADZONE:
+        _control_aim_dir = current_aim_dir
+        _control_aim_dir = _control_aim_dir.normalized()
 
+    var target_position: Vector2
+    if GlobalInput.current_device == GlobalInput.Device.MOUSE:
+        target_position = get_global_mouse_position()
+    else:
+        target_position = global_position + _control_aim_dir
+
+    $AimLine.target_position = target_position
+    $Weapon.target_position = target_position
+    if Input.is_action_pressed("shoot"):
 
 func _physics_process(delta: float) -> void:
     wish_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")

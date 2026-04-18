@@ -1,5 +1,8 @@
 extends Line2D
 
 
+var target_position: Vector2
+
+
 func _process(delta: float) -> void:
-    look_at(get_global_mouse_position())
+    look_at(target_position)
