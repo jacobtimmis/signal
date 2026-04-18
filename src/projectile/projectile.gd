@@ -32,3 +32,7 @@ func remove() -> void:
         get_parent().remove_child(self)
     if not using_projectile_pool:
         queue_free()
+
+
+func _on_on_screen_notifier_screen_exited() -> void:
+    remove()

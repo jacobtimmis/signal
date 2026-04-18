@@ -9,3 +9,8 @@ max_distance = 50.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1733665798]
 texture = ExtResource("2_2dulq")
+
+[node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=171537133]
+rect = Rect2(-4, -4, 8, 8)
+
+[connection signal="screen_exited" from="OnScreenNotifier" to="." method="_on_on_screen_notifier_screen_exited"]
