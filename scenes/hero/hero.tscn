@@ -32,6 +32,7 @@ projectile_scene = ExtResource("7_82ej0")
 shoot_delay = 0.8
 volley_count = 3
 volley_delay = 0.1
+lock_aim = true
 metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h65lx"]
@@ -102,6 +103,7 @@ script = ExtResource("10_1cpic")
 metadata/_custom_type_script = "uid://didq7xuc46d6"
 
 [node name="Light" type="PointLight2D" parent="." unique_id=367570525]
+visible = false
 color = Color(0.7490196, 1, 0.23529412, 1)
 range_layer_min = -1
 range_item_cull_mask = 2
