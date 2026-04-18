@@ -3,14 +3,25 @@
 [ext_resource type="Script" uid="uid://b3n1e4e7agotn" path="res://src/projectile/projectile.gd" id="1_t8015"]
 [ext_resource type="Texture2D" uid="uid://tvlw3ia1pju2" path="res://assets/projectile.png" id="2_2dulq"]
 
-[node name="Projectile" type="Node2D" unique_id=24496546]
+[sub_resource type="CircleShape2D" id="CircleShape2D_2dulq"]
+radius = 4.0
+
+[node name="Projectile" type="Area2D" unique_id=293973197]
+collision_layer = 8
+collision_mask = 0
 script = ExtResource("1_t8015")
 max_distance = 50.0
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=249075174]
+shape = SubResource("CircleShape2D_2dulq")
+debug_color = Color(1, 0, 0, 0)
+metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1733665798]
 texture = ExtResource("2_2dulq")
 
 [node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=171537133]
+visible = false
 rect = Rect2(-4, -4, 8, 8)
 
 [connection signal="screen_exited" from="OnScreenNotifier" to="." method="_on_on_screen_notifier_screen_exited"]
