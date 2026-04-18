@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://bsxbxxesdiwkv" path="res://assets/sound/hero_dash.sfxr" id="7_dke18"]
 [ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="8_g31do"]
 [ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="10_1cpic"]
+[ext_resource type="Texture2D" uid="uid://ck41e6dfenxd2" path="res://assets/light_textures/lt_circle.tres" id="11_jrc8l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 4.0
@@ -81,5 +82,11 @@ color_initial_ramp = SubResource("Gradient_g31do")
 [node name="HealthComponent" type="Node" parent="." unique_id=566970626]
 script = ExtResource("10_1cpic")
 metadata/_custom_type_script = "uid://didq7xuc46d6"
+
+[node name="Light" type="PointLight2D" parent="." unique_id=367570525]
+color = Color(0.7490196, 1, 0.23529412, 1)
+range_layer_min = -1
+range_item_cull_mask = 2
+texture = ExtResource("11_jrc8l")
 
 [connection signal="weapon_fired" from="Weapon" to="." method="_on_weapon_weapon_fired"]
