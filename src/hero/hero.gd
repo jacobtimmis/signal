@@ -87,10 +87,17 @@ func _normal_move(delta: float) -> void:
 func _dash_enter() -> void:
     $DashStartSound.play()
     $DashParticles.emitting = true
+    $DashLoopSound.play()
+    $DashLoopSound.volume_linear = 0
+    var tween = create_tween()
+    tween.tween_property($DashLoopSound, "volume_linear", 1, 0.2)
 
 
 func _dash_exit() -> void:
     $DashParticles.emitting = false
+    var tween = create_tween()
+    tween.tween_property($DashLoopSound, "volume_linear", 0, 0.2)
+    tween.tween_callback(func(): $DashLoopSound.stop())
 
 
 func _dash_move(delta: float) -> void:

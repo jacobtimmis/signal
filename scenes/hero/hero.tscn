@@ -7,8 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://b7shjn603mqq6" path="res://scenes/projectile/hero_projectile.tscn" id="5_g31do"]
 [ext_resource type="AudioStream" uid="uid://bo0nlue4gg5i3" path="res://assets/sound/hero_shoot.sfxr" id="6_888c7"]
 [ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="6_h65lx"]
-[ext_resource type="AudioStream" uid="uid://bsxbxxesdiwkv" path="res://assets/sound/hero_dash.sfxr" id="7_dke18"]
 [ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="8_g31do"]
+[ext_resource type="AudioStream" uid="uid://owf3i1ycwpo4" path="res://assets/sound/water_drop.mp3" id="8_jrc8l"]
+[ext_resource type="AudioStream" uid="uid://bko5g6001yw3y" path="res://assets/sound/water_breathe_loop.mp3" id="9_qijae"]
 [ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="10_1cpic"]
 [ext_resource type="Texture2D" uid="uid://ck41e6dfenxd2" path="res://assets/light_textures/lt_circle.tres" id="11_jrc8l"]
 
@@ -64,7 +65,10 @@ data = SubResource("Resource_1cpic")
 stream = ExtResource("6_888c7")
 
 [node name="DashStartSound" type="AudioStreamPlayer2D" parent="." unique_id=1137925564]
-stream = ExtResource("7_dke18")
+stream = ExtResource("8_jrc8l")
+
+[node name="DashLoopSound" type="AudioStreamPlayer2D" parent="." unique_id=2034603485]
+stream = ExtResource("9_qijae")
 
 [node name="DashParticles" type="CPUParticles2D" parent="." unique_id=26615715]
 show_behind_parent = true
