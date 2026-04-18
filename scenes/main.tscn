@@ -3,8 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://bnckyejqymwsq" path="res://scenes/hero/hero.tscn" id="1_sugp2"]
 [ext_resource type="FontFile" uid="uid://q036bpfo3uvm" path="res://assets/fonts/m5x7.ttf" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_labels.gd" id="2_tbgi4"]
+[ext_resource type="Script" uid="uid://rtrfrdqtbjyw" path="res://src/camera.gd" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dckfl3kejef41" path="res://scenes/enemy/enemy_fighter.tscn" id="5_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://bsmmwnnygkwkf" path="res://assets/sprites/background.png" id="7_tipki"]
+[ext_resource type="Texture2D" uid="uid://cq2wg1tcn7vwo" path="res://assets/sprites/overlay.png" id="8_85g3d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 
@@ -13,11 +16,33 @@ font = ExtResource("2_jyhfs")
 
 [node name="Main" type="Node2D" unique_id=470228196]
 
+[node name="BackgroundColor" type="ColorRect" parent="." unique_id=1213636852]
+offset_left = -139.0
+offset_top = -135.0
+offset_right = 137.0
+offset_bottom = 133.0
+color = Color(0, 0, 0, 1)
+
+[node name="BackgroundTexture" type="TextureRect" parent="." unique_id=674710088]
+light_mask = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -72.0
+offset_right = 72.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_tipki")
+metadata/_edit_use_anchors_ = true
+
 [node name="ProjectileLayer" type="Node2D" parent="." unique_id=388592351]
 
 [node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
+script = ExtResource("2_tefeu")
 
 [node name="ArenaBoundary" type="StaticBody2D" parent="." unique_id=1443770279]
 
@@ -91,3 +116,16 @@ metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
 [node name="Enemy" parent="." unique_id=680225357 instance=ExtResource("5_tbgi4")]
 position = Vector2(-33, -24)
+
+[node name="Texture2" type="TextureRect" parent="." unique_id=1200773612]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -72.0
+offset_top = -72.0
+offset_right = 72.0
+offset_bottom = 72.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_85g3d")
+metadata/_edit_use_anchors_ = true

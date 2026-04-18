@@ -1,29 +1,3 @@
 [gd_scene format=3 uid="uid://e0fsrw2hodn1"]
 
-[ext_resource type="Texture2D" uid="uid://bsmmwnnygkwkf" path="res://assets/sprites/background.png" id="1_bkp1e"]
-[ext_resource type="Texture2D" uid="uid://cq2wg1tcn7vwo" path="res://assets/sprites/overlay.png" id="2_y0upk"]
-
 [node name="Node" type="Node" unique_id=393691096]
-
-[node name="Background" type="CanvasLayer" parent="." unique_id=1895599474]
-layer = -1
-
-[node name="Texture" type="TextureRect" parent="Background" unique_id=1850788431]
-light_mask = 2
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("1_bkp1e")
-
-[node name="Overlay" type="CanvasLayer" parent="." unique_id=488303027]
-layer = 700
-
-[node name="Texture" type="TextureRect" parent="Overlay" unique_id=430288888]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_y0upk")
