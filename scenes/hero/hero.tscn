@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bnckyejqymwsq"]
+
+[ext_resource type="Script" uid="uid://c2j2uhd4svg5x" path="res://src/hero/hero.gd" id="1_4rdp7"]
+[ext_resource type="Script" uid="uid://b1qjncowp02gc" path="res://scenes/hero/aim_line.gd" id="2_jx46w"]
+[ext_resource type="Texture2D" uid="uid://dw5e3sg1pgqpo" path="res://assets/hero.png" id="3_3pgml"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
+radius = 4.0
+
+[node name="Hero" type="CharacterBody2D" unique_id=1186113123]
+collision_layer = 2
+motion_mode = 1
+script = ExtResource("1_4rdp7")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=2016962368]
+shape = SubResource("CircleShape2D_4rdp7")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1740194880]
+texture = ExtResource("3_3pgml")
+
+[node name="AimLine" type="Line2D" parent="." unique_id=1785548595]
+show_behind_parent = true
+points = PackedVector2Array(0, 0, 16, 0)
+width = 1.0
+default_color = Color(1, 0.14901961, 0.45490196, 1)
+script = ExtResource("2_jx46w")

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://ddm1lor3eubqy"]
+
+[ext_resource type="PackedScene" uid="uid://bnckyejqymwsq" path="res://scenes/hero/hero.tscn" id="1_sugp2"]
+[ext_resource type="FontFile" uid="uid://q036bpfo3uvm" path="res://assets/m5x7.ttf" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jka67"]
+font = ExtResource("2_jyhfs")
+
+[node name="Main" type="Node2D" unique_id=470228196]
+
+[node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
+
+[node name="DebugLabels" type="CanvasLayer" parent="." unique_id=780697392]
+
+[node name="LabelsContainer" type="VBoxContainer" parent="DebugLabels" unique_id=414224023]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="VelocityLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1686916174 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "Velocity: [value]"
+label_settings = SubResource("LabelSettings_jka67")
+script = ExtResource("3_tbgi4")
+expression = "velocity.length()"
+root_node = NodePath("../../../Hero")
+prefix = "Velocity"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="PositionLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=725856196 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "Position: [value]"
+label_settings = SubResource("LabelSettings_jka67")
+script = ExtResource("3_tbgi4")
+expression = "global_position"
+root_node = NodePath("../../../Hero")
+prefix = "Position"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
