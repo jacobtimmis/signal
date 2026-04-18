@@ -20,6 +20,7 @@ signal weapon_fired
 @export var lock_aim := false
 
 var is_shooting: bool
+var target_position := Vector2.RIGHT
 var _locked_aim: Vector2
 var _projectile_pool: Array[Projectile]
 var _projectile_pool_index: int
@@ -32,18 +33,16 @@ func _ready() -> void:
         _projectile_pool.append(_inst_projectile())
 
 
-func _process(delta: float) -> void:
-    if Input.is_action_pressed("shoot") and _can_shoot():
-        _shoot()
-
-
 func _can_shoot() -> bool:
     return not is_shooting
 
 
 # TODO should probably not use awaits
 func _shoot() -> void:
-    _locked_aim = global_position.direction_to(get_global_mouse_position())
+    if not _can_shoot():
+        return
+
+    _locked_aim = global_position.direction_to(target_position)
     is_shooting = true
     for n in volley_count:
         for pellet_no in pellet_count:
@@ -79,7 +78,7 @@ func _launch_projectile(pellet_no: int) -> void:
 
     var dir := _locked_aim
     if not lock_aim:
-        dir = global_position.direction_to(get_global_mouse_position())
+        dir = global_position.direction_to(target_position)
 
     var spread: float = 0
     if pellet_no in pellet_spread_map:
