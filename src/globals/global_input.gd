@@ -64,12 +64,12 @@ func skip_device_detection() -> void:
 
 ## Set mouse mode to visible.
 func show_mouse() -> void:
-    Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+    Cursor.show()
 
 
 ## Sets mouse mode to hidden.
 func hide_mouse() -> void:
-    Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
+    Cursor.hide()
 
 
 ## Whether the last device used was a joypad or not.

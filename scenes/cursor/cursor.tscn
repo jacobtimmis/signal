@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://c6w66nvuj3h0c" path="res://src/cursor/cursor.gd" id="1_hu3fh"]
 
 [node name="Cursor" type="CanvasLayer" unique_id=2012472444]
-layer = 999
+layer = 800
 
 [node name="Cursor" type="Control" parent="." unique_id=1558449646]
 layout_mode = 3
@@ -25,3 +25,9 @@ offset_bottom = 8.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_8dyx8")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="Cursor" unique_id=1151044177]
+rect = Rect2(-2, -2, 4, 4)
+
+[connection signal="screen_entered" from="Cursor/VisibleOnScreenNotifier2D" to="Cursor" method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="Cursor/VisibleOnScreenNotifier2D" to="Cursor" method="_on_visible_on_screen_notifier_2d_screen_exited"]
