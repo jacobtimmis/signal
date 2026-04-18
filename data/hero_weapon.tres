@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="WeaponData" format=3 uid="uid://cu123g0hk65b1"]
+
+[ext_resource type="PackedScene" uid="uid://b7shjn603mqq6" path="res://scenes/projectile/hero_projectile.tscn" id="1_mxbqb"]
+[ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="2_0io01"]
+
+[resource]
+script = ExtResource("2_0io01")
+projectile_scene = ExtResource("1_mxbqb")
+shoot_delay = 0.2
+even_spread_enabled = true
+even_spread_angle = 4.0
+pellet_count = 2
+metadata/_custom_type_script = "uid://p6ktfyndgyfn"

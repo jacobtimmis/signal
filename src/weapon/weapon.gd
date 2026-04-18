@@ -27,6 +27,8 @@ func _can_shoot() -> bool:
 
 # TODO should probably not use awaits
 func _shoot() -> void:
+    if not data:
+        return
     if not _can_shoot():
         return
 
@@ -43,6 +45,9 @@ func _shoot() -> void:
 
 
 func _inst_projectile() -> Projectile:
+    if not data:
+        return
+
     var inst := data.projectile_scene.instantiate() as Projectile
     inst.using_projectile_pool = projectile_pool_enabled
     return inst

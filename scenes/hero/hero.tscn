@@ -4,10 +4,8 @@
 [ext_resource type="Script" uid="uid://b1qjncowp02gc" path="res://scenes/hero/aim_line.gd" id="2_jx46w"]
 [ext_resource type="Texture2D" uid="uid://dw5e3sg1pgqpo" path="res://assets/sprites/hero.png" id="3_3pgml"]
 [ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="4_tqfqc"]
-[ext_resource type="PackedScene" uid="uid://b7shjn603mqq6" path="res://scenes/projectile/hero_projectile.tscn" id="5_g31do"]
+[ext_resource type="Resource" uid="uid://cu123g0hk65b1" path="res://data/hero_weapon.tres" id="5_qijae"]
 [ext_resource type="AudioStream" uid="uid://bo0nlue4gg5i3" path="res://assets/sound/hero_shoot.sfxr" id="6_888c7"]
-[ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="6_h65lx"]
-[ext_resource type="PackedScene" uid="uid://dmvf1j335oujh" path="res://scenes/projectile/hero_projectile_alt.tscn" id="7_82ej0"]
 [ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="8_g31do"]
 [ext_resource type="AudioStream" uid="uid://owf3i1ycwpo4" path="res://assets/sound/water_drop.mp3" id="8_jrc8l"]
 [ext_resource type="AudioStream" uid="uid://bko5g6001yw3y" path="res://assets/sound/water_breathe_loop.mp3" id="9_qijae"]
@@ -16,24 +14,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 4.0
-
-[sub_resource type="Resource" id="Resource_1cpic"]
-script = ExtResource("6_h65lx")
-projectile_scene = ExtResource("5_g31do")
-shoot_delay = 0.2
-even_spread_enabled = true
-even_spread_angle = 4.0
-pellet_count = 2
-metadata/_custom_type_script = "uid://p6ktfyndgyfn"
-
-[sub_resource type="Resource" id="Resource_qijae"]
-script = ExtResource("6_h65lx")
-projectile_scene = ExtResource("7_82ej0")
-shoot_delay = 0.8
-volley_count = 3
-volley_delay = 0.1
-lock_aim = true
-metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h65lx"]
 atlas = ExtResource("8_g31do")
@@ -69,12 +49,11 @@ script = ExtResource("2_jx46w")
 [node name="Weapon" type="Node2D" parent="." unique_id=445806330]
 script = ExtResource("4_tqfqc")
 projectile_pool_size = 500
-data = SubResource("Resource_1cpic")
+data = ExtResource("5_qijae")
 
-[node name="Weapon2" type="Node2D" parent="." unique_id=823445164]
+[node name="WeaponAlt" type="Node2D" parent="." unique_id=823445164]
 script = ExtResource("4_tqfqc")
 projectile_pool_size = 500
-data = SubResource("Resource_qijae")
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1585931221]
 stream = ExtResource("6_888c7")
