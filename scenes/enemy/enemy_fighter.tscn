@@ -4,7 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://lb5upcbmhmb2" path="res://assets/sprites/enemy_fighter.png" id="2_xy8cf"]
 [ext_resource type="Script" uid="uid://m7cfr8cq5me6" path="res://addons/debug_labels/nodes/property_label.gd" id="3_m6ah1"]
 
-[node name="Enemy" unique_id=680225357 instance=ExtResource("1_fxyx7")]
+[node name="EnemyFighter" unique_id=680225357 instance=ExtResource("1_fxyx7")]
+speed = 30.0
+speed_change = 90.0
+hit_knockback = 60.0
 
 [node name="Sprite" parent="." index="1" unique_id=921602998]
 texture = ExtResource("2_xy8cf")
