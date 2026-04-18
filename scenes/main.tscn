@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_labels.gd" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_jka67"]
 font = ExtResource("2_jyhfs")
 
@@ -13,6 +15,27 @@ font = ExtResource("2_jyhfs")
 [node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
+
+[node name="ArenaBoundary" type="StaticBody2D" parent="." unique_id=1443770279]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBoundary" unique_id=623729072]
+position = Vector2(0, 72)
+shape = SubResource("WorldBoundaryShape2D_sugp2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ArenaBoundary" unique_id=2088587972]
+position = Vector2(-72, 0)
+rotation = 1.5707964
+shape = SubResource("WorldBoundaryShape2D_sugp2")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ArenaBoundary" unique_id=170701256]
+position = Vector2(72, 0)
+rotation = 4.712389
+shape = SubResource("WorldBoundaryShape2D_sugp2")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ArenaBoundary" unique_id=539587304]
+position = Vector2(0, -72)
+rotation = 3.1415927
+shape = SubResource("WorldBoundaryShape2D_sugp2")
 
 [node name="DebugLabels" type="CanvasLayer" parent="." unique_id=780697392]
 visible = false
