@@ -3,8 +3,9 @@ extends CharacterBody2D
 
 @onready var health_component: HealthComponent = $HealthComponent
 @export var speed: float = 20
-@export var accel: float = 10
+@export var speed_change: float = 10
 @export var move_to_player := true
+@export var close_distance_to_player: float = 0
 
 
 func _on_health_component_killed() -> void:
@@ -16,7 +17,10 @@ func _physics_process(delta: float) -> void:
     if move_to_player:
         var desired_position := Hero.inst.global_position
         var desired_direction := global_position.direction_to(desired_position)
-        velocity = velocity.move_toward(desired_direction * speed, delta * accel)
+        if global_position.distance_to(desired_direction) > close_distance_to_player:
+            velocity = velocity.move_toward(desired_direction * speed, delta * speed_change)
+        else:
+            velocity = velocity.move_toward(Vector2.ZERO, delta * speed_change)
     move_and_slide()
 
 
