@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bnckyejqymwsq" path="res://scenes/hero/hero.tscn" id="1_sugp2"]
 [ext_resource type="FontFile" uid="uid://q036bpfo3uvm" path="res://assets/m5x7.ttf" id="2_jyhfs"]
+[ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_labels.gd" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_jka67"]
@@ -14,6 +15,8 @@ font = ExtResource("2_jyhfs")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
 
 [node name="DebugLabels" type="CanvasLayer" parent="." unique_id=780697392]
+visible = false
+script = ExtResource("2_tbgi4")
 
 [node name="LabelsContainer" type="VBoxContainer" parent="DebugLabels" unique_id=414224023]
 offset_right = 40.0
