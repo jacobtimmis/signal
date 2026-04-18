@@ -52,7 +52,7 @@ func _process(_delta: float) -> void:
     $AimLine.target_position = get_aim_target_position()
     $Weapon.target_position = get_aim_target_position()
     $Weapon2.target_position = get_aim_target_position()
-    if Input.is_action_pressed("shoot"):
+    if Input.is_action_pressed("shoot") or current_aim_dir.length() > CONTROL_AIM_DEADZONE:
         $Weapon._shoot()
     if Input.is_action_pressed("ability"):
         $Weapon2._shoot()
