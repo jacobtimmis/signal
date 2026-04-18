@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgpxvrfbcdvyy"]
 
-[ext_resource type="Texture2D" uid="uid://ds0bha358idsf" path="res://assets/cursor.png" id="1_8dyx8"]
+[ext_resource type="Texture2D" uid="uid://ds0bha358idsf" path="res://assets/sprites/cursor.png" id="1_8dyx8"]
 [ext_resource type="Script" uid="uid://c6w66nvuj3h0c" path="res://src/cursor/cursor.gd" id="1_hu3fh"]
 
 [node name="Cursor" type="CanvasLayer" unique_id=2012472444]
