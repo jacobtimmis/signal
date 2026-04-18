@@ -19,6 +19,7 @@ config/icon="uid://c0q7sqably3g2"
 
 Cursor="*uid://cgpxvrfbcdvyy"
 GlobalInput="*uid://n6enojfco57p"
+Background="*uid://e0fsrw2hodn1"
 
 [display]
 
