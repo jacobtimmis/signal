@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://dr2pyif1cepvg"]
+
+[ext_resource type="Script" uid="uid://b3n1e4e7agotn" path="res://src/projectile/projectile.gd" id="1_t8015"]
+[ext_resource type="Texture2D" uid="uid://tvlw3ia1pju2" path="res://assets/projectile.png" id="2_2dulq"]
+
+[node name="Projectile" type="Node2D" unique_id=24496546]
+script = ExtResource("1_t8015")
+max_distance = 50.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1733665798]
+texture = ExtResource("2_2dulq")
