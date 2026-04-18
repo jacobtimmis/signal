@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqee547jgm8b1"
-path="res://.godot/imported/bubblegum-16.png-f8af862e24fa050341842904ab01e6b3.ctex"
+uid="uid://cq2wg1tcn7vwo"
+path="res://.godot/imported/overlay.png-c275ec30d7280ddc48924895eb8ba77f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/bubblegum-16.png"
-dest_files=["res://.godot/imported/bubblegum-16.png-f8af862e24fa050341842904ab01e6b3.ctex"]
+source_file="res://assets/sprites/overlay.png"
+dest_files=["res://.godot/imported/overlay.png-c275ec30d7280ddc48924895eb8ba77f.ctex"]
 
 [params]
 

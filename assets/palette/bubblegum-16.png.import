@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tvlw3ia1pju2"
-path="res://.godot/imported/projectile.png-197bcbc76cb11b0c658014dfea4806d1.ctex"
+uid="uid://bqee547jgm8b1"
+path="res://.godot/imported/bubblegum-16.png-674aa1fc1f0dc03f8f5df23a3c49b432.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/projectile.png"
-dest_files=["res://.godot/imported/projectile.png-197bcbc76cb11b0c658014dfea4806d1.ctex"]
+source_file="res://assets/palette/bubblegum-16.png"
+dest_files=["res://.godot/imported/bubblegum-16.png-674aa1fc1f0dc03f8f5df23a3c49b432.ctex"]
 
 [params]
 
