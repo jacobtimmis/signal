@@ -11,6 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://bko5g6001yw3y" path="res://assets/sound/water_breathe_loop.mp3" id="9_qijae"]
 [ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="10_1cpic"]
 [ext_resource type="Texture2D" uid="uid://ck41e6dfenxd2" path="res://assets/light_textures/lt_circle.tres" id="11_jrc8l"]
+[ext_resource type="AudioStream" uid="uid://cx5rvoeomulo4" path="res://assets/sound/hero_hurt.sfxr" id="12_qijae"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 4.0
@@ -88,4 +89,8 @@ range_layer_min = -1
 range_item_cull_mask = 2
 texture = ExtResource("11_jrc8l")
 
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=630878637]
+stream = ExtResource("12_qijae")
+
 [connection signal="weapon_fired" from="Weapon" to="." method="_on_weapon_weapon_fired"]
+[connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]

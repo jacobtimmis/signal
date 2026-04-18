@@ -2,6 +2,7 @@ class_name HealthComponent
 extends Node
 
 signal killed
+signal damaged
 
 @export var max_health: float = 100
 
@@ -15,6 +16,7 @@ func _ready() -> void:
 
 func damage(amount: float) -> void:
     current_health -= amount
+    damaged.emit()
 
 
 func _set_current_health(value: float) -> void:

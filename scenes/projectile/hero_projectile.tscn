@@ -18,7 +18,7 @@ collision_mask = 4
 speed = 180.0
 life_time = 10.0
 use_max_distance = false
-damage = 100.0
+damage = 18.0
 
 [node name="Trail" type="CPUParticles2D" parent="." index="1" unique_id=910037344]
 show_behind_parent = true

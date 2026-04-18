@@ -2,8 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://c3d6wun00myid" path="res://scenes/enemy/enemy.tscn" id="1_fxyx7"]
 [ext_resource type="Texture2D" uid="uid://lb5upcbmhmb2" path="res://assets/sprites/enemy_fighter.png" id="2_xy8cf"]
+[ext_resource type="Script" uid="uid://m7cfr8cq5me6" path="res://addons/debug_labels/nodes/property_label.gd" id="3_m6ah1"]
 
 [node name="Enemy" unique_id=680225357 instance=ExtResource("1_fxyx7")]
 
 [node name="Sprite" parent="." index="1" unique_id=921602998]
 texture = ExtResource("2_xy8cf")
+
+[node name="HealthLabel" type="Label" parent="." index="3" unique_id=308029 node_paths=PackedStringArray("root_node")]
+visible = false
+offset_right = 61.0
+offset_bottom = 23.0
+text = ": [value]"
+script = ExtResource("3_m6ah1")
+property = &"current_health"
+root_node = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://m7cfr8cq5me6"

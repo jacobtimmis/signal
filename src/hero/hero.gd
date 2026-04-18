@@ -12,6 +12,8 @@ const DASH_SPEED = 140.0
 const DASH_DECEL = 300.0
 const CONTROL_AIM_DEADZONE = 0.5
 
+static var inst: Hero
+
 var state_machine := StateMachine.new()
 var wish_dir: Vector2
 var last_non_zero_wish_dir: Vector2
@@ -24,6 +26,8 @@ var _control_aim_dir := Vector2.RIGHT
 
 
 func _ready() -> void:
+    inst = self
+
     state_machine.setup_state(
         State.DEFAULT,
         {
@@ -133,3 +137,7 @@ func _on_weapon_weapon_fired() -> void:
     velocity += global_position.direction_to(get_aim_target_position()).normalized() * -50
     GameCamera.shake(1, 20)
     $ShootSound.play()
+
+
+func _on_health_component_damaged() -> void:
+    $HurtSound.play()

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bnckyejqymwsq" path="res://scenes/hero/hero.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://rtrfrdqtbjyw" path="res://src/camera.gd" id="2_tefeu"]
-[ext_resource type="PackedScene" uid="uid://dckfl3kejef41" path="res://scenes/enemy/enemy_fighter.tscn" id="5_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://d3w2o1lkc74w4" path="res://scenes/enemy/enemy_follower.tscn" id="3_p57ef"]
 [ext_resource type="Texture2D" uid="uid://bsmmwnnygkwkf" path="res://assets/sprites/background.png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://cq2wg1tcn7vwo" path="res://assets/sprites/overlay.png" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cgpxvrfbcdvyy" path="res://scenes/cursor/cursor.tscn" id="9_85g3d"]
@@ -38,8 +38,8 @@ texture = ExtResource("7_tipki")
 
 [node name="EnemyLayer" type="Node2D" parent="." unique_id=1786989094]
 
-[node name="Enemy" parent="EnemyLayer" unique_id=680225357 instance=ExtResource("5_tbgi4")]
-position = Vector2(-33, -24)
+[node name="EnemyFollower" parent="EnemyLayer" unique_id=680225357 instance=ExtResource("3_p57ef")]
+position = Vector2(-65, -91)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
 script = ExtResource("2_tefeu")
