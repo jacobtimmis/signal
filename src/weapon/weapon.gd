@@ -6,6 +6,7 @@ signal weapon_fired
 @export var projectile_pool_enabled := true
 @export var projectile_pool_size := 10
 @export var data: WeaponData
+@export var from: Node2D
 
 var is_shooting: bool
 var target_position := Vector2.RIGHT
@@ -50,6 +51,7 @@ func _inst_projectile() -> Projectile:
 
     var inst := data.projectile_scene.instantiate() as Projectile
     inst.using_projectile_pool = projectile_pool_enabled
+    inst.from = from
     return inst
 
 

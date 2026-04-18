@@ -15,6 +15,7 @@ var using_projectile_pool := false
 var distance_travelled: float
 var active := false
 var current_bounces: int
+var from: Node2D
 
 
 func _ready() -> void:
@@ -75,6 +76,6 @@ func _on_on_screen_notifier_screen_exited() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-    Combat.damage(body, damage)
+    Combat.damage(body, damage, CombatContext.new(from))
     if remove_after_hit:
         remove()

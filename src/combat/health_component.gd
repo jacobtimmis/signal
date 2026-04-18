@@ -2,7 +2,7 @@ class_name HealthComponent
 extends Node
 
 signal killed
-signal damaged
+signal damaged(amount: float, context: CombatContext)
 
 @export var max_health: float = 100
 
@@ -14,9 +14,9 @@ func _ready() -> void:
     current_health = max_health
 
 
-func damage(amount: float) -> void:
+func damage(amount: float, context: CombatContext) -> void:
     current_health -= amount
-    damaged.emit()
+    damaged.emit(amount, context)
 
 
 func _set_current_health(value: float) -> void:

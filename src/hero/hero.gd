@@ -139,5 +139,5 @@ func _on_weapon_weapon_fired() -> void:
     $ShootSound.play()
 
 
-func _on_health_component_damaged() -> void:
+func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
     $HurtSound.play()

@@ -2,6 +2,7 @@ class_name Hurtbox extends Area2D
 
 signal dealt_damage
 
+@export var from: Node2D
 @export var damage: float = 10
 
 
@@ -10,5 +11,5 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-    Combat.damage(body, damage)
+    Combat.damage(body, damage, CombatContext.new(from))
     dealt_damage.emit()

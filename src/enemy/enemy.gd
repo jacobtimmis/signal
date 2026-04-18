@@ -24,7 +24,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
 
-func _on_health_component_damaged() -> void:
+func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
     $Sprite.modulate = Color.WHITE * 30
     var tween = create_tween()
     tween.tween_property($Sprite, "modulate", Color.WHITE, 0.1)

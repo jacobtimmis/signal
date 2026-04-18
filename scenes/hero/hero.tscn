@@ -47,14 +47,16 @@ width = 1.0
 default_color = Color(1, 0.14901961, 0.45490196, 1)
 script = ExtResource("2_jx46w")
 
-[node name="Weapon" type="Node2D" parent="." unique_id=445806330]
+[node name="Weapon" type="Node2D" parent="." unique_id=445806330 node_paths=PackedStringArray("from")]
 script = ExtResource("4_tqfqc")
 projectile_pool_size = 500
 data = ExtResource("5_qijae")
+from = NodePath("..")
 
-[node name="WeaponAlt" type="Node2D" parent="." unique_id=823445164]
+[node name="WeaponAlt" type="Node2D" parent="." unique_id=823445164 node_paths=PackedStringArray("from")]
 script = ExtResource("4_tqfqc")
 projectile_pool_size = 500
+from = NodePath("..")
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1585931221]
 stream = ExtResource("6_888c7")
