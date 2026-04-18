@@ -70,4 +70,4 @@ func _launch_projectile(pellet_no: int) -> void:
 
     proj.direction = dir.rotated(data.get_spread(pellet_no))
 
-    get_tree().root.add_child(proj)
+    get_node("/root/Main/ProjectileLayer").add_child(proj)

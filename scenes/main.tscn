@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://ddm1lor3eubqy"]
 
 [ext_resource type="PackedScene" uid="uid://bnckyejqymwsq" path="res://scenes/hero/hero.tscn" id="1_sugp2"]
-[ext_resource type="FontFile" uid="uid://q036bpfo3uvm" path="res://assets/m5x7.ttf" id="2_jyhfs"]
+[ext_resource type="FontFile" uid="uid://q036bpfo3uvm" path="res://assets/fonts/m5x7.ttf" id="2_jyhfs"]
 [ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_labels.gd" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://dckfl3kejef41" path="res://scenes/enemy/enemy_fighter.tscn" id="5_tbgi4"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 
@@ -11,6 +12,8 @@
 font = ExtResource("2_jyhfs")
 
 [node name="Main" type="Node2D" unique_id=470228196]
+
+[node name="ProjectileLayer" type="Node2D" parent="." unique_id=388592351]
 
 [node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
 
@@ -85,3 +88,6 @@ expression = "_control_aim_dir"
 root_node = NodePath("../../../Hero")
 prefix = "Aim"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="Enemy" parent="." unique_id=680225357 instance=ExtResource("5_tbgi4")]
+position = Vector2(-33, -24)
