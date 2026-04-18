@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://c3d6wun00myid"]
+
+[ext_resource type="Script" uid="uid://cxiclpmktpyaq" path="res://src/enemy/enemy.gd" id="1_40wdo"]
+[ext_resource type="Texture2D" uid="uid://du7caxxfx34s7" path="res://assets/sprites/bug.png" id="2_40wdo"]
+[ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="3_gl05p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tbgi4"]
+radius = 6.0827627
+
+[node name="Enemy" type="CharacterBody2D" unique_id=680225357]
+collision_layer = 4
+script = ExtResource("1_40wdo")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=1541766959]
+shape = SubResource("CircleShape2D_tbgi4")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=921602998]
+texture = ExtResource("2_40wdo")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=714940988]
+script = ExtResource("3_gl05p")
+metadata/_custom_type_script = "uid://didq7xuc46d6"
+
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

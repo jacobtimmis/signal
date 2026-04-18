@@ -1,3 +1,4 @@
+class_name Hero
 extends CharacterBody2D
 
 enum State { DEFAULT, DASH }
@@ -17,6 +18,7 @@ var last_non_zero_wish_dir: Vector2
 var dash_dir: Vector2
 var dash_time: float
 var _control_aim_dir := Vector2.RIGHT
+@onready var health_component: HealthComponent = $HealthComponent
 
 
 func _ready() -> void:

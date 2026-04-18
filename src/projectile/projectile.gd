@@ -1,17 +1,21 @@
 class_name Projectile
 extends Area2D
 
-signal hit(position: Vector2, normal: Vector2, collider: Object)
-
 @export var speed: float = 140
 @export var life_time: float = 1.0
 @export var use_max_distance := true
 @export var max_distance: float = 100
+@export var damage: float
+@export var remove_after_hit := true
 
 var direction := Vector2(1, 0)
 var using_projectile_pool := false
 var distance_travelled: float
 var active := false
+
+
+func _ready() -> void:
+    body_entered.connect(_on_body_entered)
 
 
 func _enter_tree() -> void:
@@ -40,10 +44,16 @@ func _process(delta: float) -> void:
 
 func remove() -> void:
     if is_inside_tree():
-        get_parent().remove_child(self)
+        get_parent().remove_child.call_deferred(self)
     if not using_projectile_pool:
         queue_free()
 
 
 func _on_on_screen_notifier_screen_exited() -> void:
     remove()
+
+
+func _on_body_entered(body: Node2D) -> void:
+    Combat.damage(body, damage)
+    if remove_after_hit:
+        remove()

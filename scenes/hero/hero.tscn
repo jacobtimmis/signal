@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" uid="uid://c2j2uhd4svg5x" path="res://src/hero/hero.gd" id="1_4rdp7"]
 [ext_resource type="Script" uid="uid://b1qjncowp02gc" path="res://scenes/hero/aim_line.gd" id="2_jx46w"]
-[ext_resource type="Texture2D" uid="uid://dw5e3sg1pgqpo" path="res://assets/hero.png" id="3_3pgml"]
+[ext_resource type="Texture2D" uid="uid://dw5e3sg1pgqpo" path="res://assets/sprites/hero.png" id="3_3pgml"]
 [ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="4_tqfqc"]
 [ext_resource type="PackedScene" uid="uid://b7shjn603mqq6" path="res://scenes/projectile/hero_projectile.tscn" id="5_g31do"]
 [ext_resource type="AudioStream" uid="uid://bo0nlue4gg5i3" path="res://assets/sound/hero_shoot.sfxr" id="6_888c7"]
 [ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="6_h65lx"]
 [ext_resource type="AudioStream" uid="uid://bsxbxxesdiwkv" path="res://assets/sound/hero_dash.sfxr" id="7_dke18"]
-[ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/dash_particles.png" id="8_g31do"]
+[ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="8_g31do"]
+[ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="10_1cpic"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 4.0
@@ -16,6 +17,10 @@ radius = 4.0
 [sub_resource type="Resource" id="Resource_1cpic"]
 script = ExtResource("6_h65lx")
 projectile_scene = ExtResource("5_g31do")
+shoot_delay = 0.12
+even_spread_enabled = true
+even_spread_angle = 4.0
+pellet_count = 2
 metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h65lx"]
@@ -51,7 +56,7 @@ script = ExtResource("2_jx46w")
 
 [node name="Weapon" type="Node2D" parent="." unique_id=445806330]
 script = ExtResource("4_tqfqc")
-projectile_pool_size = 50
+projectile_pool_size = 500
 data = SubResource("Resource_1cpic")
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1585931221]
@@ -72,5 +77,9 @@ initial_velocity_min = 5.0
 initial_velocity_max = 20.0
 scale_amount_curve = SubResource("Curve_g31do")
 color_initial_ramp = SubResource("Gradient_g31do")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=566970626]
+script = ExtResource("10_1cpic")
+metadata/_custom_type_script = "uid://didq7xuc46d6"
 
 [connection signal="weapon_fired" from="Weapon" to="." method="_on_weapon_weapon_fired"]
