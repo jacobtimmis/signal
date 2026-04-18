@@ -19,12 +19,14 @@ speed = 180.0
 life_time = 2.0
 use_max_distance = false
 damage = 100.0
+bounce_on_edge = true
+max_bounces = 2
 
 [node name="Trail" type="CPUParticles2D" parent="." index="1" unique_id=910037344]
 show_behind_parent = true
-amount = 10
+amount = 4
 texture = ExtResource("2_3yuwc")
-lifetime = 0.2
+lifetime = 0.09999999999999999
 gravity = Vector2(0, 0)
 angular_velocity_min = 45.0
 angular_velocity_max = 90.0

@@ -45,21 +45,19 @@ func _process(delta: float) -> void:
         remove()
 
     # TODO: this sometimes loses projectiles (maybe if they go too far?)
-    if bounce_on_edge and global_position.x < -72:
+    if bounce_on_edge and current_bounces < max_bounces and global_position.x < -72:
         direction = direction.bounce(Vector2(-1, 0))
         current_bounces += 1
-    if bounce_on_edge and global_position.x > 72:
+    if bounce_on_edge and current_bounces < max_bounces and global_position.x > 72:
         direction = direction.bounce(Vector2(1, 0))
         current_bounces += 1
-    if bounce_on_edge and global_position.y < -72:
+    if bounce_on_edge and current_bounces < max_bounces and global_position.y < -72:
         direction = direction.bounce(Vector2(0, 1))
         current_bounces += 1
-    if bounce_on_edge and global_position.y > 72:
+    if bounce_on_edge and current_bounces < max_bounces and global_position.y > 72:
         direction = direction.bounce(Vector2(0, -1))
         current_bounces += 1
 
-    if current_bounces > max_bounces:
-        remove()
 
 
 func remove() -> void:
