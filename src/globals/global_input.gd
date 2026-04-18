@@ -46,7 +46,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
     _detect_device(event)
 
-    if event.is_action_pressed("toggle_fullscreen"):
+    if event.is_action_pressed("toggle_fullscreen") and not OS.has_environment("web"):
         var window_mode := DisplayServer.window_get_mode()
         if window_mode == DisplayServer.WINDOW_MODE_FULLSCREEN or window_mode == DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
             window_mode = DisplayServer.WINDOW_MODE_WINDOWED
