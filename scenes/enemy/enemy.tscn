@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://du7caxxfx34s7" path="res://assets/sprites/bug.png" id="2_40wdo"]
 [ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="3_gl05p"]
 [ext_resource type="Script" uid="uid://ctwyuke1jheeu" path="res://src/combat/hurtbox.gd" id="4_tjssy"]
+[ext_resource type="AudioStream" uid="uid://ddkbsltove42c" path="res://assets/sound/hit_sound.sfxr" id="5_gl05p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tbgi4"]
 radius = 6.0827627
@@ -31,12 +32,15 @@ metadata/_custom_type_script = "uid://didq7xuc46d6"
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_tjssy")
-from = NodePath("..")
 damage = null
+from = NodePath("..")
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1085168074]
 shape = SubResource("CircleShape2D_gl05p")
 debug_color = Color(0.61194843, 0.70196074, 0, 0)
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=498244752]
+stream = ExtResource("5_gl05p")
 
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]

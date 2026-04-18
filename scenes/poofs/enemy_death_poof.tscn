@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dk2e305fr72tw"]
+
+[ext_resource type="Script" uid="uid://bu1wk2d1xpwti" path="res://src/poof/poof.gd" id="1_tt8y0"]
+
+[sub_resource type="Gradient" id="Gradient_y8iea"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_tt8y0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5925926)
+colors = PackedColorArray(0.8392157, 0.14117648, 0.06666667, 1, 0.49803922, 0.023529412, 0.13333334, 1)
+
+[node name="EnemyDeathPoof" type="Node2D" unique_id=533670079]
+script = ExtResource("1_tt8y0")
+metadata/_custom_type_script = "uid://bu1wk2d1xpwti"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=436667883]
+emitting = false
+amount = 20
+lifetime = 30.0
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 100.0
+damping_min = 300.0
+damping_max = 500.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_y8iea")
+color_initial_ramp = SubResource("Gradient_tt8y0")
+hue_variation_min = 0.38
+hue_variation_max = 0.38
