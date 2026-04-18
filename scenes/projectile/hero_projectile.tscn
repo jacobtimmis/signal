@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b7shjn603mqq6"]
+
+[ext_resource type="PackedScene" uid="uid://dr2pyif1cepvg" path="res://scenes/projectile/projectile.tscn" id="1_pmols"]
+
+[node name="Projectile" unique_id=24496546 instance=ExtResource("1_pmols")]
+speed = 180.0
+life_time = 2.0
+use_max_distance = false
+
+[node name="Sprite2D" parent="." index="0" unique_id=1733665798]
+modulate = Color(1, 0.14901961, 0.45490196, 1)

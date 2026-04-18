@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b1qjncowp02gc" path="res://scenes/hero/aim_line.gd" id="2_jx46w"]
 [ext_resource type="Texture2D" uid="uid://dw5e3sg1pgqpo" path="res://assets/hero.png" id="3_3pgml"]
 [ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="4_tqfqc"]
-[ext_resource type="PackedScene" uid="uid://dr2pyif1cepvg" path="res://scenes/projectile/projectile.tscn" id="5_g48mx"]
+[ext_resource type="PackedScene" uid="uid://b7shjn603mqq6" path="res://scenes/projectile/hero_projectile.tscn" id="5_g31do"]
 [ext_resource type="AudioStream" uid="uid://bo0nlue4gg5i3" path="res://assets/sound/hero_shoot.sfxr" id="6_888c7"]
 [ext_resource type="AudioStream" uid="uid://bsxbxxesdiwkv" path="res://assets/sound/hero_dash.sfxr" id="7_dke18"]
 [ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/dash_particles.png" id="8_g31do"]
@@ -45,7 +45,7 @@ script = ExtResource("2_jx46w")
 
 [node name="Weapon" type="Node2D" parent="." unique_id=445806330]
 script = ExtResource("4_tqfqc")
-projectile_scene = ExtResource("5_g48mx")
+projectile_scene = ExtResource("5_g31do")
 projectile_pool_size = 50
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1585931221]
