@@ -41,6 +41,14 @@ func _ready() -> void:
     $DashParticles.emitting = false
 
 
+func get_aim_target_position() -> Vector2:
+    var target_position: Vector2
+    if GlobalInput.current_device == GlobalInput.Device.MOUSE:
+        target_position = get_global_mouse_position()
+    else:
+        target_position = global_position + _control_aim_dir
+    return target_position
+
 
 func _process(delta: float) -> void:
     var current_aim_dir := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
@@ -48,14 +56,8 @@ func _process(delta: float) -> void:
         _control_aim_dir = current_aim_dir
         _control_aim_dir = _control_aim_dir.normalized()
 
-    var target_position: Vector2
-    if GlobalInput.current_device == GlobalInput.Device.MOUSE:
-        target_position = get_global_mouse_position()
-    else:
-        target_position = global_position + _control_aim_dir
-
-    $AimLine.target_position = target_position
-    $Weapon.target_position = target_position
+    $AimLine.target_position = get_aim_target_position()
+    $Weapon.target_position = get_aim_target_position()
     if Input.is_action_pressed("shoot"):
         $Weapon._shoot()
 
@@ -113,4 +115,5 @@ func _accelerate(delta: float, accel: float, speed: float, dir: Vector2) -> void
 
 
 func _on_weapon_weapon_fired() -> void:
+    # TODO add knockback
     $ShootSound.play()
