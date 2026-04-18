@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cgpxvrfbcdvyy"]
+
+[ext_resource type="Texture2D" uid="uid://ds0bha358idsf" path="res://assets/cursor.png" id="1_8dyx8"]
+[ext_resource type="Script" uid="uid://c6w66nvuj3h0c" path="res://src/cursor/cursor.gd" id="1_hu3fh"]
+
+[node name="Cursor" type="CanvasLayer" unique_id=2012472444]
+layer = 999
+
+[node name="Cursor" type="Control" parent="." unique_id=1558449646]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hu3fh")
+
+[node name="TextureRect" type="TextureRect" parent="Cursor" unique_id=1156434573]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_8dyx8")
