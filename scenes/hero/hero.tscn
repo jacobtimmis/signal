@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://c2j2uhd4svg5x" path="res://src/hero/hero.gd" id="1_4rdp7"]
 [ext_resource type="Script" uid="uid://b1qjncowp02gc" path="res://scenes/hero/aim_line.gd" id="2_jx46w"]
 [ext_resource type="Texture2D" uid="uid://dw5e3sg1pgqpo" path="res://assets/hero.png" id="3_3pgml"]
+[ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="4_tqfqc"]
+[ext_resource type="PackedScene" uid="uid://dr2pyif1cepvg" path="res://scenes/projectile/projectile.tscn" id="5_g48mx"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 4.0
@@ -24,3 +26,8 @@ points = PackedVector2Array(0, 0, 16, 0)
 width = 1.0
 default_color = Color(1, 0.14901961, 0.45490196, 1)
 script = ExtResource("2_jx46w")
+
+[node name="Weapon" type="Node2D" parent="." unique_id=445806330]
+script = ExtResource("4_tqfqc")
+projectile_scene = ExtResource("5_g48mx")
+projectile_pool_size = 50
