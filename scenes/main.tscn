@@ -39,3 +39,23 @@ expression = "global_position"
 root_node = NodePath("../../../Hero")
 prefix = "Position"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="StateLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1876375746 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "State: [value]"
+label_settings = SubResource("LabelSettings_jka67")
+script = ExtResource("3_tbgi4")
+expression = "state_machine.get_current_state_name()"
+root_node = NodePath("../../../Hero")
+prefix = "State"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="AimLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=714134901 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "Aim: [value]"
+label_settings = SubResource("LabelSettings_jka67")
+script = ExtResource("3_tbgi4")
+expression = "_control_aim_dir"
+root_node = NodePath("../../../Hero")
+prefix = "Aim"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
