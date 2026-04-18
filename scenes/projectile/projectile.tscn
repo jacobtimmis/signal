@@ -21,7 +21,6 @@ metadata/_edit_lock_ = true
 texture = ExtResource("2_2dulq")
 
 [node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=171537133]
-visible = false
 rect = Rect2(-4, -4, 8, 8)
 
 [connection signal="screen_exited" from="OnScreenNotifier" to="." method="_on_on_screen_notifier_screen_exited"]
