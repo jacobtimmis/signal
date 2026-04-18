@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://bsxbxxesdiwkv"
+path="res://.godot/imported/hero_dash.sfxr-9a7499f58fa75a7e4bf20a8e645633fa.sample"
+
+[deps]
+
+source_file="res://assets/sound/hero_dash.sfxr"
+dest_files=["res://.godot/imported/hero_dash.sfxr-9a7499f58fa75a7e4bf20a8e645633fa.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0
