@@ -125,5 +125,5 @@ func _accelerate(delta: float, accel: float, speed: float, dir: Vector2) -> void
 
 
 func _on_weapon_weapon_fired() -> void:
-    # TODO add knockback
+    velocity += global_position.direction_to(get_aim_target_position()).normalized() * -50
     $ShootSound.play()
