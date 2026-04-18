@@ -1,131 +1,40 @@
-[gd_scene format=3 uid="uid://ddm1lor3eubqy"]
+[gd_scene format=3 uid="uid://bga0jdto26y5m"]
 
-[ext_resource type="PackedScene" uid="uid://bnckyejqymwsq" path="res://scenes/hero/hero.tscn" id="1_sugp2"]
-[ext_resource type="FontFile" uid="uid://q036bpfo3uvm" path="res://assets/fonts/m5x7.ttf" id="2_jyhfs"]
-[ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_labels.gd" id="2_tbgi4"]
-[ext_resource type="Script" uid="uid://rtrfrdqtbjyw" path="res://src/camera.gd" id="2_tefeu"]
-[ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
-[ext_resource type="PackedScene" uid="uid://dckfl3kejef41" path="res://scenes/enemy/enemy_fighter.tscn" id="5_tbgi4"]
-[ext_resource type="Texture2D" uid="uid://bsmmwnnygkwkf" path="res://assets/sprites/background.png" id="7_tipki"]
-[ext_resource type="Texture2D" uid="uid://cq2wg1tcn7vwo" path="res://assets/sprites/overlay.png" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://ddm1lor3eubqy" path="res://scenes/game.tscn" id="1_43bnl"]
+[ext_resource type="Script" uid="uid://cxlgtj4cndx6x" path="res://src/main.gd" id="1_vp0cx"]
+[ext_resource type="Shader" uid="uid://cbmsoieyrqqsf" path="res://assets/shaders/viewport.gdshader" id="2_rx586"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_43bnl"]
+viewport_path = NodePath("Viewport")
 
-[sub_resource type="LabelSettings" id="LabelSettings_jka67"]
-font = ExtResource("2_jyhfs")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g7cad"]
+resource_local_to_scene = true
+shader = ExtResource("2_rx586")
+shader_parameter/tex = SubResource("ViewportTexture_43bnl")
+shader_parameter/mask_type = 2
+shader_parameter/curve = 0.2000000095
+shader_parameter/color_offset = 0.1000000285
+shader_parameter/mask_brightness = 1.0
+shader_parameter/aspect = 1.0
 
-[node name="Main" type="Node2D" unique_id=470228196]
+[node name="Main" type="Node" unique_id=927454292 node_paths=PackedStringArray("subviewport_node")]
+script = ExtResource("1_vp0cx")
+subviewport_node = NodePath("Viewport")
 
-[node name="BackgroundColor" type="ColorRect" parent="." unique_id=1213636852]
-offset_left = -139.0
-offset_top = -135.0
-offset_right = 137.0
-offset_bottom = 133.0
-color = Color(0, 0, 0, 1)
-
-[node name="BackgroundTexture" type="TextureRect" parent="." unique_id=674710088]
-light_mask = 2
+[node name="ViewportTexture" type="ColorRect" parent="." unique_id=423871844]
+texture_filter = 1
+material = SubResource("ShaderMaterial_g7cad")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -72.0
-offset_right = 72.0
-offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("7_tipki")
-metadata/_edit_use_anchors_ = true
 
-[node name="ProjectileLayer" type="Node2D" parent="." unique_id=388592351]
+[node name="Viewport" type="SubViewport" parent="." unique_id=219516935]
+canvas_item_default_texture_filter = 0
+audio_listener_enable_2d = true
+size = Vector2i(144, 144)
 
-[node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
+[node name="Game" parent="Viewport" unique_id=470228196 instance=ExtResource("1_43bnl")]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
-script = ExtResource("2_tefeu")
-
-[node name="ArenaBoundary" type="StaticBody2D" parent="." unique_id=1443770279]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ArenaBoundary" unique_id=623729072]
-position = Vector2(0, 72)
-shape = SubResource("WorldBoundaryShape2D_sugp2")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="ArenaBoundary" unique_id=2088587972]
-position = Vector2(-72, 0)
-rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_sugp2")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="ArenaBoundary" unique_id=170701256]
-position = Vector2(72, 0)
-rotation = 4.712389
-shape = SubResource("WorldBoundaryShape2D_sugp2")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="ArenaBoundary" unique_id=539587304]
-position = Vector2(0, -72)
-rotation = 3.1415927
-shape = SubResource("WorldBoundaryShape2D_sugp2")
-
-[node name="DebugLabels" type="CanvasLayer" parent="." unique_id=780697392]
-visible = false
-script = ExtResource("2_tbgi4")
-
-[node name="LabelsContainer" type="VBoxContainer" parent="DebugLabels" unique_id=414224023]
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="VelocityLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1686916174 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Velocity: [value]"
-label_settings = SubResource("LabelSettings_jka67")
-script = ExtResource("3_tbgi4")
-expression = "velocity.length()"
-root_node = NodePath("../../../Hero")
-prefix = "Velocity"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="PositionLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=725856196 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Position: [value]"
-label_settings = SubResource("LabelSettings_jka67")
-script = ExtResource("3_tbgi4")
-expression = "global_position"
-root_node = NodePath("../../../Hero")
-prefix = "Position"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="StateLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1876375746 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "State: [value]"
-label_settings = SubResource("LabelSettings_jka67")
-script = ExtResource("3_tbgi4")
-expression = "state_machine.get_current_state_name()"
-root_node = NodePath("../../../Hero")
-prefix = "State"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="AimLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=714134901 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Aim: [value]"
-label_settings = SubResource("LabelSettings_jka67")
-script = ExtResource("3_tbgi4")
-expression = "_control_aim_dir"
-root_node = NodePath("../../../Hero")
-prefix = "Aim"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="Enemy" parent="." unique_id=680225357 instance=ExtResource("5_tbgi4")]
-position = Vector2(-33, -24)
-
-[node name="Texture2" type="TextureRect" parent="." unique_id=1200773612]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -72.0
-offset_right = 72.0
-offset_bottom = 72.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("8_85g3d")
-metadata/_edit_use_anchors_ = true
+[connection signal="gui_input" from="ViewportTexture" to="." method="_on_viewport_texture_gui_input"]

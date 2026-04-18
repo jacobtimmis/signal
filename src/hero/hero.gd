@@ -17,7 +17,9 @@ var wish_dir: Vector2
 var last_non_zero_wish_dir: Vector2
 var dash_dir: Vector2
 var dash_time: float
+var mouse_position: Vector2
 var _control_aim_dir := Vector2.RIGHT
+
 @onready var health_component: HealthComponent = $HealthComponent
 
 
@@ -41,16 +43,7 @@ func _ready() -> void:
     $DashParticles.emitting = false
 
 
-func get_aim_target_position() -> Vector2:
-    var target_position: Vector2
-    if GlobalInput.current_device == GlobalInput.Device.MOUSE:
-        target_position = get_global_mouse_position()
-    else:
-        target_position = global_position + _control_aim_dir
-    return target_position
-
-
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
     var current_aim_dir := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
     if current_aim_dir.length() > CONTROL_AIM_DEADZONE:
         _control_aim_dir = current_aim_dir
@@ -63,6 +56,7 @@ func _process(delta: float) -> void:
         $Weapon._shoot()
     if Input.is_action_pressed("ability"):
         $Weapon2._shoot()
+
 
 func _physics_process(delta: float) -> void:
     wish_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -77,10 +71,21 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+    if event is InputEventMouseMotion:
+        mouse_position = event.position
     if event.is_action_pressed("dash"):
         state_machine.change_state(State.DASH)
     if event.is_action_released("dash"):
         state_machine.change_state(State.DEFAULT)
+
+
+func get_aim_target_position() -> Vector2:
+    var target_position: Vector2
+    if GlobalInput.current_device == GlobalInput.Device.MOUSE:
+        return mouse_position
+    else:
+        target_position = global_position + _control_aim_dir
+    return target_position
 
 
 func _normal_move(delta: float) -> void:

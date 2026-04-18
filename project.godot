@@ -11,23 +11,21 @@ config_version=5
 [application]
 
 config/name="signal"
-run/main_scene="uid://ddm1lor3eubqy"
+run/main_scene="uid://bga0jdto26y5m"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="uid://c0q7sqably3g2"
 
 [autoload]
 
-Cursor="*uid://cgpxvrfbcdvyy"
 GlobalInput="*uid://n6enojfco57p"
-Background="*uid://e0fsrw2hodn1"
 
 [display]
 
-window/size/viewport_width=144
-window/size/viewport_height=144
+window/size/viewport_width=720
+window/size/viewport_height=720
 window/size/window_width_override=720
 window/size/window_height_override=720
-window/stretch/mode="viewport"
+window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
 
 [editor_plugins]

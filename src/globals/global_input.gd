@@ -62,16 +62,6 @@ func skip_device_detection() -> void:
     _skip_device_detection = true
 
 
-## Set mouse mode to visible.
-func show_mouse() -> void:
-    Cursor.show()
-
-
-## Sets mouse mode to hidden.
-func hide_mouse() -> void:
-    Cursor.hide()
-
-
 ## Whether the last device used was a joypad or not.
 func is_joypad() -> bool:
     return current_device == Device.JOYPAD
@@ -124,12 +114,10 @@ func _set_current_device(new_device: Device) -> void:
     input_device_changed.emit(old_device)
 
     if is_mouse():
-        show_mouse()
         # Hide the current focus, as visual focus is not for mouse input.
         if get_viewport().gui_get_focus_owner():
             get_viewport().gui_get_focus_owner().grab_focus(true)
     else:
-        hide_mouse()
         if default_control_to_focus:
             default_control_to_focus.grab_focus()
         else:
