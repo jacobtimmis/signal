@@ -45,6 +45,8 @@ func setup_names_from_enum(enumeration: Dictionary) -> void:
 func change_state(new_state: int) -> void:
     if not can_exit_state(current_state) or not can_enter_state(new_state):
         return
+    if current_state == new_state:
+        return
     current_state_call_callable(EXIT_CALLABLE)
     previous_state = current_state
     current_state = new_state
