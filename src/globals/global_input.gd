@@ -7,7 +7,6 @@ signal input_device_changed(old_device: Device)
 ## Type of device a player can use.
 enum Device {
     MOUSE,
-    KEYBOARD,
     JOYPAD,
 }
 
@@ -78,11 +77,6 @@ func is_joypad() -> bool:
     return current_device == Device.JOYPAD
 
 
-## Whether the last device used was a keyboard or not.
-func is_keyboard() -> bool:
-    return current_device == Device.KEYBOARD
-
-
 ## Whether the last device used was a mouse or not.
 func is_mouse() -> bool:
     return current_device == Device.MOUSE
@@ -113,8 +107,6 @@ func _detect_device(event: InputEvent) -> void:
         _set_current_device(Device.MOUSE)
     if event is InputEventJoypadButton or event is InputEventJoypadMotion:
         _set_current_device(Device.JOYPAD)
-    if event is InputEventKey and not _should_ignore_input_event_key(event):
-        _set_current_device(Device.KEYBOARD)
 
 
 func _set_current_device(new_device: Device) -> void:
