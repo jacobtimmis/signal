@@ -58,8 +58,11 @@ func _process(delta: float) -> void:
 
     $AimLine.target_position = get_aim_target_position()
     $Weapon.target_position = get_aim_target_position()
+    $Weapon2.target_position = get_aim_target_position()
     if Input.is_action_pressed("shoot"):
         $Weapon._shoot()
+    if Input.is_action_pressed("ability"):
+        $Weapon2._shoot()
 
 func _physics_process(delta: float) -> void:
     wish_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
