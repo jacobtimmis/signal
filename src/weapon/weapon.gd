@@ -13,6 +13,8 @@ signal weapon_fired
 @export var use_random_spread := false
 @export var min_spread: float = 0
 @export var max_spread: float = 20
+@export var even_spread_enabled := false
+@export var even_spread_angle: float = 45.0
 @export var pellet_count: int = 1
 @export var pellet_spread_map: Dictionary[int, float]
 ## Whether to use aim direction when the shoot action is started
@@ -83,10 +85,13 @@ func _launch_projectile(pellet_no: int) -> void:
     var spread: float = 0
     if pellet_no in pellet_spread_map:
         spread = pellet_spread_map[pellet_no]
+    elif even_spread_enabled and pellet_count > 1:
+        spread = -even_spread_angle / 2.0 + (even_spread_angle / (pellet_count - 1)) * pellet_no
     elif use_random_spread:
         spread = randf_range(min_spread, max_spread)
         if randf() > 0.5:
             spread *= -1
+
     proj.direction = dir.rotated(deg_to_rad(spread))
 
     get_tree().root.add_child(proj)
