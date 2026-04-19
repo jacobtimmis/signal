@@ -212,3 +212,7 @@ func _on_weapon_alt_weapon_available() -> void:
     if health_component.is_dead():
         return
     $WeaponAltAvailable.show()
+
+
+func _on_score_manager_levelled_up() -> void:
+    health_component.current_health += 10

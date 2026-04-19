@@ -87,7 +87,7 @@ label_settings = SubResource("LabelSettings_f5cxw")
 layout_mode = 2
 theme_override_constants/margin_top = 2
 
-[node name="SignalBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1800541111]
+[node name="XpBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1800541111]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 7)
 layout_mode = 2

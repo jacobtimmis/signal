@@ -25,6 +25,7 @@ func _on_health_component_killed() -> void:
         ScoreManager.add_score(score_value)
         if contributes_to_heat:
             Spawner.inst.current_heat += 1
+            ScoreManager.inst.xp += 1
 
     remove()
 

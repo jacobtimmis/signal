@@ -108,3 +108,5 @@ score_manager = NodePath("../ScoreManager")
 
 [node name="ScoreManager" type="Node" parent="." unique_id=1301419060]
 script = ExtResource("11_kvpfn")
+
+[connection signal="levelled_up" from="ScoreManager" to="HeroLayer/Hero" method="_on_score_manager_levelled_up"]
