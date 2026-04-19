@@ -1,8 +1,6 @@
 class_name Enemy
 extends CharacterBody2D
 
-const ENEMY_DEATH_POOF = preload("uid://dk2e305fr72tw")
-
 @onready var health_component: HealthComponent = $HealthComponent
 @export var speed: float = 20
 @export var speed_change: float = 10
@@ -12,10 +10,11 @@ const ENEMY_DEATH_POOF = preload("uid://dk2e305fr72tw")
 @export var hit_knockback: float = 10
 @export var weapon: Weapon
 @export var weapon_dist: float = 100
+@export var death_poof := preload("uid://dk2e305fr72tw")
 
 
 func _on_health_component_killed() -> void:
-    var inst := ENEMY_DEATH_POOF.instantiate() as Node2D
+    var inst := death_poof.instantiate() as Node2D
     inst.global_transform = global_transform
     get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
 
