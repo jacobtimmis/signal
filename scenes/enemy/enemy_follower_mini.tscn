@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://b4fjgh0vr0rki" path="res://scenes/poofs/enemy_death_poof_mini.tscn" id="2_5gc3k"]
 [ext_resource type="Texture2D" uid="uid://bt0hwbvnaxdl5" path="res://assets/sprites/enemy_follower_mini.png" id="2_wv1io"]
 [ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="3_uugbt"]
-[ext_resource type="AudioStream" uid="uid://brjup4xnwg7sj" path="res://assets/sound/enemy_mini_follower_spawn.sfxr" id="5_uugbt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fi5x0"]
 atlas = ExtResource("3_uugbt")
@@ -47,6 +46,3 @@ initial_velocity_min = 5.0
 initial_velocity_max = 20.0
 scale_amount_curve = SubResource("Curve_w5ksh")
 color_initial_ramp = SubResource("Gradient_kclay")
-
-[node name="AudioStreamPlayer2D" parent="EnemySpawnPoof" parent_id_path=PackedInt32Array(2105984039) index="1" unique_id=1093419221]
-stream = ExtResource("5_uugbt")

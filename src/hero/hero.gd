@@ -26,6 +26,7 @@ var can_continue_death := false
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var shoot_light: PointLight2D = $ShootLight
+@onready var weapon: Weapon = $Weapon
 
 
 func _ready() -> void:
@@ -228,8 +229,36 @@ func _on_weapon_alt_weapon_available() -> void:
     $WeaponAltAvailable.show()
 
 
+enum Upgrade { PELLETS, HEAL }
+var upgrade_count: Dictionary[Upgrade, int]
+
 func _on_score_manager_levelled_up() -> void:
-    health_component.current_health += 10
-    say_message("LEVEL UP!")
     $LevelUpSound.play()
     $LevelUpWeapon._shoot()
+
+    var all_ups := Upgrade.values()
+    var valid_ups: Array[Upgrade]
+    for u in all_ups:
+        if u == Upgrade.PELLETS and check_upgrade_count(Upgrade.PELLETS, 1):
+            continue
+        valid_ups.append(u)
+
+    var up = valid_ups.pick_random()
+    if up == Upgrade.PELLETS:
+        weapon.data.pellet_count += 1
+        weapon.data.even_spread_angle += 4
+        say_message("PELLETS+")
+    if up == Upgrade.HEAL:
+        health_component.current_health += 10
+        say_message("HEAL!")
+    add_count(up)
+
+
+func check_upgrade_count(up: Upgrade, max_up: int) -> bool:
+    return upgrade_count.has(up) and upgrade_count[up] >= max_up
+
+func add_count(up: Upgrade) -> void:
+    if upgrade_count.has(up):
+        upgrade_count[up] += 1
+    else:
+        upgrade_count[up] = 1
