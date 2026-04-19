@@ -24,15 +24,14 @@ colors = PackedColorArray(0.49803922, 0.023529412, 0.13333334, 1, 0.8392157, 0.1
 [sub_resource type="Resource" id="Resource_i5xgy"]
 script = ExtResource("6_kqv4c")
 projectile_scene = ExtResource("5_dka2u")
-shoot_delay = 2.0
-volley_count = 6
-volley_delay = 0.3
+shoot_delay = 1.0
+volley_count = 3
+volley_delay = 0.2
 lock_aim = true
 metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [node name="EnemyTri" unique_id=680225357 node_paths=PackedStringArray("weapon") instance=ExtResource("1_dka2u")]
-speed = 60.0
-speed_change = 40.0
+speed_change = 120.0
 far_distance_to_player = 30.0
 close_distance_to_player = 40.0
 weapon = NodePath("Weapon")
