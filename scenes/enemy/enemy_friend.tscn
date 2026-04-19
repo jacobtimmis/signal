@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://dq1csb1gr3c72" path="res://src/friend_logic.gd" id="3_ucm60"]
 
 [node name="Enemy" unique_id=680225357 instance=ExtResource("1_i5mi3")]
-hit_knockback = 60.0
 
 [node name="Sprite" parent="." index="1" unique_id=921602998]
 texture = ExtResource("2_ow8qf")
