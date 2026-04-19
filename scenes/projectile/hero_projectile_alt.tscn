@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dr2pyif1cepvg" path="res://scenes/projectile/projectile.tscn" id="1_2g85f"]
 [ext_resource type="Texture2D" uid="uid://bjnjxqg70mudy" path="res://assets/sprites/projectile_big.png" id="3_3yuwc"]
 [ext_resource type="Texture2D" uid="uid://ck41e6dfenxd2" path="res://assets/light_textures/lt_circle.tres" id="3_oc171"]
+[ext_resource type="AudioStream" uid="uid://beks0j0la2or4" path="res://assets/sound/water_bounce.mp3" id="4_3yuwc"]
 
 [sub_resource type="Curve" id="Curve_pmols"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0), -2.3660219, 0.0, 0, 0]
@@ -13,7 +14,7 @@ interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.15432099, 0.43209878)
 colors = PackedColorArray(0.7490196, 1, 0.23529412, 1, 0.0627451, 0.8235294, 0.45882353, 1, 0.2627451, 0, 0.40392157, 0)
 
-[node name="HeroProjectile" unique_id=24496546 instance=ExtResource("1_2g85f")]
+[node name="HeroProjectileAlt" unique_id=24496546 instance=ExtResource("1_2g85f")]
 collision_mask = 4
 speed = 180.0
 life_time = 2.0
@@ -51,3 +52,8 @@ energy = 0.2
 range_layer_min = -1
 range_item_cull_mask = 2
 texture = ExtResource("3_oc171")
+
+[node name="BounceSound" type="AudioStreamPlayer2D" parent="." index="5" unique_id=1175112591]
+stream = ExtResource("4_3yuwc")
+
+[connection signal="bounced" from="." to="BounceSound" method="play" binds= [0.0]]

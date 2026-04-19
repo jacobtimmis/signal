@@ -1,6 +1,8 @@
 class_name Projectile
 extends Area2D
 
+signal bounced
+
 @export var speed: float = 140
 @export var life_time: float = 1.0
 @export var use_max_distance := true
@@ -65,18 +67,22 @@ func _process(delta: float) -> void:
         global_position.x = -72
         direction = direction.bounce(Vector2(-1, 0))
         current_bounces += 1
+        bounced.emit()
     if bounce_on_edge and current_bounces < max_bounces and global_position.x > 72:
         global_position.x = 72
         direction = direction.bounce(Vector2(1, 0))
         current_bounces += 1
+        bounced.emit()
     if bounce_on_edge and current_bounces < max_bounces and global_position.y < -72:
         global_position.y = -72
         direction = direction.bounce(Vector2(0, 1))
         current_bounces += 1
+        bounced.emit()
     if bounce_on_edge and current_bounces < max_bounces and global_position.y > 72:
         global_position.y = 72
         direction = direction.bounce(Vector2(0, -1))
         current_bounces += 1
+        bounced.emit()
 
 
 

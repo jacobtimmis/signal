@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dk2e305fr72tw"]
 
 [ext_resource type="Script" uid="uid://bu1wk2d1xpwti" path="res://src/poof/poof.gd" id="1_tt8y0"]
+[ext_resource type="AudioStream" uid="uid://cx5rvoeomulo4" path="res://assets/sound/hero_hurt.sfxr" id="2_y8iea"]
 
 [sub_resource type="Gradient" id="Gradient_y8iea"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -15,7 +16,6 @@ script = ExtResource("1_tt8y0")
 metadata/_custom_type_script = "uid://bu1wk2d1xpwti"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=436667883]
-emitting = false
 amount = 20
 lifetime = 30.0
 one_shot = true
@@ -34,3 +34,7 @@ color_ramp = SubResource("Gradient_y8iea")
 color_initial_ramp = SubResource("Gradient_tt8y0")
 hue_variation_min = 0.38
 hue_variation_max = 0.38
+
+[node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=845302352]
+stream = ExtResource("2_y8iea")
+volume_db = -10.0

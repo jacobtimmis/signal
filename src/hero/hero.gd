@@ -233,6 +233,7 @@ func say_message(msg: String) -> void:
 func _on_weapon_alt_weapon_fired() -> void:
     # TODO make weapon 1 not be able to fire for a bit too
     $WeaponAltAvailable.hide()
+    $AltWeaponShootSound.play()
 
 
 func _on_weapon_alt_weapon_available() -> void:
