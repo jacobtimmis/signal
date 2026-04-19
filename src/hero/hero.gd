@@ -315,3 +315,6 @@ func add_count(up: Upgrade) -> void:
         upgrade_count[up] += 1
     else:
         upgrade_count[up] = 1
+
+func play_heal_sound() -> void:
+    $HealSound.play()

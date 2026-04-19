@@ -27,6 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://boaken2g8kdo0" path="res://assets/sound/shoot9.mp3" id="17_dpl1l"]
 [ext_resource type="AudioStream" uid="uid://buoglntxa7elm" path="res://assets/sound/water_drop_big.mp3" id="17_yjh3g"]
 [ext_resource type="AudioStream" uid="uid://b6vggd4xepij5" path="res://assets/sound/shoot10.mp3" id="18_jh42a"]
+[ext_resource type="AudioStream" uid="uid://loqdxa3b16ob" path="res://assets/sound/heal.sfxr" id="28_071e2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 3.0
@@ -180,6 +181,9 @@ metadata/_custom_type_script = "uid://dlhagra20anl3"
 [node name="AltWeaponShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1297707199]
 stream = ExtResource("17_yjh3g")
 volume_db = 10.0
+
+[node name="HealSound" type="AudioStreamPlayer2D" parent="." unique_id=53039550]
+stream = ExtResource("28_071e2")
 
 [connection signal="weapon_fired" from="Weapon" to="." method="_on_weapon_weapon_fired"]
 [connection signal="weapon_available" from="WeaponAlt" to="." method="_on_weapon_alt_weapon_available"]
