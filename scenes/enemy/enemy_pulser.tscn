@@ -36,6 +36,7 @@ far_distance_to_player = 30.0
 close_distance_to_player = 40.0
 weapon = NodePath("Weapon")
 weapon_dist = 60.0
+score_value = 25
 
 [node name="Sprite" parent="." index="1" unique_id=921602998]
 texture = ExtResource("2_25kts")
