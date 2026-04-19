@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://cbmsoieyrqqsf" path="res://assets/shaders/viewport.gdshader" id="2_rx586"]
 [ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_labels.gd" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://cm6d6gwdcjtc3" path="res://src/fader.gd" id="6_tefeu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_43bnl"]
 viewport_path = NodePath("Viewport")
@@ -92,5 +93,17 @@ expression = "health_component.current_health"
 root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
 prefix = "Aim"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=349879680]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=889390236]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+script = ExtResource("6_tefeu")
 
 [connection signal="gui_input" from="ViewportTexture" to="." method="_on_viewport_texture_gui_input"]
