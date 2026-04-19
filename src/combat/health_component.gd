@@ -22,11 +22,12 @@ func kill() -> void:
     current_health = 0
 
 
-func damage(amount: float, context: CombatContext) -> void:
+func damage(amount: float, context: CombatContext) -> bool:
     if is_dead():
-        return
+        return false
     current_health -= amount
     damaged.emit(amount, context)
+    return true
 
 func percent() -> float:
     return current_health / max_health
