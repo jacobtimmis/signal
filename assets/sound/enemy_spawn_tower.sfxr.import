@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://c7p5gk7f0y0eh"
+path="res://.godot/imported/enemy_spawn_tower.sfxr-781f51b7957a53cf6e474ce3e10b1de8.sample"
+
+[deps]
+
+source_file="res://assets/sound/enemy_spawn_tower.sfxr"
+dest_files=["res://.godot/imported/enemy_spawn_tower.sfxr-781f51b7957a53cf6e474ce3e10b1de8.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

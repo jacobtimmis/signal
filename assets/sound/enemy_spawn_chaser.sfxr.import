@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://dgtqsx0qv5alx"
+path="res://.godot/imported/enemy_spawn_chaser.sfxr-e4bbbe17c0e31b749a6aa141aa6653a6.sample"
+
+[deps]
+
+source_file="res://assets/sound/enemy_spawn_chaser.sfxr"
+dest_files=["res://.godot/imported/enemy_spawn_chaser.sfxr-e4bbbe17c0e31b749a6aa141aa6653a6.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

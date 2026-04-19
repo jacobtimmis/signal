@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ecusrt8yjt53" path="res://scenes/projectile/enemy_pulser_projectile.tscn" id="5_axd7t"]
 [ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="6_ijb7s"]
 [ext_resource type="PackedScene" uid="uid://cid7inlwyn3a8" path="res://scenes/poofs/enemy_spawn_poof.tscn" id="7_ijb7s"]
+[ext_resource type="AudioStream" uid="uid://cswclxfogcn6v" path="res://assets/sound/enemy_spawn_pulser.sfxr" id="8_i5xgy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fi5x0"]
 atlas = ExtResource("3_4v4b7")
@@ -62,3 +63,8 @@ from = NodePath("..")
 metadata/_custom_type_script = "uid://dlhagra20anl3"
 
 [node name="EnemySpawnPoof" parent="." index="7" unique_id=2105984039 instance=ExtResource("7_ijb7s")]
+
+[node name="AudioStreamPlayer2D" parent="EnemySpawnPoof" index="1" unique_id=1093419221]
+stream = ExtResource("8_i5xgy")
+
+[editable path="EnemySpawnPoof"]
