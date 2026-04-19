@@ -30,9 +30,7 @@ colors = PackedColorArray(0.49803922, 0.023529412, 0.13333334, 1, 0.8392157, 0.1
 [sub_resource type="Resource" id="Resource_tcsq5"]
 script = ExtResource("6_qr3dm")
 projectile_scene = ExtResource("6_tcsq5")
-shoot_delay = 4.0
-volley_count = 3
-volley_delay = 1.0
+shoot_delay = 1.2
 even_spread_enabled = true
 even_spread_angle = 360.0
 pellet_count = 10
@@ -44,6 +42,7 @@ speed_change = 200.0
 hit_knockback = -1.0
 weapon = NodePath("Weapon")
 weapon_dist = 5.0
+chance_to_spawn_pickup = 1.0
 go_to_center = true
 
 [node name="Collision" parent="." index="0" unique_id=1541766959]
