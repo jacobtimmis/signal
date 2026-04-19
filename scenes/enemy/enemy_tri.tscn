@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ce4qi444rc6n8"]
 
 [ext_resource type="PackedScene" uid="uid://c3d6wun00myid" path="res://scenes/enemy/enemy.tscn" id="1_dka2u"]
-[ext_resource type="Texture2D" uid="uid://vgra507p7r8n" path="res://assets/sprites/triangle.png" id="2_dka2u"]
+[ext_resource type="Texture2D" uid="uid://vgra507p7r8n" path="res://assets/sprites/enemy_triangle.png" id="2_dka2u"]
 [ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="3_npt2c"]
 [ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="4_vpwf3"]
 [ext_resource type="PackedScene" uid="uid://ckfrldkq2r1e3" path="res://scenes/projectile/enemy_tri_projectile.tscn" id="5_dka2u"]
