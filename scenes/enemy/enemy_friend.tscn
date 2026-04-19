@@ -6,6 +6,8 @@
 [ext_resource type="Script" uid="uid://dq1csb1gr3c72" path="res://src/friend_logic.gd" id="3_ucm60"]
 
 [node name="Friend" unique_id=680225357 instance=ExtResource("1_i5mi3")]
+collision_layer = 0
+collision_mask = 0
 death_poof = ExtResource("2_w7duk")
 go_to_center = true
 always_flee = true
