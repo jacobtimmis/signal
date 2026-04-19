@@ -62,6 +62,12 @@ func _ready() -> void:
 
     $DashParticles.emitting = false
 
+    await get_tree().create_timer(0.5).timeout
+    friend_signal()
+    for n in range(3):
+        friend_signal()
+        await get_tree().create_timer(0.5).timeout
+
 func _process(_delta: float) -> void:
     if health_component.is_dead():
         return
@@ -246,6 +252,10 @@ const FRIEND_SPAWN_POOF = preload("uid://cry31uu7sdsm7")
 func _on_score_manager_levelled_up() -> void:
     #$LevelUpWeapon._shoot()
     spawner._do_spawn(FRIEND_ENCOUNTER)
+    friend_signal()
+
+
+func friend_signal() -> void:
     var poof := FRIEND_SPAWN_POOF.instantiate() as Node2D
     poof.global_transform = get_node("/root/Main/Viewport/Game/Ufo/SignalMarker").global_transform
     get_parent().add_child(poof)

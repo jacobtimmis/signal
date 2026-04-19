@@ -30,8 +30,8 @@ func _ready() -> void:
     timer.wait_time = spawn_interval
     timer.timeout.connect(_spawn_enemy)
     timer.start()
-    await get_tree().create_timer(1).timeout
-    _spawn_enemy()
+    #await get_tree().create_timer(1).timeout
+    #_spawn_enemy()
 
 
 var one_use_used: Array[String]
