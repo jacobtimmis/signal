@@ -46,7 +46,7 @@ func _physics_process(delta: float) -> void:
     var dist := global_position.distance_to(desired_position)
 
     if weapon:
-        weapon.target_position = desired_position
+        weapon.target_position = Hero.inst.global_position
         if dist < weapon_dist and not Hero.inst.health_component.is_dead() and on_screen_notifier.is_on_screen():
             weapon._shoot()
 
