@@ -16,7 +16,9 @@ const PICKUP = preload("uid://dp7osbi4hyudh")
 @export var contributes_to_heat := true
 @export var chance_to_spawn_pickup := 0.0
 @export var stop_while_shooting := false
+@export var go_to_center := false
 var add_score := true
+@onready var on_screen_notifier: VisibleOnScreenNotifier2D = $OnScreenNotifier
 
 
 func _on_health_component_killed() -> void:
@@ -38,17 +40,19 @@ func _on_health_component_killed() -> void:
 
 func _physics_process(delta: float) -> void:
     var desired_position := Hero.inst.global_position
+    if go_to_center:
+        desired_position = Vector2.ZERO
     var desired_direction := global_position.direction_to(desired_position)
     var dist := global_position.distance_to(desired_position)
 
     if weapon:
         weapon.target_position = desired_position
-        if dist < weapon_dist and not Hero.inst.health_component.is_dead():
+        if dist < weapon_dist and not Hero.inst.health_component.is_dead() and on_screen_notifier.is_on_screen():
             weapon._shoot()
 
     if weapon and stop_while_shooting and weapon.is_shooting:
         velocity = Vector2.ZERO
-    if Hero.inst.health_component.is_dead():
+    if Hero.inst.health_component.is_dead() and not go_to_center:
         velocity = desired_direction * speed * -1
     elif move_to_player:
         if dist < close_distance_to_player:

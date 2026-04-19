@@ -42,6 +42,9 @@ debug_color = Color(0.61194843, 0.70196074, 0, 0)
 [node name="HitSound" type="AudioStreamPlayer2D" parent="." unique_id=498244752]
 stream = ExtResource("5_gl05p")
 
+[node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=32129152]
+rect = Rect2(-5, -5, 10, 10)
+
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
 [connection signal="dealt_damage" from="Hurtbox" to="." method="_on_hurtbox_dealt_damage"]

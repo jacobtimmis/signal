@@ -4,6 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://bmoq1iipdyp0a" path="res://assets/sprites/enemy_tower.png" id="2_urn51"]
 [ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="3_mbmbk"]
 [ext_resource type="PackedScene" uid="uid://cid7inlwyn3a8" path="res://scenes/poofs/enemy_spawn_poof.tscn" id="4_qr3dm"]
+[ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="5_mbmbk"]
+[ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="6_qr3dm"]
+[ext_resource type="PackedScene" uid="uid://ecusrt8yjt53" path="res://scenes/projectile/enemy_pulser_projectile.tscn" id="6_tcsq5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_urn51"]
 radius = 7.0
@@ -24,8 +27,24 @@ interpolation_mode = 1
 offsets = PackedFloat32Array(0.0061728396, 0.46296296, 0.95)
 colors = PackedColorArray(0.49803922, 0.023529412, 0.13333334, 1, 0.8392157, 0.14117648, 0.06666667, 1, 0.98039216, 0.99215686, 1, 1)
 
-[node name="EnemyTower" unique_id=680225357 instance=ExtResource("1_urn51")]
+[sub_resource type="Resource" id="Resource_tcsq5"]
+script = ExtResource("6_qr3dm")
+projectile_scene = ExtResource("6_tcsq5")
+shoot_delay = 4.0
+volley_count = 3
+volley_delay = 1.0
+even_spread_enabled = true
+even_spread_angle = 360.0
+pellet_count = 10
+metadata/_custom_type_script = "uid://p6ktfyndgyfn"
+
+[node name="EnemyTower" unique_id=680225357 node_paths=PackedStringArray("weapon") instance=ExtResource("1_urn51")]
+speed = 10.0
+speed_change = 200.0
 hit_knockback = -1.0
+weapon = NodePath("Weapon")
+weapon_dist = 5.0
+go_to_center = true
 
 [node name="Collision" parent="." index="0" unique_id=1541766959]
 shape = SubResource("CircleShape2D_urn51")
@@ -35,7 +54,7 @@ position = Vector2(0, -9)
 texture = ExtResource("2_urn51")
 
 [node name="HealthComponent" parent="." index="2" unique_id=714940988]
-max_health = 800.0
+max_health = 2000.0
 
 [node name="Hurtbox" parent="." index="3" unique_id=794594365]
 damage = 20.0
@@ -58,3 +77,14 @@ scale_amount_curve = SubResource("Curve_w5ksh")
 color_initial_ramp = SubResource("Gradient_kclay")
 
 [node name="EnemySpawnPoof" parent="." index="6" unique_id=2105984039 instance=ExtResource("4_qr3dm")]
+
+[node name="OnScreenNotifier" parent="." index="7" unique_id=32129152]
+rect = Rect2(-5, -22, 10, 27)
+
+[node name="Weapon" type="Node2D" parent="." index="8" unique_id=1157904523 node_paths=PackedStringArray("from")]
+position = Vector2(0, -17)
+script = ExtResource("5_mbmbk")
+projectile_pool_size = 32
+data = SubResource("Resource_tcsq5")
+from = NodePath("..")
+metadata/_custom_type_script = "uid://dlhagra20anl3"
