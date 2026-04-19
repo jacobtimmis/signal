@@ -17,8 +17,7 @@ const ENEMY_DEATH_POOF = preload("uid://dk2e305fr72tw")
 func _on_health_component_killed() -> void:
     var inst := ENEMY_DEATH_POOF.instantiate() as Node2D
     inst.global_transform = global_transform
-    get_parent().add_child(inst)
-    get_parent().move_child(inst, 0)
+    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
 
     remove()
 
@@ -49,6 +48,7 @@ func _on_health_component_damaged(amount: float, context: CombatContext) -> void
     tween.tween_property($Sprite, "modulate", Color.WHITE, 0.1)
     velocity = context.attack_direction * hit_knockback
     $HitSound.play()
+    GameCamera.shake(2, 20)
 
 
 func remove() -> void:
@@ -56,4 +56,4 @@ func remove() -> void:
 
 
 func _on_hurtbox_dealt_damage() -> void:
-    remove()
+    health_component.kill()

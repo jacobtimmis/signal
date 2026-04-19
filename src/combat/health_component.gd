@@ -14,6 +14,10 @@ func _ready() -> void:
     current_health = max_health
 
 
+func kill() -> void:
+    current_health = 0
+
+
 func damage(amount: float, context: CombatContext) -> void:
     current_health -= amount
     damaged.emit(amount, context)
