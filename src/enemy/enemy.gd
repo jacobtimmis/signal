@@ -46,6 +46,7 @@ func _physics_process(delta: float) -> void:
         desired_position = Vector2.ZERO
     var desired_direction := global_position.direction_to(desired_position)
     var dist := global_position.distance_to(desired_position)
+    var center_dist := global_position.distance_to(Vector2.ZERO)
 
     if weapon:
         weapon.target_position = Hero.inst.global_position
@@ -60,14 +61,20 @@ func _physics_process(delta: float) -> void:
         if dist < close_distance_to_player:
             desired_direction *= -1
         if dist > far_distance_to_player or dist < close_distance_to_player:
-            velocity = velocity.move_toward(desired_direction * speed, delta * speed_change)
+            var speed_to_use := speed
+            if center_dist > 60:
+                speed_to_use *= 4
+            velocity = velocity.move_toward(desired_direction * speed_to_use, delta * speed_change)
         else:
             velocity = velocity.move_toward(Vector2.ZERO, delta * speed_change)
     move_and_slide()
 
 
 func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
-    velocity = context.attack_direction * hit_knockback
+    var center_dist := global_position.distance_to(Vector2.ZERO)
+    if center_dist < 55:
+        velocity = context.attack_direction * hit_knockback
+
     if play_hit_effects:
         $Sprite.modulate = Color.WHITE * 30
         var tween = create_tween()
