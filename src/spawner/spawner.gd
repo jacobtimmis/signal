@@ -10,6 +10,7 @@ var encounters: Array[EncounterData]
 @export var total_positions: int = 12
 @export var chance_to_flip := 0.1
 static var inst: Spawner
+var timer: Timer
 
 var current_spawn_index: int = 0
 
@@ -24,11 +25,13 @@ func _ready() -> void:
     for file in DirAccess.get_files_at("res://data/encounters/"):
         encounters.append(ResourceLoader.load("res://data/encounters/" + file))
 
-    var timer = Timer.new()
+    timer = Timer.new()
     add_child(timer)
     timer.wait_time = spawn_interval
     timer.timeout.connect(_spawn_enemy)
     timer.start()
+    await get_tree().create_timer(1).timeout
+    _spawn_enemy()
 
 
 func _pick_encounter() -> EncounterData:
@@ -47,6 +50,8 @@ func _spawn_enemy() -> void:
 
     if encounters.is_empty() or not layer:
         return
+
+    timer.wait_time = max(timer.wait_time - 0.5, 2)
 
     var encounter = _pick_encounter()
     print("New Encounter: %s" % encounter.resource_path.get_file())
