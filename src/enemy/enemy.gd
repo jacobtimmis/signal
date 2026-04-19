@@ -21,6 +21,12 @@ const PICKUP = preload("uid://dp7osbi4hyudh")
 var add_score := true
 @onready var on_screen_notifier: VisibleOnScreenNotifier2D = $OnScreenNotifier
 @export var play_hit_effects := true
+var is_spawning := true
+
+
+func _ready() -> void:
+    await get_tree().create_timer(0.5).timeout
+    is_spawning = false
 
 
 func _on_health_component_killed() -> void:
@@ -41,6 +47,9 @@ func _on_health_component_killed() -> void:
 
 
 func _physics_process(delta: float) -> void:
+    if is_spawning:
+        return
+
     var desired_position := Hero.inst.global_position
     if go_to_center:
         desired_position = Vector2.ZERO
