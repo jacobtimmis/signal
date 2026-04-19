@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var weapon_dist: float = 100
 @export var death_poof := preload("uid://dk2e305fr72tw")
 @export var score_value: int = 10
+@export var contributes_to_heat := true
 var add_score := true
 
 
@@ -22,6 +23,8 @@ func _on_health_component_killed() -> void:
 
     if add_score:
         ScoreManager.add_score(score_value)
+        if contributes_to_heat:
+            Spawner.inst.current_heat += 1
 
     remove()
 

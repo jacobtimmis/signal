@@ -10,8 +10,8 @@ point_count = 2
 
 [sub_resource type="Gradient" id="Gradient_pmols"]
 interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.15432099, 0.43209878)
-colors = PackedColorArray(1, 0.14901961, 0.45490196, 1, 0.5803922, 0.12941177, 0.41568628, 1, 0.2627451, 0, 0.40392157, 1)
+offsets = PackedFloat32Array(0, 0.15432099, 1)
+colors = PackedColorArray(1, 0.14901961, 0.45490196, 1, 0.5803922, 0.12941177, 0.41568628, 1, 0.25999984, 0, 0.4, 0)
 
 [node name="HeroProjectile" unique_id=24496546 instance=ExtResource("1_pmols")]
 collision_mask = 4

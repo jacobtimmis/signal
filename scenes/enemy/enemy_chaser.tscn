@@ -3,6 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://c3d6wun00myid" path="res://scenes/enemy/enemy.tscn" id="1_fxyx7"]
 [ext_resource type="Texture2D" uid="uid://lb5upcbmhmb2" path="res://assets/sprites/enemy_fighter.png" id="2_xy8cf"]
 [ext_resource type="Script" uid="uid://m7cfr8cq5me6" path="res://addons/debug_labels/nodes/property_label.gd" id="3_m6ah1"]
+[ext_resource type="PackedScene" uid="uid://cid7inlwyn3a8" path="res://scenes/poofs/enemy_spawn_poof.tscn" id="4_b1wky"]
+[ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="5_1vn0k"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfjny"]
+atlas = ExtResource("5_1vn0k")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="Curve" id="Curve_bogmp"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.793767, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_vt0t0"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0061728396, 0.46296296, 0.95)
+colors = PackedColorArray(0.49803922, 0.023529412, 0.13333334, 1, 0.8392157, 0.14117648, 0.06666667, 1, 0.98039216, 0.99215686, 1, 1)
 
 [node name="EnemyChaser" unique_id=680225357 instance=ExtResource("1_fxyx7")]
 speed = 60.0
@@ -25,3 +40,17 @@ metadata/_custom_type_script = "uid://m7cfr8cq5me6"
 
 [node name="Hurtbox" parent="." index="4" unique_id=794594365]
 damage = 50.0
+
+[node name="EnemySpawnPoof" parent="." index="6" unique_id=2105984039 instance=ExtResource("4_b1wky")]
+
+[node name="DashParticles" type="CPUParticles2D" parent="." index="7" unique_id=805443074]
+show_behind_parent = true
+amount = 20
+texture = SubResource("AtlasTexture_lfjny")
+lifetime = 0.4
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_curve = SubResource("Curve_bogmp")
+color_initial_ramp = SubResource("Gradient_vt0t0")

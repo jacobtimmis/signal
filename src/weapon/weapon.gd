@@ -2,6 +2,7 @@ class_name Weapon
 extends Node2D
 
 signal weapon_fired
+signal weapon_available
 
 @export var projectile_pool_enabled := true
 @export var projectile_pool_size := 10
@@ -49,6 +50,7 @@ func _shoot() -> void:
             await get_tree().create_timer(data.volley_delay).timeout
     await get_tree().create_timer(data.shoot_delay).timeout
     is_shooting = false
+    weapon_available.emit()
 
 
 func _inst_projectile() -> Projectile:

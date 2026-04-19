@@ -94,7 +94,10 @@ func _on_on_screen_notifier_screen_exited() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
+    var context := CombatContext.new()
     if from:
-        var res := Combat.damage(body, damage, CombatContext.new(from.duplicate(), direction))
-        if res and remove_after_hit:
-            remove.call_deferred()
+        context.from = from
+    context.attack_direction = direction
+    var res := Combat.damage(body, damage, context)
+    if res and remove_after_hit:
+        remove.call_deferred()

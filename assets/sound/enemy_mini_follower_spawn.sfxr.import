@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://brjup4xnwg7sj"
+path="res://.godot/imported/enemy_mini_follower_spawn.sfxr-27394b3e23b394140e29b8d1b194377e.sample"
+
+[deps]
+
+source_file="res://assets/sound/enemy_mini_follower_spawn.sfxr"
+dest_files=["res://.godot/imported/enemy_mini_follower_spawn.sfxr-27394b3e23b394140e29b8d1b194377e.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

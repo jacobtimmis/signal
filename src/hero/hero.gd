@@ -23,10 +23,13 @@ var mouse_position: Vector2
 var _control_aim_dir := Vector2.RIGHT
 
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var shoot_light: PointLight2D = $ShootLight
 
 
 func _ready() -> void:
     inst = self
+
+    shoot_light.color.a = 0
 
     state_machine.setup_state(
         State.DEFAULT,
@@ -150,6 +153,9 @@ func _on_weapon_weapon_fired() -> void:
     velocity += global_position.direction_to(get_aim_target_position()).normalized() * -50
     GameCamera.shake(1, 100)
     $ShootSound.play()
+    shoot_light.color.a = 1
+    var tween := create_tween()
+    tween.tween_property(shoot_light, "color:a", 0, 0.1)
 
 const HERO_HURT_POOF = preload("uid://b4wc0xsl0jlwn")
 const HERO_DEATH_POOF = preload("uid://mfe4sx0cbu3r")
@@ -182,6 +188,8 @@ func _dead_enter() -> void:
     inst.global_transform = global_transform
     get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
 
+    $WeaponAltAvailable.hide()
+
     $Sprite.hide()
 
     $DeathTimer.start()
@@ -193,3 +201,14 @@ func _on_health_component_killed() -> void:
 
 func _on_death_timer_timeout() -> void:
     get_tree().reload_current_scene()
+
+
+func _on_weapon_alt_weapon_fired() -> void:
+    # TODO make weapon 1 not be able to fire for a bit too
+    $WeaponAltAvailable.hide()
+
+
+func _on_weapon_alt_weapon_available() -> void:
+    if health_component.is_dead():
+        return
+    $WeaponAltAvailable.show()

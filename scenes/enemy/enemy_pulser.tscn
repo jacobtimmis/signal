@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="4_s8qah"]
 [ext_resource type="PackedScene" uid="uid://ecusrt8yjt53" path="res://scenes/projectile/enemy_pulser_projectile.tscn" id="5_axd7t"]
 [ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="6_ijb7s"]
+[ext_resource type="PackedScene" uid="uid://cid7inlwyn3a8" path="res://scenes/poofs/enemy_spawn_poof.tscn" id="7_ijb7s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fi5x0"]
 atlas = ExtResource("3_4v4b7")
@@ -59,3 +60,5 @@ script = ExtResource("4_s8qah")
 data = SubResource("Resource_i5xgy")
 from = NodePath("..")
 metadata/_custom_type_script = "uid://dlhagra20anl3"
+
+[node name="EnemySpawnPoof" parent="." index="7" unique_id=2105984039 instance=ExtResource("7_ijb7s")]

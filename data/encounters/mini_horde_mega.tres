@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="EncounterData" format=3 uid="uid://cuvxbdllsvduu"]
+
+[ext_resource type="Script" uid="uid://c6c6sshp87m6b" path="res://src/combat/encounter_data.gd" id="1_3fw5n"]
+[ext_resource type="Script" uid="uid://c0so8q3bbyayq" path="res://src/combat/entity_spawn_data.gd" id="2_b1ywe"]
+[ext_resource type="PackedScene" uid="uid://c7o8c35nufrsx" path="res://scenes/enemy/enemy_follower_mini.tscn" id="3_c8nb4"]
+[ext_resource type="PackedScene" uid="uid://c03xtgvcggf5s" path="res://scenes/poofs/enemy_spawn_poof_mini.tscn" id="4_b1ywe"]
+
+[sub_resource type="Resource" id="Resource_nnnrl"]
+script = ExtResource("2_b1ywe")
+scene = ExtResource("3_c8nb4")
+spawn_poof = ExtResource("4_b1ywe")
+min_amount = 12
+max_amount = 24
+metadata/_custom_type_script = "uid://c0so8q3bbyayq"
+
+[resource]
+script = ExtResource("1_3fw5n")
+min_heat = 51
+spawns = Array[ExtResource("2_b1ywe")]([SubResource("Resource_nnnrl")])
+metadata/_custom_type_script = "uid://c6c6sshp87m6b"

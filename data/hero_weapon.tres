@@ -8,6 +8,6 @@ script = ExtResource("2_0io01")
 projectile_scene = ExtResource("1_mxbqb")
 shoot_delay = 0.2
 even_spread_enabled = true
-even_spread_angle = 4.0
+even_spread_angle = 6.0
 pellet_count = 2
 metadata/_custom_type_script = "uid://p6ktfyndgyfn"

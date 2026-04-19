@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c03xtgvcggf5s"]
+
+[ext_resource type="Script" uid="uid://bu1wk2d1xpwti" path="res://src/poof/poof.gd" id="1_fsmpn"]
+[ext_resource type="Texture2D" uid="uid://dqd26wiq3hcfc" path="res://assets/sprites/singal_circle.png" id="2_qfod6"]
+[ext_resource type="AudioStream" uid="uid://brjup4xnwg7sj" path="res://assets/sound/enemy_mini_follower_spawn.sfxr" id="3_fsmpn"]
+
+[sub_resource type="Curve" id="Curve_kvuet"]
+_data = [Vector2(0, 0), 0.0, 2.5524352, 0, 0, Vector2(1, 1), -0.6897505, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_3lbj1"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.5)
+colors = PackedColorArray(0.49803922, 0.023529412, 0.13333334, 1, 0.8392157, 0.14117648, 0.06666667, 1)
+
+[node name="EnemySpawnPoofMini" type="Node2D" unique_id=2105984039]
+script = ExtResource("1_fsmpn")
+metadata/_custom_type_script = "uid://bu1wk2d1xpwti"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1748233610]
+emitting = false
+amount = 1
+texture = ExtResource("2_qfod6")
+one_shot = true
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_kvuet")
+color_initial_ramp = SubResource("Gradient_3lbj1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1093419221]
+stream = ExtResource("3_fsmpn")

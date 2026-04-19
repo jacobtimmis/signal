@@ -6,16 +6,23 @@
 [ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="4_tqfqc"]
 [ext_resource type="Resource" uid="uid://cu123g0hk65b1" path="res://data/hero_weapon.tres" id="5_qijae"]
 [ext_resource type="AudioStream" uid="uid://bo0nlue4gg5i3" path="res://assets/sound/hero_shoot.sfxr" id="6_888c7"]
+[ext_resource type="PackedScene" uid="uid://dmvf1j335oujh" path="res://scenes/projectile/hero_projectile_alt.tscn" id="6_u2cdm"]
+[ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="7_skxai"]
 [ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="8_g31do"]
 [ext_resource type="AudioStream" uid="uid://owf3i1ycwpo4" path="res://assets/sound/water_drop.mp3" id="8_jrc8l"]
 [ext_resource type="AudioStream" uid="uid://bko5g6001yw3y" path="res://assets/sound/water_breathe_loop.mp3" id="9_qijae"]
 [ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="10_1cpic"]
 [ext_resource type="Gradient" uid="uid://c8e860ff57pwy" path="res://data/hero_gradient.tres" id="10_82ej0"]
-[ext_resource type="Texture2D" uid="uid://ck41e6dfenxd2" path="res://assets/light_textures/lt_circle.tres" id="11_jrc8l"]
 [ext_resource type="AudioStream" uid="uid://cx5rvoeomulo4" path="res://assets/sound/hero_hurt.sfxr" id="12_qijae"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 4.0
+
+[sub_resource type="Resource" id="Resource_yjh3g"]
+script = ExtResource("7_skxai")
+projectile_scene = ExtResource("6_u2cdm")
+shoot_delay = 3.0
+metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h65lx"]
 atlas = ExtResource("8_g31do")
@@ -24,6 +31,27 @@ region = Rect2(8, 0, 8, 8)
 [sub_resource type="Curve" id="Curve_g31do"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.793767, 0.0, 0, 0]
 point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_afyls"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cmhvm"]
+gradient = SubResource("Gradient_afyls")
+width = 24
+height = 24
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_cmhvm"]
+offsets = PackedFloat32Array(0, 0.91566265, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.92168677, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u2cdm"]
+gradient = SubResource("Gradient_cmhvm")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="Hero" type="CharacterBody2D" unique_id=1186113123]
 collision_layer = 2
@@ -51,6 +79,7 @@ from = NodePath("..")
 [node name="WeaponAlt" type="Node2D" parent="." unique_id=823445164 node_paths=PackedStringArray("from")]
 script = ExtResource("4_tqfqc")
 projectile_pool_size = 500
+data = SubResource("Resource_yjh3g")
 from = NodePath("..")
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1585931221]
@@ -79,12 +108,12 @@ color_initial_ramp = ExtResource("10_82ej0")
 script = ExtResource("10_1cpic")
 metadata/_custom_type_script = "uid://didq7xuc46d6"
 
-[node name="Light" type="PointLight2D" parent="." unique_id=367570525]
-visible = false
-color = Color(0.7490196, 1, 0.23529412, 1)
+[node name="ShootLight" type="PointLight2D" parent="." unique_id=367570525]
+color = Color(1, 0.14901961, 0.45490196, 1)
+energy = 2.0
 range_layer_min = -1
 range_item_cull_mask = 2
-texture = ExtResource("11_jrc8l")
+texture = SubResource("GradientTexture2D_cmhvm")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=630878637]
 stream = ExtResource("12_qijae")
@@ -93,7 +122,15 @@ stream = ExtResource("12_qijae")
 wait_time = 4.0
 one_shot = true
 
+[node name="WeaponAltAvailable" type="Sprite2D" parent="." unique_id=545155735]
+modulate = Color(0.74666667, 1, 0.24000001, 0.27450982)
+show_behind_parent = true
+scale = Vector2(0.29701984, 0.29701984)
+texture = SubResource("GradientTexture2D_u2cdm")
+
 [connection signal="weapon_fired" from="Weapon" to="." method="_on_weapon_weapon_fired"]
+[connection signal="weapon_available" from="WeaponAlt" to="." method="_on_weapon_alt_weapon_available"]
+[connection signal="weapon_fired" from="WeaponAlt" to="." method="_on_weapon_alt_weapon_fired"]
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
 [connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
 [connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

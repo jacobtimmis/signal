@@ -11,5 +11,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-    Combat.damage(body, damage, CombatContext.new(from))
+    var context := CombatContext.new()
+    context.from = from
+    Combat.damage(body, damage, context)
     dealt_damage.emit()
