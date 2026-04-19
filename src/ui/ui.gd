@@ -8,18 +8,19 @@ extends Control
 @onready var xp_bar: ProgressBar = %XpBar
 @onready var time: Label = %Time
 @onready var top_container: HBoxContainer = %TopContainer
+@onready var v_box_container: VBoxContainer = $MarginContainer/VBoxContainer/VBoxContainer
 
 
 func _ready() -> void:
-    time.hide()
+    v_box_container.hide()
 
 
 func _process(delta: float) -> void:
     if hero:
         health_bar.value = hero.health_component.percent()
         if hero.health_component.is_dead():
-            time.show()
+            v_box_container.show()
             time.text = "survived %.1fs" % hero.survive_time
     if score_manager:
-        score_label.text = str(score_manager.inst.score)
+        score_label.text = "scored %s" % str(score_manager.inst.score)
         xp_bar.value = float(score_manager.xp) / float(score_manager.max_xp)
