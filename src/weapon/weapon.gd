@@ -25,7 +25,7 @@ func _ready() -> void:
 func _exit_tree() -> void:
     for p in _projectile_pool:
         if p:
-            p.queue_free()
+            p.free_on_next_remove = true
 
 
 func _can_shoot() -> bool:

@@ -17,6 +17,7 @@ var active := false
 var current_bounces: int
 var from: Node2D
 var life_time_timer: Timer
+var free_on_next_remove := false
 
 func _init() -> void:
     life_time_timer = Timer.new()
@@ -84,7 +85,7 @@ func remove() -> void:
         life_time_timer.stop()
     if is_inside_tree():
         get_parent().remove_child(self)
-    if not using_projectile_pool:
+    if not using_projectile_pool or free_on_next_remove:
         queue_free()
 
 
