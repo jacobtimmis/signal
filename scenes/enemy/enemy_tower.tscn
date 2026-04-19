@@ -43,6 +43,7 @@ speed_change = 200.0
 hit_knockback = -1.0
 weapon = NodePath("Weapon")
 weapon_dist = 5.0
+score_value = 200
 chance_to_spawn_pickup = 1.0
 go_to_center = true
 
