@@ -34,14 +34,18 @@ func _ready() -> void:
     _spawn_enemy()
 
 
+var one_use_used: Array[String]
 func _pick_encounter() -> EncounterData:
     var valid_encounters: Array[EncounterData]
     for e in encounters:
-        if current_heat >= e.min_heat and current_heat <= e.max_heat:
+        if current_heat >= e.min_heat and current_heat <= e.max_heat and e.resource_path not in one_use_used:
             valid_encounters.append(e)
     if valid_encounters.size() == 0:
         return load("uid://dmdk00ynqxu5n")
-    return valid_encounters.pick_random()
+    var random := valid_encounters.pick_random() as EncounterData
+    if random.one_use:
+        one_use_used.append(random.resource_path)
+    return random
 
 
 func _spawn_enemy() -> void:

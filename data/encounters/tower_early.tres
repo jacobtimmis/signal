@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EncounterData" format=3 uid="uid://bs42y4anu1dnx"]
+
+[ext_resource type="Script" uid="uid://c6c6sshp87m6b" path="res://src/combat/encounter_data.gd" id="1_n2inh"]
+[ext_resource type="Script" uid="uid://c0so8q3bbyayq" path="res://src/combat/entity_spawn_data.gd" id="2_qklt4"]
+[ext_resource type="PackedScene" uid="uid://b8627btdjnjap" path="res://scenes/enemy/enemy_tower.tscn" id="3_r8jbi"]
+
+[sub_resource type="Resource" id="Resource_xe5mx"]
+script = ExtResource("2_qklt4")
+scene = ExtResource("3_r8jbi")
+metadata/_custom_type_script = "uid://c0so8q3bbyayq"
+
+[resource]
+script = ExtResource("1_n2inh")
+min_heat = 10
+max_heat = 40
+one_use = true
+spawns = Array[ExtResource("2_qklt4")]([SubResource("Resource_xe5mx")])
+metadata/_custom_type_script = "uid://c6c6sshp87m6b"
