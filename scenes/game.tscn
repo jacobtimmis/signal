@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cq2wg1tcn7vwo" path="res://assets/sprites/overlay.png" id="8_85g3d"]
 [ext_resource type="Script" uid="uid://lvpgbnlwwh4t" path="res://src/spawner/spawner.gd" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://cgpxvrfbcdvyy" path="res://scenes/cursor/cursor.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://m1i71vewtgu1" path="res://scenes/ui/ui.tscn" id="10_vtaks"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 
@@ -92,3 +93,13 @@ spawn_radius = 100.0
 spawn_interval = 2.0
 total_positions = 24
 chance_to_flip = 0.25
+
+[node name="UI" parent="." unique_id=954707464 node_paths=PackedStringArray("hero") instance=ExtResource("10_vtaks")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_right = 72.0
+offset_bottom = 72.0
+hero = NodePath("../HeroLayer/Hero")

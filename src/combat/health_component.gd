@@ -22,6 +22,9 @@ func damage(amount: float, context: CombatContext) -> void:
     current_health -= amount
     damaged.emit(amount, context)
 
+func percent() -> float:
+    return current_health / max_health
+
 
 func _set_current_health(value: float) -> void:
     current_health = clampf(value, 0, max_health)
