@@ -21,3 +21,6 @@ script = ExtResource("3_m6ah1")
 property = &"current_health"
 root_node = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://m7cfr8cq5me6"
+
+[node name="Hurtbox" parent="." index="4" unique_id=794594365]
+damage = 50.0
