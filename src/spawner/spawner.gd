@@ -64,9 +64,9 @@ func _spawn_enemy() -> void:
             layer.add_child(instance)
 
         if spawn.spawn_poof:
-            var inst := spawn.spawn_poof.instantiate() as Node2D
-            inst.global_position = spawn_point
-            add_child(inst)
+            var poof := spawn.spawn_poof.instantiate() as Node2D
+            poof.global_position = spawn_point
+            add_child(poof)
 
     if randf() <= chance_to_flip:
         current_spawn_index = (current_spawn_index + (total_positions / 2)) % total_positions
