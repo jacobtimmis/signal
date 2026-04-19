@@ -19,6 +19,7 @@ const PICKUP = preload("uid://dp7osbi4hyudh")
 @export var go_to_center := false
 var add_score := true
 @onready var on_screen_notifier: VisibleOnScreenNotifier2D = $OnScreenNotifier
+@export var play_hit_effects := true
 
 
 func _on_health_component_killed() -> void:
@@ -65,12 +66,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
-    $Sprite.modulate = Color.WHITE * 30
-    var tween = create_tween()
-    tween.tween_property($Sprite, "modulate", Color.WHITE, 0.1)
     velocity = context.attack_direction * hit_knockback
-    $HitSound.play()
-    GameCamera.shake(2, 20)
+    if play_hit_effects:
+        $Sprite.modulate = Color.WHITE * 30
+        var tween = create_tween()
+        tween.tween_property($Sprite, "modulate", Color.WHITE, 0.1)
+        $HitSound.play()
+        GameCamera.shake(2, 20)
 
 
 func remove() -> void:
