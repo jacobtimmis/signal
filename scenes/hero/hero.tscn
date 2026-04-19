@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://owf3i1ycwpo4" path="res://assets/sound/water_drop.mp3" id="8_jrc8l"]
 [ext_resource type="AudioStream" uid="uid://bko5g6001yw3y" path="res://assets/sound/water_breathe_loop.mp3" id="9_qijae"]
 [ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="10_1cpic"]
+[ext_resource type="Gradient" uid="uid://c8e860ff57pwy" path="res://data/hero_gradient.tres" id="10_82ej0"]
 [ext_resource type="Texture2D" uid="uid://ck41e6dfenxd2" path="res://assets/light_textures/lt_circle.tres" id="11_jrc8l"]
 [ext_resource type="AudioStream" uid="uid://cx5rvoeomulo4" path="res://assets/sound/hero_hurt.sfxr" id="12_qijae"]
 
@@ -24,11 +25,6 @@ region = Rect2(8, 0, 8, 8)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.793767, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Gradient" id="Gradient_g31do"]
-interpolation_mode = 1
-offsets = PackedFloat32Array(0, 0.475, 0.95)
-colors = PackedColorArray(0.0627451, 0.8235294, 0.45882353, 1, 0.7490196, 1, 0.23529412, 1, 1, 0.14901961, 0.45490196, 1)
-
 [node name="Hero" type="CharacterBody2D" unique_id=1186113123]
 collision_layer = 2
 motion_mode = 1
@@ -37,7 +33,7 @@ script = ExtResource("1_4rdp7")
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=2016962368]
 shape = SubResource("CircleShape2D_4rdp7")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1740194880]
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1740194880]
 texture = ExtResource("3_3pgml")
 
 [node name="AimLine" type="Line2D" parent="." unique_id=1785548595]
@@ -77,7 +73,7 @@ gravity = Vector2(0, 0)
 initial_velocity_min = 5.0
 initial_velocity_max = 20.0
 scale_amount_curve = SubResource("Curve_g31do")
-color_initial_ramp = SubResource("Gradient_g31do")
+color_initial_ramp = ExtResource("10_82ej0")
 
 [node name="HealthComponent" type="Node" parent="." unique_id=566970626]
 script = ExtResource("10_1cpic")

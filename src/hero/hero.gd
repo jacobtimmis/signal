@@ -138,7 +138,17 @@ func _on_weapon_weapon_fired() -> void:
     GameCamera.shake(1, 20)
     $ShootSound.play()
 
+const HERO_HURT_POOF = preload("uid://b4wc0xsl0jlwn")
 
 func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
     $HurtSound.play()
+
     GameCamera.shake(5, 20)
+
+    $Sprite.modulate = Color("bfff3c") * 30
+    var tween = create_tween()
+    tween.tween_property($Sprite, "modulate", Color.WHITE, 0.1)
+
+    var inst := HERO_HURT_POOF.instantiate() as Node2D
+    inst.global_transform = global_transform
+    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)

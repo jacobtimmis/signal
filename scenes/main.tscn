@@ -53,7 +53,7 @@ layout_mode = 2
 text = "Velocity: [value]"
 script = ExtResource("3_tbgi4")
 expression = "velocity.length()"
-root_node = NodePath("../../../Viewport/Game/Hero")
+root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
 prefix = "Velocity"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
@@ -62,7 +62,7 @@ layout_mode = 2
 text = "Position: [value]"
 script = ExtResource("3_tbgi4")
 expression = "global_position"
-root_node = NodePath("../../../Viewport/Game/Hero")
+root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
 prefix = "Position"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
@@ -71,7 +71,7 @@ layout_mode = 2
 text = "State: [value]"
 script = ExtResource("3_tbgi4")
 expression = "state_machine.get_current_state_name()"
-root_node = NodePath("../../../Viewport/Game/Hero")
+root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
 prefix = "State"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
@@ -80,7 +80,7 @@ layout_mode = 2
 text = "Aim: [value]"
 script = ExtResource("3_tbgi4")
 expression = "_control_aim_dir"
-root_node = NodePath("../../../Viewport/Game/Hero")
+root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
 prefix = "Aim"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
@@ -89,7 +89,7 @@ layout_mode = 2
 text = "Aim: [value]"
 script = ExtResource("3_tbgi4")
 expression = "health_component.current_health"
-root_node = NodePath("../../../Viewport/Game/Hero")
+root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
 prefix = "Aim"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 

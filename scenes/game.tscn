@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dckfl3kejef41" path="res://scenes/enemy/enemy_chaser.tscn" id="4_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bsmmwnnygkwkf" path="res://assets/sprites/background.png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://cq2wg1tcn7vwo" path="res://assets/sprites/overlay.png" id="8_85g3d"]
+[ext_resource type="Script" uid="uid://lvpgbnlwwh4t" path="res://src/spawner/spawner.gd" id="9_0tnpc"]
 [ext_resource type="PackedScene" uid="uid://cgpxvrfbcdvyy" path="res://scenes/cursor/cursor.tscn" id="9_85g3d"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
@@ -34,33 +35,15 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_tipki")
 
+[node name="SplatterLayer" type="Node2D" parent="." unique_id=536300481]
+
 [node name="EnemyLayer" type="Node2D" parent="." unique_id=1786989094]
-
-[node name="EnemyFollower" parent="EnemyLayer" unique_id=680225357 instance=ExtResource("3_p57ef")]
-position = Vector2(-65, -91)
-collision_mask = 1
-
-[node name="EnemyFollower2" parent="EnemyLayer" unique_id=2039722254 instance=ExtResource("3_p57ef")]
-position = Vector2(-41, -91)
-collision_mask = 1
-
-[node name="EnemyFollower3" parent="EnemyLayer" unique_id=2135948105 instance=ExtResource("3_p57ef")]
-position = Vector2(-24, -90)
-collision_mask = 1
-
-[node name="EnemyFollower4" parent="EnemyLayer" unique_id=1810519556 instance=ExtResource("3_p57ef")]
-position = Vector2(2, -85)
-collision_mask = 1
-
-[node name="Enemy" parent="EnemyLayer" unique_id=413276944 instance=ExtResource("4_u5sy4")]
-position = Vector2(36, -69)
-
-[node name="EnemyPulser" parent="EnemyLayer" unique_id=1603071227 instance=ExtResource("4_gee14")]
-position = Vector2(36, 57)
 
 [node name="ProjectileLayer" type="Node2D" parent="." unique_id=388592351]
 
-[node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
+[node name="HeroLayer" type="Node2D" parent="." unique_id=888183204]
+
+[node name="Hero" parent="HeroLayer" unique_id=1186113123 instance=ExtResource("1_sugp2")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
 script = ExtResource("2_tefeu")
@@ -100,3 +83,12 @@ grow_vertical = 2
 texture = ExtResource("8_85g3d")
 
 [node name="Cursor" parent="." unique_id=2012472444 instance=ExtResource("9_85g3d")]
+
+[node name="Spawner" type="Node2D" parent="." unique_id=275948283 node_paths=PackedStringArray("layer")]
+script = ExtResource("9_0tnpc")
+layer = NodePath("../EnemyLayer")
+scenes = Array[PackedScene]([ExtResource("3_p57ef"), ExtResource("4_u5sy4"), ExtResource("4_gee14")])
+spawn_radius = 100.0
+spawn_interval = 2.0
+total_positions = 24
+chance_to_flip = 0.25
