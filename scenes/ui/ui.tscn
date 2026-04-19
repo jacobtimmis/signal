@@ -14,7 +14,7 @@ border_color = Color(0.7490196, 1, 0.23529412, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5cxw"]
 bg_color = Color(0.0627451, 0.8235294, 0.45882353, 1)
 
-[sub_resource type="LabelSettings" id="LabelSettings_f5cxw"]
+[sub_resource type="LabelSettings" id="LabelSettings_aac20"]
 font = ExtResource("1_u7n8c")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aac20"]
@@ -27,6 +27,9 @@ border_color = Color(1, 0.5019608, 0.6431373, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5kmx"]
 bg_color = Color(1, 0.14901961, 0.45490196, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f5cxw"]
+font = ExtResource("1_u7n8c")
 
 [node name="UI" type="Control" unique_id=954707464]
 custom_minimum_size = Vector2(144, 144)
@@ -56,16 +59,20 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1627267605]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=966244826]
+layout_mode = 2
+
+[node name="TopContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1627267605]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
 
-[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=1946588707]
+[node name="MarginContainer2" type="MarginContainer" parent="MarginContainer/VBoxContainer/TopContainer" unique_id=1946588707]
 layout_mode = 2
 theme_override_constants/margin_top = 2
 
-[node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/MarginContainer2" unique_id=1173613208]
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/TopContainer/MarginContainer2" unique_id=1173613208]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 7)
 layout_mode = 2
@@ -77,17 +84,17 @@ step = 0.0
 value = 0.5
 show_percentage = false
 
-[node name="ScoreLabel" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1085580043]
+[node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/TopContainer" unique_id=1085580043]
 unique_name_in_owner = true
 layout_mode = 2
 text = "100"
-label_settings = SubResource("LabelSettings_f5cxw")
+label_settings = SubResource("LabelSettings_aac20")
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer" unique_id=393842045]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/TopContainer" unique_id=393842045]
 layout_mode = 2
 theme_override_constants/margin_top = 2
 
-[node name="XpBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/MarginContainer" unique_id=1800541111]
+[node name="XpBar" type="ProgressBar" parent="MarginContainer/VBoxContainer/TopContainer/MarginContainer" unique_id=1800541111]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 7)
 layout_mode = 2
@@ -99,3 +106,15 @@ step = 0.0
 value = 0.5
 fill_mode = 1
 show_percentage = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=507107771]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Time" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1020392949]
+unique_name_in_owner = true
+layout_mode = 2
+text = "400s"
+label_settings = SubResource("LabelSettings_f5cxw")
+horizontal_alignment = 1
+vertical_alignment = 1

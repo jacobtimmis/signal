@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cgpxvrfbcdvyy" path="res://scenes/cursor/cursor.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://m1i71vewtgu1" path="res://scenes/ui/ui.tscn" id="10_vtaks"]
 [ext_resource type="Script" uid="uid://b3xqlh86knnxu" path="res://src/score_manager.gd" id="11_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://c2fkfjo7ikued" path="res://scenes/message.tscn" id="12_dinhu"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 
@@ -108,5 +109,7 @@ score_manager = NodePath("../ScoreManager")
 
 [node name="ScoreManager" type="Node" parent="." unique_id=1301419060]
 script = ExtResource("11_kvpfn")
+
+[node name="Label" parent="." unique_id=1891679560 instance=ExtResource("12_dinhu")]
 
 [connection signal="levelled_up" from="ScoreManager" to="HeroLayer/Hero" method="_on_score_manager_levelled_up"]

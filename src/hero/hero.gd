@@ -21,6 +21,8 @@ var dash_dir: Vector2
 var dash_time: float
 var mouse_position: Vector2
 var _control_aim_dir := Vector2.RIGHT
+var survive_time: float
+var can_continue_death := false
 
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var shoot_light: PointLight2D = $ShootLight
@@ -56,10 +58,11 @@ func _ready() -> void:
 
     $DashParticles.emitting = false
 
-
 func _process(_delta: float) -> void:
     if health_component.is_dead():
         return
+
+    survive_time += _delta
 
     var current_aim_dir := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
     if current_aim_dir.length() > CONTROL_AIM_DEADZONE:
@@ -91,6 +94,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+    if (event.is_action_pressed("shoot") or event.is_action_pressed("shoot_alt") or event.is_action_pressed("dash") or event is InputEventJoypadButton) and health_component.is_dead() and can_continue_death:
+        get_tree().reload_current_scene()
     if event is InputEventMouseMotion:
         mouse_position = event.position
     if event.is_action_pressed("dash"):
@@ -169,9 +174,9 @@ func _on_health_component_damaged(amount: float, context: CombatContext) -> void
     var tween = create_tween()
     tween.tween_property($Sprite, "modulate", Color.WHITE, 0.1)
 
-    var inst := HERO_HURT_POOF.instantiate() as Node2D
-    inst.global_transform = global_transform
-    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
+    var poof := HERO_HURT_POOF.instantiate() as Node2D
+    poof.global_transform = global_transform
+    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(poof)
 
 
 func _dead_can_exit() -> bool:
@@ -184,9 +189,9 @@ func _dead_enter() -> void:
 
     $AimLine.hide()
 
-    var inst := HERO_DEATH_POOF.instantiate() as Node2D
-    inst.global_transform = global_transform
-    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
+    var poof := HERO_DEATH_POOF.instantiate() as Node2D
+    poof.global_transform = global_transform
+    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(poof)
 
     $WeaponAltAvailable.hide()
 
@@ -200,7 +205,16 @@ func _on_health_component_killed() -> void:
 
 
 func _on_death_timer_timeout() -> void:
-    get_tree().reload_current_scene()
+    can_continue_death = true
+
+const MESSAGE = preload("uid://c2fkfjo7ikued")
+
+func say_message(msg: String) -> void:
+    var msg_inst := MESSAGE.instantiate() as Node2D
+    msg_inst.global_position = global_position + Vector2.UP * 16
+    msg_inst.top_level = true
+    msg_inst.text = msg
+    add_child(msg_inst)
 
 
 func _on_weapon_alt_weapon_fired() -> void:
@@ -216,3 +230,6 @@ func _on_weapon_alt_weapon_available() -> void:
 
 func _on_score_manager_levelled_up() -> void:
     health_component.current_health += 10
+    say_message("LEVEL UP!")
+    $LevelUpSound.play()
+    $LevelUpWeapon._shoot()
