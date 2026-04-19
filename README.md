@@ -1,4 +1,4 @@
-# LD 59
+# Signal
 
 Shmup made for LudumDare 59.
 
