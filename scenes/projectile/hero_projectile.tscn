@@ -17,7 +17,7 @@ colors = PackedColorArray(1, 0.14901961, 0.45490196, 1, 0.5803922, 0.12941177, 0
 collision_mask = 4
 speed = 180.0
 life_time = 10.0
-max_distance = 90.0
+max_distance = 65.0
 damage = 18.0
 
 [node name="Trail" type="CPUParticles2D" parent="." index="1" unique_id=910037344]
