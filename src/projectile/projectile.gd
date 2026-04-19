@@ -21,7 +21,7 @@ var free_on_next_remove := false
 
 func _init() -> void:
     life_time_timer = Timer.new()
-    life_time_timer.autostart
+    life_time_timer.autostart = true
     life_time_timer.one_shot = true
     life_time_timer.wait_time = life_time
     life_time_timer.timeout.connect(_on_life_time_timer_timeout)
