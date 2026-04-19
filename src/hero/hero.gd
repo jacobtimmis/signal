@@ -275,7 +275,7 @@ func add_random_upgrade() -> void:
     for u in all_ups:
         if u == Upgrade.PELLETS and check_upgrade_count(Upgrade.PELLETS, 2):
             continue
-        if u == Upgrade.ALT_BOUNCE and check_upgrade_count(Upgrade.ALT_BOUNCE, 3):
+        if u == Upgrade.ALT_BOUNCE and check_upgrade_count(Upgrade.ALT_BOUNCE, 2):
             continue
         if u == Upgrade.RANGE and check_upgrade_count(Upgrade.RANGE, 2):
             continue
@@ -289,13 +289,15 @@ func add_random_upgrade() -> void:
     if up == Upgrade.PELLETS:
         weapon.data.pellet_count += 1
         weapon.data.even_spread_angle += 4
+        for p in weapon._projectile_pool:
+            p.damage -= 2
         say_message("PELLETS+")
     if up == Upgrade.HEAL:
         health_component.max_health += 10
         say_message("HEALTH+")
     if up == Upgrade.ALT_BOUNCE:
         for p in weapon_alt._projectile_pool:
-            p.max_bounces += 1
+            p.max_bounces += 2
         say_message("BOUNCE+")
     if up == Upgrade.RANGE:
         for p in weapon._projectile_pool:
