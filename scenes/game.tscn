@@ -3,6 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://bnckyejqymwsq" path="res://scenes/hero/hero.tscn" id="1_sugp2"]
 [ext_resource type="Script" uid="uid://rtrfrdqtbjyw" path="res://src/camera.gd" id="2_tefeu"]
 [ext_resource type="PackedScene" uid="uid://d3w2o1lkc74w4" path="res://scenes/enemy/enemy_follower.tscn" id="3_p57ef"]
+[ext_resource type="PackedScene" uid="uid://7djqp4slemx2" path="res://scenes/enemy/enemy_pulser.tscn" id="4_gee14"]
+[ext_resource type="PackedScene" uid="uid://dckfl3kejef41" path="res://scenes/enemy/enemy_chaser.tscn" id="4_u5sy4"]
 [ext_resource type="Texture2D" uid="uid://bsmmwnnygkwkf" path="res://assets/sprites/background.png" id="7_tipki"]
 [ext_resource type="Texture2D" uid="uid://cq2wg1tcn7vwo" path="res://assets/sprites/overlay.png" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cgpxvrfbcdvyy" path="res://scenes/cursor/cursor.tscn" id="9_85g3d"]
@@ -32,23 +34,33 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("7_tipki")
 
-[node name="ProjectileLayer" type="Node2D" parent="." unique_id=388592351]
-
-[node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
-
 [node name="EnemyLayer" type="Node2D" parent="." unique_id=1786989094]
 
 [node name="EnemyFollower" parent="EnemyLayer" unique_id=680225357 instance=ExtResource("3_p57ef")]
 position = Vector2(-65, -91)
+collision_mask = 1
 
 [node name="EnemyFollower2" parent="EnemyLayer" unique_id=2039722254 instance=ExtResource("3_p57ef")]
 position = Vector2(-41, -91)
+collision_mask = 1
 
 [node name="EnemyFollower3" parent="EnemyLayer" unique_id=2135948105 instance=ExtResource("3_p57ef")]
 position = Vector2(-24, -90)
+collision_mask = 1
 
 [node name="EnemyFollower4" parent="EnemyLayer" unique_id=1810519556 instance=ExtResource("3_p57ef")]
 position = Vector2(2, -85)
+collision_mask = 1
+
+[node name="Enemy" parent="EnemyLayer" unique_id=413276944 instance=ExtResource("4_u5sy4")]
+position = Vector2(36, -69)
+
+[node name="EnemyPulser" parent="EnemyLayer" unique_id=1603071227 instance=ExtResource("4_gee14")]
+position = Vector2(36, 57)
+
+[node name="ProjectileLayer" type="Node2D" parent="." unique_id=388592351]
+
+[node name="Hero" parent="." unique_id=1186113123 instance=ExtResource("1_sugp2")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
 script = ExtResource("2_tefeu")
