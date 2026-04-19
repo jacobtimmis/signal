@@ -94,6 +94,15 @@ root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
 prefix = "Health"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
+[node name="MaxHealthLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=12115652 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "MaxHealth: [value]"
+script = ExtResource("3_tbgi4")
+expression = "health_component.max_health"
+root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
+prefix = "MaxHealth"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
 [node name="HeatLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1427936684 node_paths=PackedStringArray("root_node")]
 layout_mode = 2
 text = "Heat: [value]"

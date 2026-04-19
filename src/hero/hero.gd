@@ -60,6 +60,9 @@ func _ready() -> void:
     )
     state_machine.setup_names_from_enum(State)
 
+    weapon.data = weapon.data.duplicate()
+    weapon_alt.data = weapon_alt.data.duplicate()
+
     $DashParticles.emitting = false
 
     await get_tree().create_timer(0.5).timeout
@@ -287,7 +290,7 @@ func add_random_upgrade() -> void:
     if up == Upgrade.HEAL:
         health_component.max_health += 10
         say_message("HEALTH+")
-    if up == Upgrade.ALT_BOUNCE:
+    if up == Upgrade.ALT_BOUNCE or true:
         for p in weapon_alt._projectile_pool:
             p.max_bounces += 1
         say_message("BOUNCE+")
