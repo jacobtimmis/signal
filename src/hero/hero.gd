@@ -181,7 +181,7 @@ const HERO_DEATH_POOF = preload("uid://mfe4sx0cbu3r")
 func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
     $HurtSound.play()
 
-    GameCamera.shake(5, 20)
+    GameCamera.shake(15, 20)
 
     $Sprite.modulate = Color("bfff3c") * 30
     var tween = create_tween()
