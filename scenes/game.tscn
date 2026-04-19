@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://m1i71vewtgu1" path="res://scenes/ui/ui.tscn" id="10_vtaks"]
 [ext_resource type="Script" uid="uid://b3xqlh86knnxu" path="res://src/score_manager.gd" id="11_kvpfn"]
 [ext_resource type="PackedScene" uid="uid://c2fkfjo7ikued" path="res://scenes/message.tscn" id="12_dinhu"]
+[ext_resource type="Texture2D" uid="uid://dohfe03wa4ahu" path="res://assets/sprites/ufo.png" id="13_kvuet"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_sugp2"]
 
@@ -40,6 +41,14 @@ texture = ExtResource("7_tipki")
 
 [node name="SplatterLayer" type="Node2D" parent="." unique_id=536300481]
 
+[node name="Ufo" type="Sprite2D" parent="." unique_id=588309181]
+light_mask = 3
+position = Vector2(0, -6)
+texture = ExtResource("13_kvuet")
+
+[node name="SignalMarker" type="Marker2D" parent="Ufo" unique_id=1632694251]
+position = Vector2(0, -14)
+
 [node name="EnemyLayer" type="Node2D" parent="." unique_id=1786989094]
 
 [node name="ProjectileLayer" type="Node2D" parent="." unique_id=388592351]
@@ -47,6 +56,7 @@ texture = ExtResource("7_tipki")
 [node name="HeroLayer" type="Node2D" parent="." unique_id=888183204]
 
 [node name="Hero" parent="HeroLayer" unique_id=1186113123 node_paths=PackedStringArray("spawner") instance=ExtResource("1_sugp2")]
+position = Vector2(0, 36)
 spawner = NodePath("../../Spawner")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]

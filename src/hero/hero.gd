@@ -244,17 +244,16 @@ const FRIEND_ENCOUNTER = preload("uid://dpl1epvk051s2")
 const FRIEND_SPAWN_POOF = preload("uid://cry31uu7sdsm7")
 
 func _on_score_manager_levelled_up() -> void:
-    $LevelUpSound.play()
-    $LevelUpWeapon._shoot()
-    #add_random_upgrade()
+    #$LevelUpWeapon._shoot()
     spawner._do_spawn(FRIEND_ENCOUNTER)
     var poof := FRIEND_SPAWN_POOF.instantiate() as Node2D
-    poof.global_transform = global_transform
+    poof.global_transform = get_node("/root/Main/Viewport/Game/Ufo/SignalMarker").global_transform
     get_parent().add_child(poof)
 
 
 
 func add_random_upgrade() -> void:
+    $LevelUpSound.play()
     var all_ups := Upgrade.values()
     var valid_ups: Array[Upgrade]
     for u in all_ups:

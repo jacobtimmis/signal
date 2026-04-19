@@ -2,10 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://c3d6wun00myid" path="res://scenes/enemy/enemy.tscn" id="1_i5mi3"]
 [ext_resource type="Texture2D" uid="uid://bx60pg3uhqtxc" path="res://assets/sprites/friend.png" id="2_ow8qf"]
+[ext_resource type="PackedScene" uid="uid://b4wc0xsl0jlwn" path="res://scenes/poofs/hero_hurt_poof.tscn" id="2_w7duk"]
 [ext_resource type="Script" uid="uid://dq1csb1gr3c72" path="res://src/friend_logic.gd" id="3_ucm60"]
 
 [node name="Friend" unique_id=680225357 instance=ExtResource("1_i5mi3")]
+death_poof = ExtResource("2_w7duk")
 go_to_center = true
+always_flee = true
 play_hit_effects = false
 
 [node name="Sprite" parent="." index="1" unique_id=921602998]
@@ -13,6 +16,9 @@ texture = ExtResource("2_ow8qf")
 
 [node name="HealthComponent" parent="." index="2" unique_id=714940988]
 max_health = 10000.0
+
+[node name="Hurtbox" parent="." index="3" unique_id=794594365]
+damage = 10.0
 
 [node name="FriendLogic" type="Node" parent="." index="5" unique_id=1227352478]
 script = ExtResource("3_ucm60")

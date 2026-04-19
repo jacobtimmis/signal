@@ -12,6 +12,14 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.8703704, 1)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
+[sub_resource type="Curve" id="Curve_fyui2"]
+_data = [Vector2(0, 1), 0.0, 2.565008, 0, 0, Vector2(1, 1), 2.5348318, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_ob8rt"]
+offsets = PackedFloat32Array(0, 0.88271606, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="EnemySpawnPoof" type="Node2D" unique_id=2105984039]
 script = ExtResource("1_3lbj1")
 metadata/_custom_type_script = "uid://bu1wk2d1xpwti"
@@ -28,3 +36,18 @@ color_ramp = SubResource("Gradient_fyui2")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1093419221]
 stream = ExtResource("3_fyui2")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=62540605]
+emitting = false
+amount = 1
+one_shot = true
+gravity = Vector2(0, 0)
+angular_velocity_min = 90.0
+angular_velocity_max = 90.0
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 40.0
+scale_amount_max = 40.0
+scale_amount_curve = SubResource("Curve_fyui2")
+color = Color(0.8392157, 0.14117648, 0.06666667, 1)
+color_ramp = SubResource("Gradient_ob8rt")

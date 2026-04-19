@@ -24,7 +24,6 @@ speed = 60.0
 speed_change = 120.0
 hit_knockback = 60.0
 score_value = 25
-chance_to_spawn_pickup = 0.1
 
 [node name="Sprite" parent="." index="1" unique_id=921602998]
 texture = ExtResource("2_xy8cf")

@@ -2,7 +2,34 @@
 
 [ext_resource type="PackedScene" uid="uid://cid7inlwyn3a8" path="res://scenes/poofs/enemy_spawn_poof.tscn" id="1_74xna"]
 
+[sub_resource type="Curve" id="Curve_74xna"]
+_data = [Vector2(0, 1), 0.0, 2.565008, 0, 0, Vector2(1, 1), 2.5348318, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_74xna"]
+offsets = PackedFloat32Array(0, 0.88271606, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="EnemySpawnPoof" unique_id=2105984039 instance=ExtResource("1_74xna")]
 
 [node name="CPUParticles2D" parent="." index="0" unique_id=1748233610]
+color = Color(0.7490196, 1, 0.23529412, 1)
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="." index="2" unique_id=10606498]
+emitting = false
+amount = 1
+one_shot = true
+gravity = Vector2(0, 0)
+angular_velocity_min = 90.0
+angular_velocity_max = 90.0
+angle_min = -90.0
+angle_max = 90.0
+scale_amount_min = 5.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_74xna")
+color = Color(0.7490196, 1, 0.23529412, 1)
+color_ramp = SubResource("Gradient_74xna")
+
+[node name="CPUParticles2D2" parent="." index="3" unique_id=62540605]
+visible = false
 color = Color(0.7490196, 1, 0.23529412, 1)

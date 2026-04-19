@@ -64,14 +64,15 @@ func _spawn_enemy() -> void:
 
 func _do_spawn(encounter: EncounterData):
     var angle = (TAU / total_positions) * current_spawn_index - (PI / 2.0)
-    var spawn_point = global_position + Vector2.RIGHT.rotated(angle) * spawn_radius
+    var spawn_point := global_position + Vector2.RIGHT.rotated(angle) * spawn_radius
 
     for spawn in encounter.spawns:
         for n in randi_range(spawn.min_amount, spawn.max_amount):
             var instance = spawn.scene.instantiate()
 
-            var spread = Vector2(randf_range(-32, 32), randf_range(-32, 32))
-            instance.global_position = spawn_point + spread
+            var spread := Vector2(randf_range(-32, 32), randf_range(-32, 32))
+            var new_pos := spawn_point + spread
+            instance.global_position = new_pos.limit_length(90)
 
             layer.add_child.call_deferred(instance)
 

@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://b7shjn603mqq6" path="res://scenes/projectile/hero_projectile.tscn" id="16_skxai"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
-radius = 4.0
+radius = 3.0
 
 [sub_resource type="Resource" id="Resource_yjh3g"]
 script = ExtResource("7_skxai")

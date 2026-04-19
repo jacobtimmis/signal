@@ -17,6 +17,7 @@ const PICKUP = preload("uid://dp7osbi4hyudh")
 @export var chance_to_spawn_pickup := 0.0
 @export var stop_while_shooting := false
 @export var go_to_center := false
+@export var always_flee := false
 var add_score := true
 @onready var on_screen_notifier: VisibleOnScreenNotifier2D = $OnScreenNotifier
 @export var play_hit_effects := true
@@ -35,7 +36,7 @@ func _on_health_component_killed() -> void:
         if randf() <= chance_to_spawn_pickup:
             var pickup = PICKUP.instantiate()
             pickup.global_transform = global_transform
-            get_parent().add_child(pickup)
+            get_parent().add_child.call_deferred(pickup)
     remove()
 
 
@@ -53,7 +54,7 @@ func _physics_process(delta: float) -> void:
 
     if weapon and stop_while_shooting and weapon.is_shooting:
         velocity = Vector2.ZERO
-    if Hero.inst.health_component.is_dead() and not go_to_center:
+    if Hero.inst.health_component.is_dead() and (always_flee or not go_to_center):
         velocity = desired_direction * speed * -1
     elif move_to_player:
         if dist < close_distance_to_player:

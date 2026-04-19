@@ -10,7 +10,7 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_pmols"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.15432099, 0.43209878)
-colors = PackedColorArray(0.8392157, 0.14117648, 0.06666667, 1, 0.49803922, 0.023529412, 0.13333334, 1, 0.2627451, 0, 0.40392157, 1)
+colors = PackedColorArray(1, 0.81960785, 0, 1, 1, 0.5176471, 0.14901961, 1, 0.2627451, 0, 0.40392157, 1)
 
 [node name="EnemyProjectile" unique_id=24496546 instance=ExtResource("1_chxym")]
 collision_mask = 2
@@ -35,7 +35,7 @@ hue_variation_min = 0.01
 hue_variation_max = 0.01
 
 [node name="Sprite2D" parent="." index="2" unique_id=1733665798]
-modulate = Color(0.8392157, 0.14117648, 0.06666667, 1)
+modulate = Color(1, 0.81960785, 0, 1)
 light_mask = 3
 
 [node name="OnScreenNotifier" parent="." index="3" unique_id=171537133]
