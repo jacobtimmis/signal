@@ -18,6 +18,10 @@ func is_dead() -> bool:
     return current_health <= 0
 
 
+func is_damaged() -> bool:
+    return current_health < max_health
+
+
 func kill() -> void:
     current_health = 0
 

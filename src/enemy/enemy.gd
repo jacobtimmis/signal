@@ -1,5 +1,6 @@
 class_name Enemy
 extends CharacterBody2D
+const PICKUP = preload("uid://dp7osbi4hyudh")
 
 @onready var health_component: HealthComponent = $HealthComponent
 @export var speed: float = 20
@@ -13,6 +14,7 @@ extends CharacterBody2D
 @export var death_poof := preload("uid://dk2e305fr72tw")
 @export var score_value: int = 10
 @export var contributes_to_heat := true
+@export var chance_to_spawn_pickup := 0.0
 var add_score := true
 
 
@@ -26,7 +28,10 @@ func _on_health_component_killed() -> void:
         if contributes_to_heat:
             Spawner.inst.current_heat += 1
             ScoreManager.inst.xp += 1
-
+        if randf() <= chance_to_spawn_pickup:
+            var pickup = PICKUP.instantiate()
+            pickup.global_transform = global_transform
+            get_parent().add_child(pickup)
     remove()
 
 
