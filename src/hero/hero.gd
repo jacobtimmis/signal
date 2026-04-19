@@ -179,9 +179,6 @@ const HERO_HURT_POOF = preload("uid://b4wc0xsl0jlwn")
 const HERO_DEATH_POOF = preload("uid://mfe4sx0cbu3r")
 
 func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
-    if not health_component.is_dead():
-        Main.inst.hitstop(0.08)
-
     $HurtSound.play()
 
     GameCamera.shake(5, 20)
@@ -293,7 +290,7 @@ func add_random_upgrade() -> void:
     if up == Upgrade.HEAL:
         health_component.max_health += 10
         say_message("HEALTH+")
-    if up == Upgrade.ALT_BOUNCE or true:
+    if up == Upgrade.ALT_BOUNCE:
         for p in weapon_alt._projectile_pool:
             p.max_bounces += 1
         say_message("BOUNCE+")
