@@ -4,3 +4,8 @@
 
 [node name="EnemyTower" unique_id=680225357 instance=ExtResource("1_2ewbn")]
 chance_to_spawn_pickup = 0.1
+
+[node name="HealthComponent" parent="." index="2" unique_id=714940988]
+max_health = 3000.0
+
+[editable path="EnemySpawnPoof"]
