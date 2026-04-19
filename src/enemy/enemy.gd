@@ -11,12 +11,15 @@ extends CharacterBody2D
 @export var weapon: Weapon
 @export var weapon_dist: float = 100
 @export var death_poof := preload("uid://dk2e305fr72tw")
+@export var score_value: int = 10
 
 
 func _on_health_component_killed() -> void:
     var inst := death_poof.instantiate() as Node2D
     inst.global_transform = global_transform
     get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
+
+    ScoreManager.add_score(score_value)
 
     remove()
 
