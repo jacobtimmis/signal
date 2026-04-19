@@ -12,6 +12,7 @@ extends CharacterBody2D
 @export var weapon_dist: float = 100
 @export var death_poof := preload("uid://dk2e305fr72tw")
 @export var score_value: int = 10
+var add_score := true
 
 
 func _on_health_component_killed() -> void:
@@ -19,7 +20,8 @@ func _on_health_component_killed() -> void:
     inst.global_transform = global_transform
     get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
 
-    ScoreManager.add_score(score_value)
+    if add_score:
+        ScoreManager.add_score(score_value)
 
     remove()
 
@@ -60,4 +62,5 @@ func remove() -> void:
 
 
 func _on_hurtbox_dealt_damage() -> void:
+    add_score = false
     health_component.kill()
