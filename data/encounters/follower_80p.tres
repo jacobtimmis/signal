@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="EncounterData" format=3 uid="uid://d2t08aspksib"]
+
+[ext_resource type="Script" uid="uid://c6c6sshp87m6b" path="res://src/combat/encounter_data.gd" id="1_tcv4i"]
+[ext_resource type="Script" uid="uid://c0so8q3bbyayq" path="res://src/combat/entity_spawn_data.gd" id="2_tnuco"]
+[ext_resource type="PackedScene" uid="uid://d3w2o1lkc74w4" path="res://scenes/enemy/enemy_follower.tscn" id="3_vn6rk"]
+[ext_resource type="PackedScene" uid="uid://c7o8c35nufrsx" path="res://scenes/enemy/enemy_follower_mini.tscn" id="4_h8pdg"]
+[ext_resource type="PackedScene" uid="uid://c03xtgvcggf5s" path="res://scenes/poofs/enemy_spawn_poof_mini.tscn" id="5_cfl3y"]
+[ext_resource type="PackedScene" uid="uid://dckfl3kejef41" path="res://scenes/enemy/enemy_chaser.tscn" id="6_gjp36"]
+
+[sub_resource type="Resource" id="Resource_vrd2n"]
+script = ExtResource("2_tnuco")
+scene = ExtResource("3_vn6rk")
+max_amount = 3
+metadata/_custom_type_script = "uid://c0so8q3bbyayq"
+
+[sub_resource type="Resource" id="Resource_tcv4i"]
+script = ExtResource("2_tnuco")
+scene = ExtResource("4_h8pdg")
+spawn_poof = ExtResource("5_cfl3y")
+min_amount = 12
+max_amount = 24
+metadata/_custom_type_script = "uid://c0so8q3bbyayq"
+
+[sub_resource type="Resource" id="Resource_qnyld"]
+script = ExtResource("2_tnuco")
+scene = ExtResource("6_gjp36")
+max_amount = 2
+metadata/_custom_type_script = "uid://c0so8q3bbyayq"
+
+[resource]
+script = ExtResource("1_tcv4i")
+min_heat = 81
+spawns = Array[ExtResource("2_tnuco")]([SubResource("Resource_vrd2n"), SubResource("Resource_tcv4i"), SubResource("Resource_qnyld"), null])
+metadata/_custom_type_script = "uid://c6c6sshp87m6b"
