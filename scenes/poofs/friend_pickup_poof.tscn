@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://dojor06okkb3v"]
+
+[ext_resource type="Script" uid="uid://bu1wk2d1xpwti" path="res://src/poof/poof.gd" id="1_70cyw"]
+[ext_resource type="Texture2D" uid="uid://dqd26wiq3hcfc" path="res://assets/sprites/singal_circle.png" id="2_pw6ri"]
+[ext_resource type="AudioStream" uid="uid://c5vdb3ce5ywas" path="res://assets/sound/enemy_spawn.sfxr" id="3_5yfb6"]
+[ext_resource type="Gradient" uid="uid://c8e860ff57pwy" path="res://data/hero_gradient.tres" id="4_pw6ri"]
+
+[sub_resource type="Curve" id="Curve_kvuet"]
+_data = [Vector2(0, 0), 0.0, 2.5524352, 0, 0, Vector2(0.75000006, 1), -0.08283761, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fyui2"]
+offsets = PackedFloat32Array(0, 0.8703704, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_5yfb6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[node name="EnemySpawnPoof" type="Node2D" unique_id=2105984039]
+script = ExtResource("1_70cyw")
+metadata/_custom_type_script = "uid://bu1wk2d1xpwti"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1748233610]
+emitting = false
+amount = 1
+texture = ExtResource("2_pw6ri")
+one_shot = true
+gravity = Vector2(0, 0)
+scale_amount_curve = SubResource("Curve_kvuet")
+color = Color(0.7490196, 1, 0.23529412, 1)
+color_ramp = SubResource("Gradient_fyui2")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1093419221]
+stream = ExtResource("3_5yfb6")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=1251738440]
+amount = 20
+lifetime = 5.0
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 40.0
+initial_velocity_max = 100.0
+damping_min = 300.0
+damping_max = 500.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_min = 2.0
+scale_amount_max = 4.0
+color_ramp = SubResource("Gradient_5yfb6")
+color_initial_ramp = ExtResource("4_pw6ri")
+hue_variation_min = 0.38
+hue_variation_max = 0.38
