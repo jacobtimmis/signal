@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="EncounterData" format=3 uid="uid://man2tllpeidy"]
+
+[ext_resource type="Script" uid="uid://c6c6sshp87m6b" path="res://src/combat/encounter_data.gd" id="1_pex2e"]
+[ext_resource type="PackedScene" uid="uid://d3w2o1lkc74w4" path="res://scenes/enemy/enemy_follower.tscn" id="1_sppjb"]
+[ext_resource type="Script" uid="uid://c0so8q3bbyayq" path="res://src/combat/entity_spawn_data.gd" id="2_1hedw"]
+
+[sub_resource type="Resource" id="Resource_vrd2n"]
+script = ExtResource("2_1hedw")
+scene = ExtResource("1_sppjb")
+metadata/_custom_type_script = "uid://c0so8q3bbyayq"
+
+[resource]
+script = ExtResource("1_pex2e")
+max_heat = 5
+spawns = Array[ExtResource("2_1hedw")]([SubResource("Resource_vrd2n")])
+metadata/_custom_type_script = "uid://c6c6sshp87m6b"
