@@ -15,6 +15,7 @@ const PICKUP = preload("uid://dp7osbi4hyudh")
 @export var score_value: int = 10
 @export var contributes_to_heat := true
 @export var chance_to_spawn_pickup := 0.0
+@export var stop_while_shooting := false
 var add_score := true
 
 
@@ -45,6 +46,8 @@ func _physics_process(delta: float) -> void:
         if dist < weapon_dist and not Hero.inst.health_component.is_dead():
             weapon._shoot()
 
+    if weapon and stop_while_shooting and weapon.is_shooting:
+        velocity = Vector2.ZERO
     if Hero.inst.health_component.is_dead():
         velocity = desired_direction * speed * -1
     elif move_to_player:
