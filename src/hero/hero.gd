@@ -141,3 +141,4 @@ func _on_weapon_weapon_fired() -> void:
 
 func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
     $HurtSound.play()
+    GameCamera.shake(5, 20)
