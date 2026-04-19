@@ -22,6 +22,9 @@ colors = PackedColorArray(0.49803922, 0.023529412, 0.13333334, 1, 0.8392157, 0.1
 [node name="Sprite" parent="." index="1" unique_id=921602998]
 texture = ExtResource("2_0ei0p")
 
+[node name="HealthComponent" parent="." index="2" unique_id=714940988]
+max_health = 50.0
+
 [node name="DashParticles" type="CPUParticles2D" parent="." index="4" unique_id=126019288]
 show_behind_parent = true
 amount = 20
