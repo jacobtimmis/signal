@@ -7,7 +7,7 @@
 bg_color = Color(0.08627451, 0.09019608, 0.101960786, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5cxw"]
-bg_color = Color(0.7490196, 1, 0.23529412, 1)
+bg_color = Color(1, 0.14901961, 0.45490196, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dwhk"]
 draw_center = false
@@ -15,7 +15,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.0627451, 0.8235294, 0.45882353, 1)
+border_color = Color(1, 0.5019608, 0.6431373, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_aac20"]
 font = ExtResource("1_u7n8c")
@@ -28,7 +28,7 @@ border_width_right = 1
 border_width_bottom = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g5kmx"]
-bg_color = Color(1, 0.14901961, 0.45490196, 1)
+bg_color = Color(0.7490196, 1, 0.23529412, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pfayw"]
 draw_center = false
@@ -36,7 +36,7 @@ border_width_left = 1
 border_width_top = 1
 border_width_right = 1
 border_width_bottom = 1
-border_color = Color(0.5803922, 0.12941177, 0.41568628, 1)
+border_color = Color(0.0627451, 0.8235294, 0.45882353, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_f5cxw"]
 font = ExtResource("1_u7n8c")
