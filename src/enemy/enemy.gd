@@ -10,23 +10,31 @@ const ENEMY_DEATH_POOF = preload("uid://dk2e305fr72tw")
 @export var far_distance_to_player: float = 0
 @export var close_distance_to_player: float = 0
 @export var hit_knockback: float = 10
+@export var weapon: Weapon
+@export var weapon_dist: float = 100
 
 
 func _on_health_component_killed() -> void:
-    var inst := ENEMY_DEATH_POOF.instantiate()
+    var inst := ENEMY_DEATH_POOF.instantiate() as Node2D
     inst.global_transform = global_transform
     get_parent().add_child(inst)
+    get_parent().move_child(inst, 0)
 
     remove()
 
 
 func _physics_process(delta: float) -> void:
+    var desired_position := Hero.inst.global_position
+    var desired_direction := global_position.direction_to(desired_position)
+    var dist := global_position.distance_to(desired_position)
+
+    if weapon:
+        weapon.target_position = desired_position
+        if dist < weapon_dist:
+            weapon._shoot()
+
     if move_to_player:
-        var desired_position := Hero.inst.global_position
-        var desired_direction := global_position.direction_to(desired_position)
-        var dist := global_position.distance_to(desired_position)
         if dist < close_distance_to_player:
-            print("sfdas")
             desired_direction *= -1
         if dist > far_distance_to_player or dist < close_distance_to_player:
             velocity = velocity.move_toward(desired_direction * speed, delta * speed_change)

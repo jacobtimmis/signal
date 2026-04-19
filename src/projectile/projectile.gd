@@ -25,8 +25,12 @@ func _ready() -> void:
 func _enter_tree() -> void:
     distance_travelled = 0
     active = true
+
+    for c in get_children():
+        if c is CPUParticles2D:
+            c.restart()
     await get_tree().create_timer(life_time).timeout
-    remove()
+    remove.call_deferred()
 
 
 func _process(delta: float) -> void:
@@ -43,7 +47,7 @@ func _process(delta: float) -> void:
     var position_delta := position - old_position
     distance_travelled += position_delta.length()
     if use_max_distance and distance_travelled > max_distance:
-        remove()
+        remove.call_deferred()
 
     if bounce_on_edge and current_bounces < max_bounces and global_position.x < -72:
         global_position.x = -72
@@ -66,16 +70,17 @@ func _process(delta: float) -> void:
 
 func remove() -> void:
     if is_inside_tree():
-        get_parent().remove_child.call_deferred(self)
+        get_parent().remove_child(self)
     if not using_projectile_pool:
         queue_free()
 
 
 func _on_on_screen_notifier_screen_exited() -> void:
-    remove()
+    remove.call_deferred()
 
 
 func _on_body_entered(body: Node2D) -> void:
-    Combat.damage(body, damage, CombatContext.new(from, direction))
-    if remove_after_hit:
-        remove()
+    if from:
+        Combat.damage(body, damage, CombatContext.new(from.duplicate(), direction))
+        if remove_after_hit:
+            remove.call_deferred()

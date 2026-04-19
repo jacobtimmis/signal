@@ -22,6 +22,12 @@ func _ready() -> void:
         _projectile_pool.append(_inst_projectile())
 
 
+func _exit_tree() -> void:
+    for p in _projectile_pool:
+        if p:
+            p.queue_free()
+
+
 func _can_shoot() -> bool:
     return not is_shooting
 

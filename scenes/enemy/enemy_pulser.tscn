@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://7djqp4slemx2"]
+
+[ext_resource type="PackedScene" uid="uid://c3d6wun00myid" path="res://scenes/enemy/enemy.tscn" id="1_25kts"]
+[ext_resource type="Texture2D" uid="uid://ck1u4to6iasja" path="res://assets/sprites/enemy_pulser.png" id="2_25kts"]
+[ext_resource type="Texture2D" uid="uid://xaseyvfm6c4c" path="res://assets/sprites/dash_particles.png" id="3_4v4b7"]
+[ext_resource type="Script" uid="uid://dlhagra20anl3" path="res://src/weapon/weapon.gd" id="4_s8qah"]
+[ext_resource type="PackedScene" uid="uid://ecusrt8yjt53" path="res://scenes/projectile/enemy_pulser_projectile.tscn" id="5_axd7t"]
+[ext_resource type="Script" uid="uid://p6ktfyndgyfn" path="res://src/weapon/weapon_data.gd" id="6_ijb7s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fi5x0"]
+atlas = ExtResource("3_4v4b7")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="Curve" id="Curve_w5ksh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.793767, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_kclay"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0.0061728396, 0.46296296, 0.95)
+colors = PackedColorArray(0.49803922, 0.023529412, 0.13333334, 1, 0.8392157, 0.14117648, 0.06666667, 1, 0.98039216, 0.99215686, 1, 1)
+
+[sub_resource type="Resource" id="Resource_i5xgy"]
+script = ExtResource("6_ijb7s")
+projectile_scene = ExtResource("5_axd7t")
+shoot_delay = 1.0
+even_spread_enabled = true
+even_spread_angle = 180.0
+pellet_count = 5
+lock_aim = true
+metadata/_custom_type_script = "uid://p6ktfyndgyfn"
+
+[node name="EnemyPulser" unique_id=680225357 node_paths=PackedStringArray("weapon") instance=ExtResource("1_25kts")]
+speed_change = 40.0
+far_distance_to_player = 30.0
+close_distance_to_player = 40.0
+weapon = NodePath("Weapon")
+weapon_dist = 60.0
+
+[node name="Sprite" parent="." index="1" unique_id=921602998]
+texture = ExtResource("2_25kts")
+
+[node name="DashParticles" type="CPUParticles2D" parent="." index="4" unique_id=126019288]
+visible = false
+show_behind_parent = true
+amount = 20
+texture = SubResource("AtlasTexture_fi5x0")
+lifetime = 0.4
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 20.0
+scale_amount_curve = SubResource("Curve_w5ksh")
+color_initial_ramp = SubResource("Gradient_kclay")
+
+[node name="Weapon" type="Node2D" parent="." index="6" unique_id=734281948 node_paths=PackedStringArray("from")]
+script = ExtResource("4_s8qah")
+data = SubResource("Resource_i5xgy")
+from = NodePath("..")
+metadata/_custom_type_script = "uid://dlhagra20anl3"
