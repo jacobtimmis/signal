@@ -239,7 +239,9 @@ func _on_weapon_alt_weapon_fired() -> void:
 func _on_weapon_alt_weapon_available() -> void:
     if health_component.is_dead():
         return
-    $WeaponAltAvailable.show()
+    #$WeaponAltAvailable.show()
+    $AltWeaponReadyParticles.restart()
+    $AltRegenSound.play()
 
 
 enum Upgrade { 

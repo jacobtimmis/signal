@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://buoglntxa7elm" path="res://assets/sound/water_drop_big.mp3" id="17_yjh3g"]
 [ext_resource type="AudioStream" uid="uid://b6vggd4xepij5" path="res://assets/sound/shoot10.mp3" id="18_jh42a"]
 [ext_resource type="AudioStream" uid="uid://loqdxa3b16ob" path="res://assets/sound/heal.sfxr" id="28_071e2"]
+[ext_resource type="AudioStream" uid="uid://2jw8wa2bgqda" path="res://assets/sound/alt_fire_regen.sfxr" id="29_gnun3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 3.0
@@ -73,8 +74,7 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
 
 [sub_resource type="Gradient" id="Gradient_cmhvm"]
-offsets = PackedFloat32Array(0, 0.91566265, 1)
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.92168677, 1, 1, 1, 0)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u2cdm"]
 gradient = SubResource("Gradient_cmhvm")
@@ -91,6 +91,14 @@ even_spread_enabled = true
 even_spread_angle = 360.0
 pellet_count = 30
 metadata/_custom_type_script = "uid://p6ktfyndgyfn"
+
+[sub_resource type="Curve" id="Curve_071e2"]
+_limits = [0.0, 4.0, 0.0, 1.0]
+_data = [Vector2(0, 4), 0.0, 0.0, 0, 0, Vector2(1, 0), -10.732588, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_071e2"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="Hero" type="CharacterBody2D" unique_id=1186113123]
 collision_layer = 2
@@ -164,6 +172,7 @@ wait_time = 4.0
 one_shot = true
 
 [node name="WeaponAltAvailable" type="Sprite2D" parent="." unique_id=545155735]
+visible = false
 modulate = Color(0.74666667, 1, 0.24000001, 0.27450982)
 show_behind_parent = true
 scale = Vector2(0.29701984, 0.29701984)
@@ -184,6 +193,34 @@ volume_db = 10.0
 
 [node name="HealSound" type="AudioStreamPlayer2D" parent="." unique_id=53039550]
 stream = ExtResource("28_071e2")
+
+[node name="AltRegenSound" type="AudioStreamPlayer2D" parent="." unique_id=1735612673]
+stream = ExtResource("29_gnun3")
+
+[node name="AltWeaponReadyParticles" type="CPUParticles2D" parent="." unique_id=1979887910]
+show_behind_parent = true
+emitting = false
+amount = 20
+lifetime = 0.5
+one_shot = true
+explosiveness = 0.8
+local_coords = true
+emission_shape = 3
+emission_rect_extents = Vector2(4, 1)
+direction = Vector2(0, -1)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+damping_min = 200.0
+damping_max = 200.0
+angle_min = -720.0
+angle_max = 720.0
+scale_amount_curve = SubResource("Curve_071e2")
+color_ramp = SubResource("Gradient_071e2")
+color_initial_ramp = ExtResource("10_82ej0")
+hue_variation_min = 0.38
+hue_variation_max = 0.38
 
 [connection signal="weapon_fired" from="Weapon" to="." method="_on_weapon_weapon_fired"]
 [connection signal="weapon_available" from="WeaponAlt" to="." method="_on_weapon_alt_weapon_available"]

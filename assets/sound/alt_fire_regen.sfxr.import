@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://2jw8wa2bgqda"
+path="res://.godot/imported/alt_fire_regen.sfxr-e5c4031f71a3bd332c53c06daf0525d5.sample"
+
+[deps]
+
+source_file="res://assets/sound/alt_fire_regen.sfxr"
+dest_files=["res://.godot/imported/alt_fire_regen.sfxr-e5c4031f71a3bd332c53c06daf0525d5.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0
