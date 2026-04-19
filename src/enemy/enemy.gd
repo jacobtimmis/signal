@@ -50,7 +50,7 @@ func _physics_process(delta: float) -> void:
 
     if weapon:
         weapon.target_position = Hero.inst.global_position
-        if dist < weapon_dist and not Hero.inst.health_component.is_dead() and on_screen_notifier.is_on_screen():
+        if dist < weapon_dist and not Hero.inst.health_component.is_dead() and on_screen_notifier.is_on_screen() and center_dist < 60:
             weapon._shoot()
 
     if weapon and stop_while_shooting and weapon.is_shooting:
@@ -62,8 +62,8 @@ func _physics_process(delta: float) -> void:
             desired_direction *= -1
         if dist > far_distance_to_player or dist < close_distance_to_player:
             var speed_to_use := speed
-            if center_dist > 60:
-                speed_to_use *= 4
+            #if center_dist > 60:
+                #speed_to_use *= 4
             velocity = velocity.move_toward(desired_direction * speed_to_use, delta * speed_change)
         else:
             velocity = velocity.move_toward(Vector2.ZERO, delta * speed_change)
