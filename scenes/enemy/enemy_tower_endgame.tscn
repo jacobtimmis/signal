@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dv372cv0djgqn"]
+
+[ext_resource type="PackedScene" uid="uid://b8627btdjnjap" path="res://scenes/enemy/enemy_tower.tscn" id="1_2ewbn"]
+
+[node name="EnemyTower" unique_id=680225357 instance=ExtResource("1_2ewbn")]
+chance_to_spawn_pickup = 0.1
