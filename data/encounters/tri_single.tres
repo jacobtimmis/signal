@@ -11,6 +11,7 @@ metadata/_custom_type_script = "uid://c0so8q3bbyayq"
 
 [resource]
 script = ExtResource("1_ohxst")
+min_heat = 2
 max_heat = 30
 spawns = Array[ExtResource("2_xe5mx")]([SubResource("Resource_xe5mx")])
 metadata/_custom_type_script = "uid://c6c6sshp87m6b"

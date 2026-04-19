@@ -33,7 +33,7 @@ projectile_scene = ExtResource("6_tcsq5")
 shoot_delay = 1.2
 even_spread_enabled = true
 even_spread_angle = 360.0
-pellet_count = 10
+pellet_count = 9
 metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [node name="EnemyTower" unique_id=680225357 node_paths=PackedStringArray("weapon") instance=ExtResource("1_urn51")]
@@ -56,7 +56,7 @@ texture = ExtResource("2_urn51")
 max_health = 2000.0
 
 [node name="Hurtbox" parent="." index="3" unique_id=794594365]
-damage = 20.0
+damage = 500.0
 
 [node name="Collision" parent="Hurtbox" index="0" unique_id=1085168074]
 position = Vector2(0, -9)
