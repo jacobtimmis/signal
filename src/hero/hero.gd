@@ -24,6 +24,7 @@ var _control_aim_dir := Vector2.RIGHT
 var survive_time: float
 var can_continue_death := false
 
+@onready var weapon_alt: Weapon = $WeaponAlt
 @onready var health_component: HealthComponent = $HealthComponent
 @onready var shoot_light: PointLight2D = $ShootLight
 @onready var weapon: Weapon = $Weapon
@@ -229,17 +230,34 @@ func _on_weapon_alt_weapon_available() -> void:
     $WeaponAltAvailable.show()
 
 
-enum Upgrade { PELLETS, HEAL }
+enum Upgrade { 
+    PELLETS,
+    HEAL,
+    ALT_BOUNCE,
+    RANGE,
+    VOLLEY,
+}
 var upgrade_count: Dictionary[Upgrade, int]
 
 func _on_score_manager_levelled_up() -> void:
     $LevelUpSound.play()
     $LevelUpWeapon._shoot()
+    add_random_upgrade()
 
+
+func add_random_upgrade() -> void:
     var all_ups := Upgrade.values()
     var valid_ups: Array[Upgrade]
     for u in all_ups:
-        if u == Upgrade.PELLETS and check_upgrade_count(Upgrade.PELLETS, 1):
+        if u == Upgrade.PELLETS and check_upgrade_count(Upgrade.PELLETS, 2):
+            continue
+        if u == Upgrade.ALT_BOUNCE and check_upgrade_count(Upgrade.ALT_BOUNCE, 3):
+            continue
+        if u == Upgrade.RANGE and check_upgrade_count(Upgrade.RANGE, 2):
+            continue
+        if u == Upgrade.VOLLEY and check_upgrade_count(Upgrade.VOLLEY, 2):
+            continue
+        if u == Upgrade.HEAL and check_upgrade_count(Upgrade.HEAL, 5):
             continue
         valid_ups.append(u)
 
@@ -249,8 +267,20 @@ func _on_score_manager_levelled_up() -> void:
         weapon.data.even_spread_angle += 4
         say_message("PELLETS+")
     if up == Upgrade.HEAL:
+        health_component.max_health += 5
         health_component.current_health += 10
-        say_message("HEAL!")
+        say_message("HEALTH+")
+    if up == Upgrade.ALT_BOUNCE:
+        for p in weapon_alt._projectile_pool:
+            p.max_bounces += 1
+        say_message("BOUNCE+")
+    if up == Upgrade.RANGE:
+        for p in weapon._projectile_pool:
+            p.max_distance += 35
+        say_message("RANGE+")
+    if up == Upgrade.VOLLEY:
+        weapon_alt.data.volley_count += 1
+        say_message("VOLLEY+")
     add_count(up)
 
 

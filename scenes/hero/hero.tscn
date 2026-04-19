@@ -24,6 +24,7 @@ radius = 4.0
 script = ExtResource("7_skxai")
 projectile_scene = ExtResource("6_u2cdm")
 shoot_delay = 3.0
+volley_delay = 0.2
 metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h65lx"]
