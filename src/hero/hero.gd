@@ -148,7 +148,7 @@ func _accelerate(delta: float, accel: float, speed: float, dir: Vector2) -> void
 
 func _on_weapon_weapon_fired() -> void:
     velocity += global_position.direction_to(get_aim_target_position()).normalized() * -50
-    GameCamera.shake(1, 20)
+    GameCamera.shake(1, 100)
     $ShootSound.play()
 
 const HERO_HURT_POOF = preload("uid://b4wc0xsl0jlwn")
