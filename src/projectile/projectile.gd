@@ -16,21 +16,32 @@ var distance_travelled: float
 var active := false
 var current_bounces: int
 var from: Node2D
+var life_time_timer: Timer
 
+func _init() -> void:
+    life_time_timer = Timer.new()
+    life_time_timer.autostart
+    life_time_timer.one_shot = true
+    life_time_timer.wait_time = life_time
+    life_time_timer.timeout.connect(_on_life_time_timer_timeout)
+    add_child(life_time_timer)
 
 func _ready() -> void:
     body_entered.connect(_on_body_entered)
 
 
+func _on_life_time_timer_timeout() -> void:
+    remove.call_deferred()
+
+
 func _enter_tree() -> void:
     distance_travelled = 0
     active = true
+    current_bounces = 0
 
     for c in get_children():
         if c is CPUParticles2D:
             c.restart()
-    await get_tree().create_timer(life_time).timeout
-    remove.call_deferred()
 
 
 func _process(delta: float) -> void:
@@ -69,6 +80,8 @@ func _process(delta: float) -> void:
 
 
 func remove() -> void:
+    if life_time_timer:
+        life_time_timer.stop()
     if is_inside_tree():
         get_parent().remove_child(self)
     if not using_projectile_pool:
