@@ -95,6 +95,7 @@ offset_bottom = 72.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("8_85g3d")
+metadata/_edit_lock_ = true
 
 [node name="Cursor" parent="." unique_id=2012472444 instance=ExtResource("9_85g3d")]
 
@@ -122,5 +123,15 @@ score_manager = NodePath("../ScoreManager")
 script = ExtResource("11_kvpfn")
 
 [node name="Label" parent="." unique_id=1891679560 instance=ExtResource("12_dinhu")]
+
+[node name="Atmosphere" type="CPUParticles2D" parent="." unique_id=585604538]
+amount = 20
+lifetime = 2.0
+emission_shape = 3
+emission_rect_extents = Vector2(72, 72)
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+color = Color(0, 0.15686275, 0.34901962, 1)
 
 [connection signal="levelled_up" from="ScoreManager" to="HeroLayer/Hero" method="_on_score_manager_levelled_up"]
