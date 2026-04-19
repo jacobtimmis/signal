@@ -14,11 +14,17 @@ func _ready() -> void:
     current_health = max_health
 
 
+func is_dead() -> bool:
+    return current_health <= 0
+
+
 func kill() -> void:
     current_health = 0
 
 
 func damage(amount: float, context: CombatContext) -> void:
+    if is_dead():
+        return
     current_health -= amount
     damaged.emit(amount, context)
 

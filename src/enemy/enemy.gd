@@ -29,10 +29,12 @@ func _physics_process(delta: float) -> void:
 
     if weapon:
         weapon.target_position = desired_position
-        if dist < weapon_dist:
+        if dist < weapon_dist and not Hero.inst.health_component.is_dead():
             weapon._shoot()
 
-    if move_to_player:
+    if Hero.inst.health_component.is_dead():
+        velocity = desired_direction * speed * -1
+    elif move_to_player:
         if dist < close_distance_to_player:
             desired_direction *= -1
         if dist > far_distance_to_player or dist < close_distance_to_player:

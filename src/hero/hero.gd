@@ -1,7 +1,7 @@
 class_name Hero
 extends CharacterBody2D
 
-enum State { DEFAULT, DASH }
+enum State { DEFAULT, DASH, DEAD }
 
 const MOVE_CALLABLE = &"move"
 const SPEED = 70.0
@@ -42,12 +42,22 @@ func _ready() -> void:
             MOVE_CALLABLE: _dash_move,
         },
     )
+    state_machine.setup_state(
+        State.DEAD,
+        {
+            StateMachine.CAN_EXIT_CALLABLE: _dead_can_exit,
+            StateMachine.ENTER_CALLABLE: _dead_enter,
+        },
+    )
     state_machine.setup_names_from_enum(State)
 
     $DashParticles.emitting = false
 
 
 func _process(_delta: float) -> void:
+    if health_component.is_dead():
+        return
+
     var current_aim_dir := Input.get_vector("aim_left", "aim_right", "aim_up", "aim_down")
     if current_aim_dir.length() > CONTROL_AIM_DEADZONE:
         _control_aim_dir = current_aim_dir
@@ -63,6 +73,9 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
+    if health_component.is_dead():
+        return
+
     wish_dir = Input.get_vector("move_left", "move_right", "move_up", "move_down")
     wish_dir = wish_dir.normalized()
 
@@ -139,6 +152,7 @@ func _on_weapon_weapon_fired() -> void:
     $ShootSound.play()
 
 const HERO_HURT_POOF = preload("uid://b4wc0xsl0jlwn")
+const HERO_DEATH_POOF = preload("uid://mfe4sx0cbu3r")
 
 func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
     $HurtSound.play()
@@ -152,3 +166,30 @@ func _on_health_component_damaged(amount: float, context: CombatContext) -> void
     var inst := HERO_HURT_POOF.instantiate() as Node2D
     inst.global_transform = global_transform
     get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
+
+
+func _dead_can_exit() -> bool:
+    return false
+
+
+func _dead_enter() -> void:
+    collision_layer = 0
+    collision_mask = 0
+
+    $AimLine.hide()
+
+    var inst := HERO_DEATH_POOF.instantiate() as Node2D
+    inst.global_transform = global_transform
+    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
+
+    $Sprite.hide()
+
+    $DeathTimer.start()
+
+
+func _on_health_component_killed() -> void:
+    state_machine.change_state(State.DEAD)
+
+
+func _on_death_timer_timeout() -> void:
+    get_tree().reload_current_scene()

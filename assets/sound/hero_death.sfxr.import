@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://5yd8shxbxm08"
+path="res://.godot/imported/hero_death.sfxr-1061109b497afe68f53b8fdb8e97a799.sample"
+
+[deps]
+
+source_file="res://assets/sound/hero_death.sfxr"
+dest_files=["res://.godot/imported/hero_death.sfxr-1061109b497afe68f53b8fdb8e97a799.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

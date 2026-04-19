@@ -89,5 +89,11 @@ texture = ExtResource("11_jrc8l")
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=630878637]
 stream = ExtResource("12_qijae")
 
+[node name="DeathTimer" type="Timer" parent="." unique_id=1377040554]
+wait_time = 4.0
+one_shot = true
+
 [connection signal="weapon_fired" from="Weapon" to="." method="_on_weapon_weapon_fired"]
 [connection signal="damaged" from="HealthComponent" to="." method="_on_health_component_damaged"]
+[connection signal="killed" from="HealthComponent" to="." method="_on_health_component_killed"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_death_timer_timeout"]

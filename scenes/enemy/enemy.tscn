@@ -32,8 +32,8 @@ metadata/_custom_type_script = "uid://didq7xuc46d6"
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("4_tjssy")
-damage = null
 from = NodePath("..")
+damage = null
 
 [node name="Collision" type="CollisionShape2D" parent="Hurtbox" unique_id=1085168074]
 shape = SubResource("CircleShape2D_gl05p")
