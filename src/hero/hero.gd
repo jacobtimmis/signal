@@ -179,6 +179,9 @@ const HERO_HURT_POOF = preload("uid://b4wc0xsl0jlwn")
 const HERO_DEATH_POOF = preload("uid://mfe4sx0cbu3r")
 
 func _on_health_component_damaged(amount: float, context: CombatContext) -> void:
+    if not health_component.is_dead():
+        Main.inst.hitstop(0.08)
+
     $HurtSound.play()
 
     GameCamera.shake(5, 20)

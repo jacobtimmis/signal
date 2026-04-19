@@ -39,6 +39,7 @@ audio_listener_enable_2d = true
 size = Vector2i(144, 144)
 
 [node name="Game" parent="Viewport" unique_id=470228196 instance=ExtResource("1_43bnl")]
+unique_name_in_owner = true
 
 [node name="DebugLabels" type="CanvasLayer" parent="." unique_id=1453647402]
 visible = false

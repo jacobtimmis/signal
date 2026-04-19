@@ -130,6 +130,7 @@ range_item_cull_mask = 2
 texture = SubResource("GradientTexture2D_cmhvm")
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="." unique_id=630878637]
+process_mode = 3
 stream = ExtResource("12_qijae")
 
 [node name="DeathTimer" type="Timer" parent="." unique_id=1377040554]
