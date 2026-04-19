@@ -14,6 +14,8 @@
 [ext_resource type="Script" uid="uid://didq7xuc46d6" path="res://src/combat/health_component.gd" id="10_1cpic"]
 [ext_resource type="Gradient" uid="uid://c8e860ff57pwy" path="res://data/hero_gradient.tres" id="10_82ej0"]
 [ext_resource type="AudioStream" uid="uid://cx5rvoeomulo4" path="res://assets/sound/hero_hurt.sfxr" id="12_qijae"]
+[ext_resource type="AudioStream" uid="uid://ih30opwbkurs" path="res://assets/sound/level_up.sfxr" id="15_u2cdm"]
+[ext_resource type="PackedScene" uid="uid://b7shjn603mqq6" path="res://scenes/projectile/hero_projectile.tscn" id="16_skxai"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4rdp7"]
 radius = 4.0
@@ -52,6 +54,16 @@ gradient = SubResource("Gradient_cmhvm")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Resource" id="Resource_m6s4m"]
+script = ExtResource("7_skxai")
+projectile_scene = ExtResource("16_skxai")
+volley_count = 3
+volley_delay = 0.2
+even_spread_enabled = true
+even_spread_angle = 360.0
+pellet_count = 30
+metadata/_custom_type_script = "uid://p6ktfyndgyfn"
 
 [node name="Hero" type="CharacterBody2D" unique_id=1186113123]
 collision_layer = 2
@@ -127,6 +139,15 @@ modulate = Color(0.74666667, 1, 0.24000001, 0.27450982)
 show_behind_parent = true
 scale = Vector2(0.29701984, 0.29701984)
 texture = SubResource("GradientTexture2D_u2cdm")
+
+[node name="LevelUpSound" type="AudioStreamPlayer2D" parent="." unique_id=1467489691]
+stream = ExtResource("15_u2cdm")
+
+[node name="LevelUpWeapon" type="Node2D" parent="." unique_id=1529007274]
+script = ExtResource("4_tqfqc")
+projectile_pool_size = 90
+data = SubResource("Resource_m6s4m")
+metadata/_custom_type_script = "uid://dlhagra20anl3"
 
 [connection signal="weapon_fired" from="Weapon" to="." method="_on_weapon_weapon_fired"]
 [connection signal="weapon_available" from="WeaponAlt" to="." method="_on_weapon_alt_weapon_available"]

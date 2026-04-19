@@ -1,0 +1,96 @@
+[gd_scene format=3 uid="uid://c2fkfjo7ikued"]
+
+[ext_resource type="FontFile" uid="uid://bwimy6dmt5gvl" path="res://assets/fonts/m6x11.ttf" id="1_11qlq"]
+[ext_resource type="Script" uid="uid://h2xjdwu2said" path="res://scenes/message.gd" id="1_x5w8s"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kvuet"]
+font = ExtResource("1_11qlq")
+font_color = Color(0.7490196, 1, 0.23529412, 1)
+outline_size = 2
+outline_color = Color(0.08627451, 0.09019608, 0.101960786, 1)
+
+[sub_resource type="Animation" id="Animation_11qlq"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_dinhu"]
+resource_name = "popup"
+length = 3.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 0),
+"points": PackedFloat32Array(0.6, -0.25, 0, 0.25, 0, 1, -0.033333335, 0, 0, 0, 1, -0.033333335, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 3)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.1, 0.57142854, 1, -0.16666666, 1.396826, 0, 0, 1.0000005, -0.050000004, 0, 0, 0, 0, -0.04444444, 0.13492064, 0, 0),
+"times": PackedFloat32Array(0, 0.2, 2.6, 3)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kvuet"]
+_data = {
+&"RESET": SubResource("Animation_11qlq"),
+&"popup": SubResource("Animation_dinhu")
+}
+
+[node name="Message" type="Node2D" unique_id=536048111]
+script = ExtResource("1_x5w8s")
+
+[node name="Label" type="Label" parent="." unique_id=1891679560]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.5
+offset_top = -7.0
+offset_right = 25.5
+offset_bottom = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1e-05, 1e-05)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "MESSAGE"
+label_settings = SubResource("LabelSettings_kvuet")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=644736966]
+root_node = NodePath("../Label")
+libraries/ = SubResource("AnimationLibrary_kvuet")
+autoplay = &"popup"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -1,0 +1,17 @@
+[remap]
+
+importer="com.timothyqiu.gdfxr.importer"
+type="AudioStreamWAV"
+uid="uid://ih30opwbkurs"
+path="res://.godot/imported/level_up.sfxr-a071947b8094f3b49000aefad900f6ff.sample"
+
+[deps]
+
+source_file="res://assets/sound/level_up.sfxr"
+dest_files=["res://.godot/imported/level_up.sfxr-a071947b8094f3b49000aefad900f6ff.sample"]
+
+[params]
+
+loop=false
+bit_depth=0
+sample_rate=0

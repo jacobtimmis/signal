@@ -15,6 +15,7 @@ func _set_xp(value) -> void:
     xp = value
     if xp >= max_xp:
         max_xp += 1
+        max_xp = mini(max_xp, 10)
         xp = 0
         levelled_up.emit()
 
