@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dmvf1j335oujh"]
 
 [ext_resource type="PackedScene" uid="uid://dr2pyif1cepvg" path="res://scenes/projectile/projectile.tscn" id="1_2g85f"]
-[ext_resource type="Texture2D" uid="uid://tvlw3ia1pju2" path="res://assets/sprites/projectile.png" id="2_3yuwc"]
+[ext_resource type="Texture2D" uid="uid://bjnjxqg70mudy" path="res://assets/sprites/projectile_big.png" id="3_3yuwc"]
 [ext_resource type="Texture2D" uid="uid://ck41e6dfenxd2" path="res://assets/light_textures/lt_circle.tres" id="3_oc171"]
 
 [sub_resource type="Curve" id="Curve_pmols"]
@@ -11,7 +11,7 @@ point_count = 2
 [sub_resource type="Gradient" id="Gradient_pmols"]
 interpolation_mode = 1
 offsets = PackedFloat32Array(0, 0.15432099, 0.43209878)
-colors = PackedColorArray(0.7490196, 1, 0.23529412, 1, 0.0627451, 0.8235294, 0.45882353, 1, 0.2627451, 0, 0.40392157, 1)
+colors = PackedColorArray(0.7490196, 1, 0.23529412, 1, 0.0627451, 0.8235294, 0.45882353, 1, 0.2627451, 0, 0.40392157, 0)
 
 [node name="HeroProjectile" unique_id=24496546 instance=ExtResource("1_2g85f")]
 collision_mask = 4
@@ -24,16 +24,14 @@ bounce_on_edge = true
 
 [node name="Trail" type="CPUParticles2D" parent="." index="1" unique_id=910037344]
 show_behind_parent = true
-amount = 4
-texture = ExtResource("2_3yuwc")
-lifetime = 0.1
+amount = 12
+texture = ExtResource("3_3yuwc")
+lifetime = 0.2
 gravity = Vector2(0, 0)
 angular_velocity_min = 45.0
 angular_velocity_max = 90.0
 angle_min = -180.0
 angle_max = 180.0
-scale_amount_min = 2.0
-scale_amount_max = 2.0
 scale_amount_curve = SubResource("Curve_pmols")
 color_ramp = SubResource("Gradient_pmols")
 hue_variation_min = 0.01
@@ -42,13 +40,13 @@ hue_variation_max = 0.01
 [node name="Sprite2D" parent="." index="2" unique_id=1733665798]
 modulate = Color(0.7490196, 1, 0.23529412, 1)
 light_mask = 3
-scale = Vector2(2, 2)
+texture = ExtResource("3_3yuwc")
 
 [node name="OnScreenNotifier" parent="." index="3" unique_id=171537133]
 rect = Rect2(-16, -16, 32, 32)
 
 [node name="Light" type="PointLight2D" parent="." index="4" unique_id=465494804]
-color = Color(0.7490196, 1, 0.23529412, 1)
+color = Color(0.98039216, 0.99215686, 1, 1)
 energy = 0.2
 range_layer_min = -1
 range_item_cull_mask = 2
