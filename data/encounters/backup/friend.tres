@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="EncounterData" format=3 uid="uid://dpl1epvk051s2"]
+
+[ext_resource type="Script" uid="uid://c6c6sshp87m6b" path="res://src/combat/encounter_data.gd" id="1_ap0ub"]
+[ext_resource type="Script" uid="uid://c0so8q3bbyayq" path="res://src/combat/entity_spawn_data.gd" id="2_xxsrm"]
+[ext_resource type="PackedScene" uid="uid://be2b1t8kbdg13" path="res://scenes/enemy/enemy_friend.tscn" id="3_xxsrm"]
+
+[sub_resource type="Resource" id="Resource_s62tk"]
+script = ExtResource("2_xxsrm")
+scene = ExtResource("3_xxsrm")
+metadata/_custom_type_script = "uid://c0so8q3bbyayq"
+
+[resource]
+script = ExtResource("1_ap0ub")
+spawns = Array[ExtResource("2_xxsrm")]([SubResource("Resource_s62tk")])
+metadata/_custom_type_script = "uid://c6c6sshp87m6b"

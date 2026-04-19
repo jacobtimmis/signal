@@ -46,7 +46,8 @@ texture = ExtResource("7_tipki")
 
 [node name="HeroLayer" type="Node2D" parent="." unique_id=888183204]
 
-[node name="Hero" parent="HeroLayer" unique_id=1186113123 instance=ExtResource("1_sugp2")]
+[node name="Hero" parent="HeroLayer" unique_id=1186113123 node_paths=PackedStringArray("spawner") instance=ExtResource("1_sugp2")]
+spawner = NodePath("../../Spawner")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=913196057]
 script = ExtResource("2_tefeu")

@@ -1,6 +1,5 @@
 extends Node2D
 class_name Spawner
-const BACKUP_ENCOUNTER = preload("uid://dmdk00ynqxu5n")
 
 @export var layer: Node2D
 var current_heat: int = 0: set = _set_current_heat
@@ -38,7 +37,7 @@ func _pick_encounter() -> EncounterData:
         if current_heat >= e.min_heat and current_heat <= e.max_heat:
             valid_encounters.append(e)
     if valid_encounters.size() == 0:
-        return BACKUP_ENCOUNTER
+        return load("uid://dmdk00ynqxu5n")
     return valid_encounters.pick_random()
 
 
@@ -51,6 +50,10 @@ func _spawn_enemy() -> void:
 
     var encounter = _pick_encounter()
     print("New Encounter: %s" % encounter.resource_path.get_file())
+    _do_spawn(encounter)
+
+
+func _do_spawn(encounter: EncounterData):
     var angle = (TAU / total_positions) * current_spawn_index - (PI / 2.0)
     var spawn_point = global_position + Vector2.RIGHT.rotated(angle) * spawn_radius
 
@@ -61,7 +64,7 @@ func _spawn_enemy() -> void:
             var spread = Vector2(randf_range(-32, 32), randf_range(-32, 32))
             instance.global_position = spawn_point + spread
 
-            layer.add_child(instance)
+            layer.add_child.call_deferred(instance)
 
         if spawn.spawn_poof:
             var poof := spawn.spawn_poof.instantiate() as Node2D

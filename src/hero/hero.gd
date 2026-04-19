@@ -29,6 +29,8 @@ var can_continue_death := false
 @onready var shoot_light: PointLight2D = $ShootLight
 @onready var weapon: Weapon = $Weapon
 
+@export var spawner: Spawner
+
 
 func _ready() -> void:
     inst = self
@@ -238,11 +240,18 @@ enum Upgrade {
     VOLLEY,
 }
 var upgrade_count: Dictionary[Upgrade, int]
+const FRIEND_ENCOUNTER = preload("uid://dpl1epvk051s2")
+const FRIEND_SPAWN_POOF = preload("uid://cry31uu7sdsm7")
 
 func _on_score_manager_levelled_up() -> void:
     $LevelUpSound.play()
     $LevelUpWeapon._shoot()
-    add_random_upgrade()
+    #add_random_upgrade()
+    spawner._do_spawn(FRIEND_ENCOUNTER)
+    var poof := FRIEND_SPAWN_POOF.instantiate() as Node2D
+    poof.global_transform = global_transform
+    get_parent().add_child(poof)
+
 
 
 func add_random_upgrade() -> void:
@@ -267,8 +276,7 @@ func add_random_upgrade() -> void:
         weapon.data.even_spread_angle += 4
         say_message("PELLETS+")
     if up == Upgrade.HEAL:
-        health_component.max_health += 5
-        health_component.current_health += 10
+        health_component.max_health += 10
         say_message("HEALTH+")
     if up == Upgrade.ALT_BOUNCE:
         for p in weapon_alt._projectile_pool:
@@ -282,6 +290,8 @@ func add_random_upgrade() -> void:
         weapon_alt.data.volley_count += 1
         say_message("VOLLEY+")
     add_count(up)
+
+    health_component.current_health += 25
 
 
 func check_upgrade_count(up: Upgrade, max_up: int) -> bool:
