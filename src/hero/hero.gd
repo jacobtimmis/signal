@@ -304,7 +304,8 @@ func add_random_upgrade() -> void:
     if up == Upgrade.VOLLEY:
         weapon_alt.data.volley_count += 1
         say_message("VOLLEY+")
-    add_count(up)
+    if up:
+        add_count(up)
 
     health_component.current_health += 25
 
