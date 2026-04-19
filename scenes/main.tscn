@@ -87,11 +87,11 @@ metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
 [node name="HealthLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1172161487 node_paths=PackedStringArray("root_node")]
 layout_mode = 2
-text = "Aim: [value]"
+text = "Health: [value]"
 script = ExtResource("3_tbgi4")
 expression = "health_component.current_health"
 root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
-prefix = "Aim"
+prefix = "Health"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=349879680]
