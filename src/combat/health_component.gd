@@ -6,7 +6,7 @@ signal damaged(amount: float, context: CombatContext)
 
 @export var max_health: float = 100
 
-var current_health: float:
+var current_health: float = 1 :
     set = _set_current_health
 
 
@@ -38,6 +38,8 @@ func percent() -> float:
 
 
 func _set_current_health(value: float) -> void:
+    if is_dead():
+        return
     current_health = clampf(value, 0, max_health)
     if current_health <= 0:
         killed.emit()
