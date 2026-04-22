@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 enum State { DEFAULT, DASH, DEAD }
 
+signal defeated
+
 const MOVE_CALLABLE = &"move"
 const SPEED = 70.0
 const ACCEL = 1000.0
@@ -11,8 +13,6 @@ const DASH_ACCEL = 1000.0
 const DASH_SPEED = 140.0
 const DASH_DECEL = 300.0
 const CONTROL_AIM_DEADZONE = 0.5
-
-static var inst: Hero
 
 var state_machine := StateMachine.new()
 var wish_dir: Vector2
@@ -33,8 +33,6 @@ var can_continue_death := false
 
 
 func _ready() -> void:
-    inst = self
-
     shoot_light.color.a = 0
 
     state_machine.setup_state(
@@ -107,10 +105,12 @@ func _physics_process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+
     if (event.is_action_pressed("shoot") or event.is_action_pressed("shoot_alt") or event.is_action_pressed("dash") or event is InputEventJoypadButton) and health_component.is_dead() and can_continue_death:
-        get_tree().reload_current_scene()
+        get_tree().reload_current_scene.call_deferred()
     if event is InputEventMouseMotion:
-        mouse_position = event.position
+        
+        mouse_position = get_viewport().get_camera_2d().to_global(event.position) - Vector2(72, 72)
     if event.is_action_pressed("dash"):
         state_machine.change_state(State.DASH)
     if event.is_action_released("dash"):
@@ -120,7 +120,7 @@ func _input(event: InputEvent) -> void:
 func get_aim_target_position() -> Vector2:
     var target_position: Vector2
     if GlobalInput.current_device == GlobalInput.Device.MOUSE:
-        return mouse_position
+        return get_global_mouse_position()
     else:
         target_position = global_position + _control_aim_dir
     return target_position
@@ -189,7 +189,7 @@ func _on_health_component_damaged(amount: float, context: CombatContext) -> void
 
     var poof := HERO_HURT_POOF.instantiate() as Node2D
     poof.global_transform = global_transform
-    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(poof)
+    Game.get_decal_layer().add_child(poof)
 
 
 func _dead_can_exit() -> bool:
@@ -204,7 +204,7 @@ func _dead_enter() -> void:
 
     var poof := HERO_DEATH_POOF.instantiate() as Node2D
     poof.global_transform = global_transform
-    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(poof)
+    Game.instance.get_node("SplatterLayer").add_child(poof)
 
     $WeaponAltAvailable.hide()
 
@@ -215,6 +215,7 @@ func _dead_enter() -> void:
 
 func _on_health_component_killed() -> void:
     state_machine.change_state(State.DEAD)
+    defeated.emit()
 
 
 func _on_death_timer_timeout() -> void:
@@ -263,7 +264,7 @@ func _on_score_manager_levelled_up() -> void:
 
 func friend_signal() -> void:
     var poof := FRIEND_SPAWN_POOF.instantiate() as Node2D
-    poof.global_transform = get_node("/root/Main/Viewport/Game/Ufo/SignalMarker").global_transform
+    poof.global_transform = Game.get_prop_layer().get_node("Ufo/SignalMarker").global_transform
     get_parent().add_child(poof)
 
 

@@ -85,4 +85,4 @@ func _launch_projectile(pellet_no: int) -> void:
 
     proj.direction = dir.rotated(data.get_spread(pellet_no))
 
-    get_node("/root/Main/Viewport/Game/ProjectileLayer").add_child.call_deferred(proj)
+    Game.get_projectile_layer().add_child.call_deferred(proj)

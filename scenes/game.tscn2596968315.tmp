@@ -20,9 +20,6 @@
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_dinhu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rysoc"]
-size = Vector2(284, 284)
-
 [node name="Game" type="Node2D" unique_id=470228196]
 script = ExtResource("1_ssvqc")
 metadata/_edit_lock_ = true
@@ -30,18 +27,20 @@ metadata/_edit_lock_ = true
 [node name="InterfaceLayer" type="CanvasLayer" parent="." unique_id=2012472444]
 layer = 800
 
-[node name="UI" type="Control" parent="InterfaceLayer" unique_id=1589750172]
+[node name="Cursor" parent="InterfaceLayer" unique_id=709705915 instance=ExtResource("14_rysoc")]
+
+[node name="SizeLimit" type="Control" parent="InterfaceLayer" unique_id=1589750172]
 custom_minimum_size = Vector2(144, 144)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 144.0
 offset_bottom = 144.0
 
-[node name="HUD" parent="InterfaceLayer/UI" unique_id=71906689 instance=ExtResource("14_ir15t")]
+[node name="HUD" parent="InterfaceLayer/SizeLimit" unique_id=71906689 instance=ExtResource("14_ir15t")]
 unique_name_in_owner = true
 layout_mode = 1
 
-[node name="EndScreen" parent="InterfaceLayer/UI" unique_id=1979472772 instance=ExtResource("16_264po")]
+[node name="EndScreen" parent="InterfaceLayer/SizeLimit" unique_id=1979472772 instance=ExtResource("16_264po")]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -52,7 +51,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="FullScreen" parent="InterfaceLayer/UI" unique_id=1251901556 instance=ExtResource("16_rysoc")]
+[node name="FullScreen" parent="InterfaceLayer/SizeLimit" unique_id=1251901556 instance=ExtResource("16_rysoc")]
 layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
@@ -60,7 +59,7 @@ anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="ReferenceRect" type="ReferenceRect" parent="InterfaceLayer/UI" unique_id=1464061543]
+[node name="ReferenceRect" type="ReferenceRect" parent="InterfaceLayer/SizeLimit" unique_id=1464061543]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,9 +67,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Cursor" parent="InterfaceLayer" unique_id=709705915 instance=ExtResource("14_rysoc")]
+[node name="Level" type="Node2D" parent="." unique_id=1767017500]
 
-[node name="GroundTexture" type="TextureRect" parent="." unique_id=674710088]
+[node name="GroundTexture" type="TextureRect" parent="Level" unique_id=674710088]
 light_mask = 2
 offset_right = 288.0
 offset_bottom = 288.0
@@ -78,24 +77,24 @@ texture = ExtResource("1_kvuet")
 script = ExtResource("2_ca42v")
 fullmap_texture = ExtResource("3_rysoc")
 
-[node name="DecalLayer" type="Node2D" parent="." unique_id=536300481]
+[node name="DecalLayer" type="Node2D" parent="Level" unique_id=536300481]
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="PropLayer" type="Node2D" parent="." unique_id=857816623]
+[node name="PropLayer" type="Node2D" parent="Level" unique_id=857816623]
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="Ufo" type="Sprite2D" parent="PropLayer" unique_id=588309181]
+[node name="Ufo" type="Sprite2D" parent="Level/PropLayer" unique_id=588309181]
 light_mask = 3
 position = Vector2(144, 144)
 texture = ExtResource("13_kvuet")
 
-[node name="SignalMarker" type="Marker2D" parent="PropLayer/Ufo" unique_id=1632694251]
+[node name="SignalMarker" type="Marker2D" parent="Level/PropLayer/Ufo" unique_id=1632694251]
 position = Vector2(0, -14)
 gizmo_extents = 4.0
 
-[node name="WindParticles" type="CPUParticles2D" parent="PropLayer" unique_id=585604538]
+[node name="WindParticles" type="CPUParticles2D" parent="Level/PropLayer" unique_id=585604538]
 position = Vector2(144, 144)
 amount = 80
 lifetime = 2.0
@@ -106,24 +105,24 @@ initial_velocity_min = 10.0
 initial_velocity_max = 10.0
 color = Color(0, 0.15686275, 0.34901962, 1)
 
-[node name="EntityLayer" type="Node2D" parent="." unique_id=1786989094]
+[node name="EntityLayer" type="Node2D" parent="Level" unique_id=1786989094]
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="ProjectileLayer" type="Node2D" parent="." unique_id=388592351]
+[node name="ProjectileLayer" type="Node2D" parent="Level" unique_id=388592351]
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="HeroLayer" type="Node2D" parent="." unique_id=888183204]
+[node name="HeroLayer" type="Node2D" parent="Level" unique_id=888183204]
 unique_name_in_owner = true
 metadata/_edit_lock_ = true
 
-[node name="Hero" parent="HeroLayer" unique_id=1186113123 node_paths=PackedStringArray("spawner") instance=ExtResource("1_sugp2")]
+[node name="Hero" parent="Level/HeroLayer" unique_id=1186113123 node_paths=PackedStringArray("spawner") instance=ExtResource("1_sugp2")]
 unique_name_in_owner = true
 position = Vector2(144, 176)
-spawner = NodePath("../../Spawner")
+spawner = NodePath("../../../Spawner")
 
-[node name="OverlayTexture" type="TextureRect" parent="." unique_id=1200773612]
+[node name="OverlayTexture" type="TextureRect" parent="Level" unique_id=1200773612]
 offset_right = 288.0
 offset_bottom = 288.0
 texture = ExtResource("8_85g3d")
@@ -134,7 +133,7 @@ metadata/_edit_lock_ = true
 position = Vector2(144, 86)
 limit_enabled = false
 script = ExtResource("2_tefeu")
-follow_node = NodePath("../HeroLayer/Hero")
+follow_node = NodePath("../Level/HeroLayer/Hero")
 view_size = Vector2(144, 144)
 max_position = Vector2(288, 288)
 interp_speed = 100.0
@@ -186,18 +185,14 @@ rotation = 3.1415927
 build_mode = 1
 polygon = PackedVector2Array(64, 0, 0, 64, 0, 0)
 
-[node name="LevelArea" type="Area2D" parent="." unique_id=1606469657]
-position = Vector2(144, 144)
+[node name="Area2D" type="Area2D" parent="." unique_id=1606469657]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelArea" unique_id=2099862666]
-shape = SubResource("RectangleShape2D_rysoc")
-debug_color = Color(0, 1, 0.12941177, 0)
-
-[node name="Spawner" type="Node2D" parent="." unique_id=275948283]
+[node name="Spawner" type="Node2D" parent="." unique_id=275948283 node_paths=PackedStringArray("layer")]
 position = Vector2(144, 144)
 script = ExtResource("9_0tnpc")
+layer = NodePath("../Level/EntityLayer")
 scenes = Array[PackedScene]([ExtResource("3_p57ef"), ExtResource("4_u5sy4"), ExtResource("4_gee14")])
-spawn_radius = 144.0
+spawn_radius = 160.0
 spawn_interval = 6.0
 total_positions = 24
 chance_to_flip = 0.25
@@ -206,7 +201,7 @@ chance_to_flip = 0.25
 unique_name_in_owner = true
 script = ExtResource("11_kvpfn")
 
-[connection signal="defeated" from="HeroLayer/Hero" to="." method="_on_hero_defeated"]
-[connection signal="is_fullmap_updated" from="GameCamera" to="GroundTexture" method="_on_game_camera_is_fullmap_updated"]
-[connection signal="is_fullmap_updated" from="GameCamera" to="OverlayTexture" method="_on_game_camera_is_fullmap_updated"]
-[connection signal="levelled_up" from="ScoreManager" to="HeroLayer/Hero" method="_on_score_manager_levelled_up"]
+[connection signal="defeated" from="Level/HeroLayer/Hero" to="." method="_on_hero_defeated"]
+[connection signal="is_fullmap_updated" from="GameCamera" to="Level/GroundTexture" method="_on_game_camera_is_fullmap_updated"]
+[connection signal="is_fullmap_updated" from="GameCamera" to="Level/OverlayTexture" method="_on_game_camera_is_fullmap_updated"]
+[connection signal="levelled_up" from="ScoreManager" to="Level/HeroLayer/Hero" method="_on_score_manager_levelled_up"]

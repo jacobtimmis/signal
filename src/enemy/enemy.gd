@@ -32,7 +32,7 @@ func _ready() -> void:
 func _on_health_component_killed() -> void:
     var inst := death_poof.instantiate() as Node2D
     inst.global_transform = global_transform
-    get_node("/root/Main/Viewport/Game/SplatterLayer").add_child(inst)
+    Game.get_decal_layer().add_child(inst)
 
     if add_score:
         ScoreManager.add_score(score_value)
@@ -50,21 +50,22 @@ func _physics_process(delta: float) -> void:
     if is_spawning:
         return
 
-    var desired_position := Hero.inst.global_position
+    var hero := Game.get_hero()
+    var desired_position := hero.global_position
     if go_to_center:
-        desired_position = Vector2.ZERO
+        desired_position = Vector2(144, 144)
     var desired_direction := global_position.direction_to(desired_position)
     var dist := global_position.distance_to(desired_position)
     var center_dist := global_position.distance_to(Vector2.ZERO)
 
     if weapon:
-        weapon.target_position = Hero.inst.global_position
-        if dist < weapon_dist and not Hero.inst.health_component.is_dead() and on_screen_notifier.is_on_screen() and center_dist < 60:
+        weapon.target_position = Game.get_hero().global_position
+        if dist < weapon_dist and not hero.health_component.is_dead() and on_screen_notifier.is_on_screen() and center_dist < 60:
             weapon._shoot()
 
     if weapon and stop_while_shooting and weapon.is_shooting:
         velocity = Vector2.ZERO
-    if Hero.inst.health_component.is_dead() and (always_flee or not go_to_center):
+    if hero.health_component.is_dead() and (always_flee or not go_to_center):
         velocity = desired_direction * speed * -1
     elif move_to_player:
         if dist < close_distance_to_player:

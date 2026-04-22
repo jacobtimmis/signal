@@ -137,7 +137,7 @@ size_flags_vertical = 10
 [node name="ScoreLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1085580043]
 unique_name_in_owner = true
 layout_mode = 2
-text = "100"
+text = "scored 100"
 label_settings = SubResource("LabelSettings_aac20")
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -145,7 +145,7 @@ vertical_alignment = 1
 [node name="Time" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1020392949]
 unique_name_in_owner = true
 layout_mode = 2
-text = "400s"
+text = "survived 400s"
 label_settings = SubResource("LabelSettings_f5cxw")
 horizontal_alignment = 1
 vertical_alignment = 1

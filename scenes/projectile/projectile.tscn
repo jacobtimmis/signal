@@ -24,4 +24,8 @@ texture = ExtResource("2_2dulq")
 [node name="OnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="." unique_id=171537133]
 rect = Rect2(-4, -4, 8, 8)
 
+[node name="Timer" type="Timer" parent="." unique_id=317264809]
+wait_time = 0.2
+one_shot = true
+
 [connection signal="screen_exited" from="OnScreenNotifier" to="." method="_on_on_screen_notifier_screen_exited"]

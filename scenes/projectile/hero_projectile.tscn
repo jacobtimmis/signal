@@ -22,7 +22,7 @@ damage = 18.0
 
 [node name="Trail" type="CPUParticles2D" parent="." index="1" unique_id=910037344]
 show_behind_parent = true
-amount = 10
+amount = 20
 texture = ExtResource("2_afyls")
 lifetime = 0.2
 gravity = Vector2(0, 0)

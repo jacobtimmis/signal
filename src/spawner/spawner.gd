@@ -1,7 +1,6 @@
 extends Node2D
 class_name Spawner
 
-@export var layer: Node2D
 var current_heat: int = 0: set = _set_current_heat
 var encounters: Array[EncounterData]
 @export var scenes: Array[PackedScene]
@@ -49,10 +48,10 @@ func _pick_encounter() -> EncounterData:
 
 
 func _spawn_enemy() -> void:
-    if Hero.inst.health_component.is_dead():
+    if Game.get_hero().health_component.is_dead():
         return
 
-    if encounters.is_empty() or not layer:
+    if encounters.is_empty():
         return
 
     timer.wait_time = max(timer.wait_time - 0.5, 2)
@@ -63,25 +62,26 @@ func _spawn_enemy() -> void:
 
 
 func _do_spawn(encounter: EncounterData):
-    var angle = (TAU / total_positions) * current_spawn_index - (PI / 2.0)
+    var angle = (TAU / total_positions) * current_spawn_index - deg_to_rad(90)
     var spawn_point := global_position + Vector2.RIGHT.rotated(angle) * spawn_radius
 
     for spawn in encounter.spawns:
+        if not spawn:
+            continue
         for n in randi_range(spawn.min_amount, spawn.max_amount):
             var instance = spawn.scene.instantiate()
 
-            var spread := Vector2(randf_range(-32, 32), randf_range(-32, 32))
-            var new_pos := spawn_point + spread
-            instance.global_position = new_pos.limit_length(90)
+            #var spread := Vector2(randf_range(-32, 32), randf_range(-32, 32))
+            #var new_pos := spawn_point + spread
+            instance.global_position = spawn_point
 
-            layer.add_child.call_deferred(instance)
+            print("Enemy spawned at %s" % instance.global_position)
+
+            Game.get_entity_layer().add_child.call_deferred(instance)
 
         if spawn.spawn_poof:
             var poof := spawn.spawn_poof.instantiate() as Node2D
             poof.global_position = spawn_point
             add_child(poof)
 
-    if randf() <= chance_to_flip:
-        current_spawn_index = (current_spawn_index + (total_positions / 2)) % total_positions
-    else:
-        current_spawn_index = (current_spawn_index + 1) % total_positions
+    current_spawn_index = (current_spawn_index + 1) % total_positions

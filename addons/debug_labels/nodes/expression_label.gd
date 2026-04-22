@@ -23,5 +23,5 @@ func _ready() -> void:
 
 func _get_value() -> Variant:
     if not Engine.is_editor_hint() and valid_expression:
-        return _expression.execute([], get_root_node())
+        return _expression.execute([], get_root_node(), false)
     return null

@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://d4ispxxosfnds"]
+
+[ext_resource type="Texture2D" uid="uid://bm064roej81wn" path="res://assets/sprites/tutorial_shoot.png" id="1_fdx5x"]
+[ext_resource type="FontFile" uid="uid://q036bpfo3uvm" path="res://assets/fonts/m5x7.ttf" id="2_3tor3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rysoc"]
+bg_color = Color(0.08627451, 0.09019608, 0.101960786, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.98039216, 0.99215686, 1, 1)
+corner_detail = 1
+anti_aliasing = false
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ssvqc"]
+color = Color(0.98039216, 0.99215686, 1, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_264po"]
+line_spacing = 0.0
+font = ExtResource("2_3tor3")
+
+[node name="FullScreen" type="PanelContainer" unique_id=1251901556]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rysoc")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1508282898]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2119462597]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 0
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=946020309]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+texture = ExtResource("1_fdx5x")
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=932910505]
+layout_mode = 2
+theme_override_constants/separation = 0
+theme_override_styles/separator = SubResource("StyleBoxLine_ssvqc")
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer" unique_id=228609084]
+custom_minimum_size = Vector2(0, 3)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=586832360]
+custom_minimum_size = Vector2(1, 0)
+layout_mode = 2
+text = "LEFT MOUSE to shoot tears"
+label_settings = SubResource("LabelSettings_264po")
+horizontal_alignment = 1
+autowrap_mode = 2
+visible_characters_behavior = 1

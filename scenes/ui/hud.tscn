@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://vwsilfyaltqv"]
+
+[ext_resource type="Script" uid="uid://c0g04e3akvw3m" path="res://src/ui/hud.gd" id="1_0mwgc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7n8c"]
+bg_color = Color(0.08627451, 0.09019608, 0.101960786, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5cxw"]
+bg_color = Color(1, 0.14901961, 0.45490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0dwhk"]
+draw_center = false
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(1, 0.5019608, 0.6431373, 1)
+
+[node name="HUD" type="Control" unique_id=71906689]
+custom_minimum_size = Vector2(144, 144)
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_0mwgc")
+
+[node name="Margin" type="MarginContainer" parent="." unique_id=1953653869]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 17.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 10
+
+[node name="HealthBar" type="ProgressBar" parent="Margin" unique_id=308219562]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 7)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/background = SubResource("StyleBoxFlat_u7n8c")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f5cxw")
+max_value = 1.0
+step = 0.0
+value = 0.5
+show_percentage = false
+
+[node name="Border" type="Panel" parent="Margin/HealthBar" unique_id=41446242]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0dwhk")
+
+[node name="ReferenceRect" type="ReferenceRect" parent="." unique_id=868180511]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

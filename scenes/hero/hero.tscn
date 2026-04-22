@@ -105,11 +105,12 @@ collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_4rdp7")
 
-[node name="Collision" type="CollisionShape2D" parent="." unique_id=2016962368]
-shape = SubResource("CircleShape2D_4rdp7")
-
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1740194880]
 texture = ExtResource("3_3pgml")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=2016962368]
+shape = SubResource("CircleShape2D_4rdp7")
+debug_color = Color(1, 0.14901961, 0.45490196, 0)
 
 [node name="AimLine" type="Line2D" parent="." unique_id=1785548595]
 show_behind_parent = true
@@ -132,6 +133,7 @@ from = NodePath("..")
 
 [node name="ShootSound" type="AudioStreamPlayer2D" parent="." unique_id=1585931221]
 stream = SubResource("AudioStreamRandomizer_m0de2")
+pitch_scale = 0.5
 
 [node name="DashStartSound" type="AudioStreamPlayer2D" parent="." unique_id=1137925564]
 stream = ExtResource("8_jrc8l")

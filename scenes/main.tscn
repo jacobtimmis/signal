@@ -3,12 +3,12 @@
 [ext_resource type="PackedScene" uid="uid://ddm1lor3eubqy" path="res://scenes/game.tscn" id="1_43bnl"]
 [ext_resource type="Script" uid="uid://cxlgtj4cndx6x" path="res://src/main.gd" id="1_vp0cx"]
 [ext_resource type="Shader" uid="uid://cbmsoieyrqqsf" path="res://assets/shaders/viewport.gdshader" id="2_rx586"]
-[ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_labels.gd" id="2_tbgi4"]
+[ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_info_layer.gd" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
-[ext_resource type="Script" uid="uid://cm6d6gwdcjtc3" path="res://src/fader.gd" id="6_tefeu"]
+[ext_resource type="AudioStream" uid="uid://dlj6ygt2a7qbl" path="res://assets/music/new_song2.wav" id="6_tefeu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_43bnl"]
-viewport_path = NodePath("Viewport")
+viewport_path = NodePath("ViewportTexture/Viewport")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g7cad"]
 resource_local_to_scene = true
@@ -20,11 +20,16 @@ shader_parameter/color_offset = 0.1000000285
 shader_parameter/mask_brightness = 1.0
 shader_parameter/aspect = 1.0
 
-[node name="Main" type="Node" unique_id=927454292 node_paths=PackedStringArray("subviewport_node")]
+[sub_resource type="Theme" id="Theme_tefeu"]
+Label/constants/outline_size = 4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tefeu"]
+
+[node name="Main" type="Node" unique_id=927454292]
 script = ExtResource("1_vp0cx")
-subviewport_node = NodePath("Viewport")
 
 [node name="ViewportTexture" type="ColorRect" parent="." unique_id=423871844]
+unique_name_in_owner = true
 texture_filter = 1
 material = SubResource("ShaderMaterial_g7cad")
 anchors_preset = 15
@@ -33,96 +38,127 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Viewport" type="SubViewport" parent="." unique_id=219516935]
+[node name="Viewport" type="SubViewport" parent="ViewportTexture" unique_id=219516935]
+unique_name_in_owner = true
 canvas_item_default_texture_filter = 0
 audio_listener_enable_2d = true
 size = Vector2i(144, 144)
 
-[node name="Game" parent="Viewport" unique_id=470228196 instance=ExtResource("1_43bnl")]
-unique_name_in_owner = true
+[node name="BackgroundLayer" type="CanvasLayer" parent="ViewportTexture/Viewport" unique_id=1393072877]
+layer = -1
 
-[node name="DebugLabels" type="CanvasLayer" parent="." unique_id=1453647402]
-visible = false
-script = ExtResource("2_tbgi4")
-
-[node name="LabelsContainer" type="VBoxContainer" parent="DebugLabels" unique_id=220735698]
-offset_right = 40.0
-offset_bottom = 40.0
-mouse_filter = 2
-
-[node name="VelocityLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=808583031 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Velocity: [value]"
-script = ExtResource("3_tbgi4")
-expression = "velocity.length()"
-root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
-prefix = "Velocity"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="PositionLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1484403002 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Position: [value]"
-script = ExtResource("3_tbgi4")
-expression = "global_position"
-root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
-prefix = "Position"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="StateLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1082348355 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "State: [value]"
-script = ExtResource("3_tbgi4")
-expression = "state_machine.get_current_state_name()"
-root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
-prefix = "State"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="AimLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=619194591 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Aim: [value]"
-script = ExtResource("3_tbgi4")
-expression = "_control_aim_dir"
-root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
-prefix = "Aim"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="HealthLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1172161487 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Health: [value]"
-script = ExtResource("3_tbgi4")
-expression = "health_component.current_health"
-root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
-prefix = "Health"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="MaxHealthLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=12115652 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "MaxHealth: [value]"
-script = ExtResource("3_tbgi4")
-expression = "health_component.max_health"
-root_node = NodePath("../../../Viewport/Game/HeroLayer/Hero")
-prefix = "MaxHealth"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="HeatLabel" type="Label" parent="DebugLabels/LabelsContainer" unique_id=1427936684 node_paths=PackedStringArray("root_node")]
-layout_mode = 2
-text = "Heat: [value]"
-script = ExtResource("3_tbgi4")
-expression = "current_heat"
-root_node = NodePath("../../../Viewport/Game/Spawner")
-prefix = "Heat"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=349879680]
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=889390236]
+[node name="BackgroundColor" type="ColorRect" parent="ViewportTexture/Viewport/BackgroundLayer" unique_id=773301918]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 color = Color(0, 0, 0, 1)
-script = ExtResource("6_tefeu")
+
+[node name="Game" parent="ViewportTexture/Viewport" unique_id=470228196 instance=ExtResource("1_43bnl")]
+texture_filter = 1
+
+[node name="DebugInfoLayer" type="CanvasLayer" parent="." unique_id=1453647402]
+script = ExtResource("2_tbgi4")
+
+[node name="Panel" type="PanelContainer" parent="DebugInfoLayer" unique_id=38541972]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_tefeu")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tefeu")
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugInfoLayer/Panel" unique_id=1823140179]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="LabelsContainer" type="VBoxContainer" parent="DebugInfoLayer/Panel/MarginContainer" unique_id=220735698]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+mouse_filter = 2
+
+[node name="Title" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=467103553]
+layout_mode = 2
+text = "Debug Info - F1 to Hide"
+
+[node name="HSeparator1" type="HSeparator" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1587038933]
+layout_mode = 2
+
+[node name="VelocityLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=808583031 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "Velocity: [value]"
+script = ExtResource("3_tbgi4")
+expression = "velocity.length()"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+prefix = "Velocity"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="PositionLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1484403002 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "Position: [value]"
+script = ExtResource("3_tbgi4")
+expression = "global_position"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+prefix = "Position"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="StateLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1082348355 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "State: [value]"
+script = ExtResource("3_tbgi4")
+expression = "state_machine.get_current_state_name()"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+prefix = "State"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="AimLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=619194591 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "Aim: [value]"
+script = ExtResource("3_tbgi4")
+expression = "_control_aim_dir"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+prefix = "Aim"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="HealthLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1172161487 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "Health: [value]"
+script = ExtResource("3_tbgi4")
+expression = "health_component.current_health"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+prefix = "Health"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="MaxHealthLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=12115652 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "MaxHealth: [value]"
+script = ExtResource("3_tbgi4")
+expression = "health_component.max_health"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+prefix = "MaxHealth"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="HSeparator2" type="HSeparator" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=254312248]
+layout_mode = 2
+
+[node name="HeatLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1427936684 node_paths=PackedStringArray("root_node")]
+layout_mode = 2
+text = "Heat: [value]"
+script = ExtResource("3_tbgi4")
+expression = "current_heat"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game")
+prefix = "Heat"
+metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=1157701580]
+stream = ExtResource("6_tefeu")
+autoplay = true
+bus = &"Music"
 
 [connection signal="gui_input" from="ViewportTexture" to="." method="_on_viewport_texture_gui_input"]

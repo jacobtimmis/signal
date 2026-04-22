@@ -11,6 +11,7 @@ signal bounced
 @export var remove_after_hit := true
 @export var bounce_on_edge := false
 @export var max_bounces := 1
+@onready var timer: Timer = $Timer
 
 var direction := Vector2(1, 0)
 var using_projectile_pool := false
@@ -40,6 +41,7 @@ func _on_life_time_timer_timeout() -> void:
 func _enter_tree() -> void:
     distance_travelled = 0
     active = true
+    $Sprite2D.show()
     current_bounces = 0
 
     for c in get_children():
@@ -63,23 +65,26 @@ func _process(delta: float) -> void:
     if use_max_distance and distance_travelled > max_distance:
         remove.call_deferred()
 
-    if bounce_on_edge and current_bounces < max_bounces and global_position.x < -72:
-        global_position.x = -72
+    var cam := get_viewport().get_camera_2d()
+    var min := cam.global_position - Vector2(72, 72)
+    var max := cam.global_position + Vector2(72, 72)
+    if bounce_on_edge and current_bounces < max_bounces and global_position.x < min.x:
+        global_position.x = min.x
         direction = direction.bounce(Vector2(-1, 0))
         current_bounces += 1
         bounced.emit()
-    if bounce_on_edge and current_bounces < max_bounces and global_position.x > 72:
-        global_position.x = 72
+    if bounce_on_edge and current_bounces < max_bounces and global_position.x > max.x:
+        global_position.x = max.x
         direction = direction.bounce(Vector2(1, 0))
         current_bounces += 1
         bounced.emit()
-    if bounce_on_edge and current_bounces < max_bounces and global_position.y < -72:
-        global_position.y = -72
+    if bounce_on_edge and current_bounces < max_bounces and global_position.y < min.y:
+        global_position.y = min.y
         direction = direction.bounce(Vector2(0, 1))
         current_bounces += 1
         bounced.emit()
-    if bounce_on_edge and current_bounces < max_bounces and global_position.y > 72:
-        global_position.y = 72
+    if bounce_on_edge and current_bounces < max_bounces and global_position.y > max.y:
+        global_position.y = max.y
         direction = direction.bounce(Vector2(0, -1))
         current_bounces += 1
         bounced.emit()
@@ -87,6 +92,10 @@ func _process(delta: float) -> void:
 
 
 func remove() -> void:
+    active = false
+    $Sprite2D.hide()
+    if $Trail:
+        $Trail.emitting = false
     if life_time_timer:
         life_time_timer.stop()
     if is_inside_tree():

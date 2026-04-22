@@ -1,0 +1,14 @@
+[gd_resource type="GradientTexture2D" format=3 uid="uid://1wfc8o3jsgkj"]
+
+[sub_resource type="Gradient" id="Gradient_dinhu"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.96, 0.99, 1)
+colors = PackedColorArray(0.08627451, 0.09019608, 0.101960786, 1, 0.2627451, 0, 0.40392157, 1, 0.2627451, 0, 0.40392157, 1, 0.08627451, 0.09019608, 0.101960786, 1)
+
+[resource]
+gradient = SubResource("Gradient_dinhu")
+width = 288
+height = 288
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0.5)
