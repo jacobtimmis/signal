@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://cbmsoieyrqqsf" path="res://assets/shaders/viewport.gdshader" id="2_rx586"]
 [ext_resource type="Script" uid="uid://cbuxoawijvvuq" path="res://src/debug_info_layer.gd" id="2_tbgi4"]
 [ext_resource type="Script" uid="uid://v1cr20qlqr8i" path="res://addons/debug_labels/nodes/expression_label.gd" id="3_tbgi4"]
+[ext_resource type="Script" uid="uid://m7cfr8cq5me6" path="res://addons/debug_labels/nodes/property_label.gd" id="6_o6xl0"]
 [ext_resource type="AudioStream" uid="uid://dlj6ygt2a7qbl" path="res://assets/music/new_song2.wav" id="6_tefeu"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_43bnl"]
@@ -13,6 +14,7 @@ viewport_path = NodePath("ViewportTexture/Viewport")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_g7cad"]
 resource_local_to_scene = true
 shader = ExtResource("2_rx586")
+shader_parameter/enabled = true
 shader_parameter/tex = SubResource("ViewportTexture_43bnl")
 shader_parameter/mask_type = 2
 shader_parameter/curve = 0.2000000095
@@ -90,59 +92,59 @@ text = "Debug Info - F1 to Hide"
 [node name="HSeparator1" type="HSeparator" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1587038933]
 layout_mode = 2
 
-[node name="VelocityLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=808583031 node_paths=PackedStringArray("root_node")]
+[node name="SpeedLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=808583031 node_paths=PackedStringArray("root_node")]
 layout_mode = 2
-text = "Velocity: [value]"
+text = "Speed: [value]"
 script = ExtResource("3_tbgi4")
 expression = "velocity.length()"
-root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
-prefix = "Velocity"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/HeroLayer/Hero")
+prefix = "Speed"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
-[node name="PositionLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1484403002 node_paths=PackedStringArray("root_node")]
+[node name="PositionLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1812897507 node_paths=PackedStringArray("root_node")]
 layout_mode = 2
-text = "Position: [value]"
-script = ExtResource("3_tbgi4")
-expression = "global_position"
-root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+text = "Position: (144.00, 176.00)"
+script = ExtResource("6_o6xl0")
+property = &"global_position"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/HeroLayer/Hero")
 prefix = "Position"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+metadata/_custom_type_script = "uid://m7cfr8cq5me6"
 
 [node name="StateLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1082348355 node_paths=PackedStringArray("root_node")]
 layout_mode = 2
 text = "State: [value]"
 script = ExtResource("3_tbgi4")
 expression = "state_machine.get_current_state_name()"
-root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/HeroLayer/Hero")
 prefix = "State"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 
-[node name="AimLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=619194591 node_paths=PackedStringArray("root_node")]
+[node name="AimLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=515909486 node_paths=PackedStringArray("root_node")]
 layout_mode = 2
 text = "Aim: [value]"
-script = ExtResource("3_tbgi4")
-expression = "_control_aim_dir"
-root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+script = ExtResource("6_o6xl0")
+property = &"_control_aim_dir"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/HeroLayer/Hero")
 prefix = "Aim"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+metadata/_custom_type_script = "uid://m7cfr8cq5me6"
 
-[node name="HealthLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=1172161487 node_paths=PackedStringArray("root_node")]
+[node name="HealthLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=245500354 node_paths=PackedStringArray("root_node")]
 layout_mode = 2
 text = "Health: [value]"
-script = ExtResource("3_tbgi4")
-expression = "health_component.current_health"
-root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+script = ExtResource("6_o6xl0")
+property = &"current_health"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/HeroLayer/Hero/HealthComponent")
 prefix = "Health"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+metadata/_custom_type_script = "uid://m7cfr8cq5me6"
 
-[node name="MaxHealthLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=12115652 node_paths=PackedStringArray("root_node")]
+[node name="MaxHealthLabel" type="Label" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=161897159 node_paths=PackedStringArray("root_node")]
 layout_mode = 2
-text = "MaxHealth: [value]"
-script = ExtResource("3_tbgi4")
-expression = "health_component.max_health"
-root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Level/HeroLayer/Hero")
+text = "MaxHealth: 100.00"
+script = ExtResource("6_o6xl0")
+property = &"max_health"
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/HeroLayer/Hero/HealthComponent")
 prefix = "MaxHealth"
-metadata/_custom_type_script = "uid://v1cr20qlqr8i"
+metadata/_custom_type_script = "uid://m7cfr8cq5me6"
 
 [node name="HSeparator2" type="HSeparator" parent="DebugInfoLayer/Panel/MarginContainer/LabelsContainer" unique_id=254312248]
 layout_mode = 2
@@ -152,7 +154,7 @@ layout_mode = 2
 text = "Heat: [value]"
 script = ExtResource("3_tbgi4")
 expression = "current_heat"
-root_node = NodePath("../../../../../ViewportTexture/Viewport/Game")
+root_node = NodePath("../../../../../ViewportTexture/Viewport/Game/Spawner")
 prefix = "Heat"
 metadata/_custom_type_script = "uid://v1cr20qlqr8i"
 

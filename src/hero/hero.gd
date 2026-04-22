@@ -204,7 +204,7 @@ func _dead_enter() -> void:
 
     var poof := HERO_DEATH_POOF.instantiate() as Node2D
     poof.global_transform = global_transform
-    Game.instance.get_node("SplatterLayer").add_child(poof)
+    Game.get_decal_layer().add_child(poof)
 
     $WeaponAltAvailable.hide()
 
