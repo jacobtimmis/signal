@@ -206,6 +206,8 @@ chance_to_flip = 0.25
 unique_name_in_owner = true
 script = ExtResource("11_kvpfn")
 
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1720018619]
+
 [connection signal="defeated" from="HeroLayer/Hero" to="." method="_on_hero_defeated"]
 [connection signal="is_fullmap_updated" from="GameCamera" to="GroundTexture" method="_on_game_camera_is_fullmap_updated"]
 [connection signal="is_fullmap_updated" from="GameCamera" to="OverlayTexture" method="_on_game_camera_is_fullmap_updated"]
