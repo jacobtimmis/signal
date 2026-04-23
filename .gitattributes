@@ -1,2 +1,6 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# Ignore builds/ and addons/ folder for linguist
+builds/* linguist-vendored
+addons/* linguist-vendored
